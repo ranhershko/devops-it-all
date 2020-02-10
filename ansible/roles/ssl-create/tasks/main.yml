@@ -1,0 +1,4 @@
+---
+# tasks file for ssl-create
+- include: create_key_scr_crt.yml
+- include: ssl_k8s_secrets.yml
