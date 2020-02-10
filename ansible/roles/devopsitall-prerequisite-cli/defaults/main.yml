@@ -1,0 +1,48 @@
+---
+#
+# defaults file for devopsitall-prerequisite
+#
+helm_version: 'v2.16.1'
+vault_version: '1.3.2'
+packer_version: '1.5.1'
+terraform_version: '0.12.13'
+pkgs:
+  aws_iam_authenticator:
+    url: 'https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator'
+    sha256: 'https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator.sha256'
+    compressed: false
+    download_dir: "/tmp/download/"
+    bin_files:
+      - aws-iam-authenticator
+  helm: 
+    url: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
+    sha256: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz.sha256"
+    compressed: true
+    download_dir: "/tmp/download/linux-amd64/"
+    bin_files:
+      - tiller
+      - helm
+  vault:
+    url: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_amd64.zip"
+    sha256: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_SHA256SUMS"
+    compressed: true
+    download_dir: "/tmp/download/"
+    bin_files:
+      - vault
+
+  packer:
+    url: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
+    sha256: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_SHA256SUMS"
+    compressed: true
+    download_dir: "/tmp/download/"
+    bin_files:
+      - packer
+
+  terraform:
+    url: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
+    sha256: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_SHA256SUMS"
+    compressed: true
+    download_dir: "/tmp/download/"
+    bin_files:
+      - terraform
+
