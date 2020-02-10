@@ -1,0 +1,11 @@
+---
+- name: Install python3 dependencies
+  command: "pip3 install -U -r {{ playbook_dir }}/build/requirements.txt"
+
+- name: Install aws cli
+  pip:
+    name: awscli
+    executable: "{{ item }}"
+    state: latest
+  loop:
+    - "pip3"
