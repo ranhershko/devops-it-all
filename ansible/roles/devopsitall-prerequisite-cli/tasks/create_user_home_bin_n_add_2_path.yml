@@ -1,0 +1,47 @@
+---
+- name: get playbook proccess run user
+  shell: ps -ef|grep ansible-playbook|grep -v grep|head -1|awk '{print $1}'
+  register: user_name
+
+- name: Set fact user home dir
+  set_fact:
+    user_home: "/home/{{ user_name.stdout }}"
+    cacheable: yes
+
+- name: Set fact user home bin dir
+  set_fact:
+    user_home_bin: "{{ user_home }}/bin"
+    cacheable: yes
+
+- name: Make home bin dir
+  file:
+    path: "{{ user_home_bin }}"
+    state: directory
+    mode: '0755'
+
+- name: Adding the path in the bashrc files
+  lineinfile: 
+    dest="{{ user_home }}/.bashrc" 
+    regexp='^export HELM_HOST' 
+    line='export HELM_HOST=localhost:44134' 
+    insertafter='EOF' 
+    state=present
+
+- name: Checks if the .bashrc file already has an entry for the PATH
+  replace:
+    dest="{{ user_home }}/.bashrc"
+    regexp="PATH=(.*)(?!{{ user_home_bin }})(.*)"
+    replace="PATH={{ user_home_bin }}:\1"
+  register: checkIfPATHIsHere
+
+- name: Add a PATH entry with {{user_home_bin}} if the PATH is not already defined
+  lineinfile:
+    dest="{{ user_home }}/.bashrc"
+    state=present
+    line="PATH={{user_home_bin}}:$PATH"
+    regexp=''
+    insertafter=EOF
+  when: checkIfPATHIsHere.changed == false
+
+- name: Source the bashrc file
+  shell: source "{{ user_home }}/.bashrc"
