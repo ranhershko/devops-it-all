@@ -1,0 +1,30 @@
+---
+- name: Create aws eks with vpc - take about 10 min long ...
+  terraform:
+    binary_path: "{{ user_home_bin }}/terraform"
+    project_path: "{{ vpc_n_eks_terraform_dir }}"
+    state:        present 
+    #plan_file:    "{{ vpc_n_eks_terraform_dir }}/devops-it-all.tfplan"
+    force_init: true
+  register: terraform_output
+
+- name: Terraform output
+  debug:
+    msg: 
+      - "{{ terraform_output.command }}"
+      - "{{ terraform_output.stdout }}"
+
+- name: Create user .kube dir
+  file:
+    path: "{{ user_home }}/.kube"
+    state: directory
+    mode: '0700'
+
+- name: copy kubconfig file to user home .kube config file
+  file:
+    src:  "{{ vpc_n_eks_terraform_dir }}/kubeconfig_kubernetes-{{ project_name }}"
+    dest: "{{ user_home }}/.kube/config"
+    state: link
+    owner: "{{ user_home.split('/')[-1] }}"
+    group: "{{ user_home.split('/')[-1] }}"
+    force: true
