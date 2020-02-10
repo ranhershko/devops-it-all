@@ -1,0 +1,29 @@
+---
+- name: Create ssl dir for created crt and key files playbook ssl_created dir
+  file:
+    path: "{{ playbook_dir }}/ssl_created"
+    state: directory
+    mode: '0700'
+
+- name: Generate an OpenSSL private key with values (2048 bits, RSA)
+  openssl_privatekey:
+    path: "{{ playbook_dir }}/ssl_created/vault.key"
+    size: 2048
+  register: for_vault_ssl_key_file
+
+- name: Generate an Vault OpenSSL Certificate Signing Request
+  openssl_csr:
+    path: "{{ playbook_dir }}/ssl_created/vault.csr"
+    privatekey_path: "{{ playbook_dir }}/ssl_created/vault.key"
+    common_name: vault
+    country_name: US
+    locality_name: Washington
+    state_or_province_name: CA
+    organization_name: The Cloud
+
+- name: Generate Vault Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: "{{ playbook_dir }}/ssl_created/vault.crt"
+    privatekey_path: "{{ playbook_dir }}/ssl_created/vault.key"
+    csr_path: "{{ playbook_dir }}/ssl_created/vault.csr"
+    provider: selfsigned
