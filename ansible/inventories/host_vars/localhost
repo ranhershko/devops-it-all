@@ -1,0 +1,3 @@
+---
+vpc_n_eks_terraform_dir: "{{ playbook_dir }}/../../../terraform/aws/vpc-n-eks-devops-it-all"
+project_name: devops-it-all
