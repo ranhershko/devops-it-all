@@ -1,0 +1,15 @@
+# Terraform files
+*.tfstate*
+.terraform
+.tfplan
+
+# Security files
+*.pem
+
+# kubeconfig files
+kubeconfig*
+
+# ssl keys
+*.crt
+*.scr
+*.key
