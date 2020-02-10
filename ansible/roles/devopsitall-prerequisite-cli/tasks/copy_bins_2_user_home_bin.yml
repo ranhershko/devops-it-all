@@ -1,0 +1,63 @@
+---
+- name: Copy vault bin files to home bin dir
+  copy:
+    src: "{{ item[0] }}{{ item[1] }}"
+    dest: "{{ user_home_bin }}/{{ item[1] }}"
+    owner: "{{ user_home.split('/')[-1] }}"
+    group: "{{ user_home.split('/')[-1] }}"
+    mode: '0755'
+  with_nested:
+    - "{{ pkgs.vault.download_dir }}"
+    - "{{ pkgs.vault.bin_files }}"
+
+- name: Copy helm bin files to home bin dir
+  copy:
+    src: "{{ item[0] }}{{ item[1] }}"
+    dest: "{{ user_home_bin }}/{{ item[1] }}"
+    owner: "{{ user_home.split('/')[-1] }}"
+    group: "{{ user_home.split('/')[-1] }}"
+    mode: '0755'
+  with_nested:
+    - "{{ pkgs.helm.download_dir }}"
+    - "{{ pkgs.helm.bin_files }}"
+
+- name: Copy aws-iam-authenticator bin file to home bin dir
+  copy:
+    src: "{{ item[0] }}{{ item[1] }}"
+    dest: "{{ user_home_bin }}/{{ item[1] }}"
+    owner: "{{ user_home.split('/')[-1] }}"
+    group: "{{ user_home.split('/')[-1] }}"
+    mode: '0755'
+  with_nested:
+    - "{{ pkgs.aws_iam_authenticator.download_dir }}"
+    - "{{ pkgs.aws_iam_authenticator.bin_files }}"
+
+- name: Copy packer bin file to home bin dir
+  copy:
+    src: "{{ item[0] }}{{ item[1] }}"
+    dest: "{{ user_home_bin }}/{{ item[1] }}"
+    owner: "{{ user_home.split('/')[-1] }}"
+    group: "{{ user_home.split('/')[-1] }}"
+    mode: '0755'
+  with_nested:
+    - "{{ pkgs.packer.download_dir }}"
+    - "{{ pkgs.packer.bin_files }}"
+
+- name: Copy terraform bin file to home bin dir
+  copy:
+    src: "{{ item[0] }}{{ item[1] }}"
+    dest: "{{ user_home_bin }}/{{ item[1] }}"
+    owner: "{{ user_home.split('/')[-1] }}"
+    group: "{{ user_home.split('/')[-1] }}"
+    mode: '0755'
+  with_nested:
+    - "{{ pkgs.terraform.download_dir }}"
+    - "{{ pkgs.terraform.bin_files }}"
+
+#- name: run tiller in background
+  #shell: nohup tiller start  >/dev/null 2>&1 &
+
+- name: Delete download tmp dir
+  file:
+    path: /tmp/download
+    state: absent
