@@ -1,0 +1,38 @@
+---
+- name: Create download dir
+  file:
+    path: /tmp/download/bin
+    state: directory
+    mode: '0777'
+
+- name: Download package sha256
+  get_url:
+    url: "{{ item.value.sha256 }}"
+    dest: /tmp/download/
+  with_dict: "{{ pkgs }}"
+  register: sha256_files  
+
+- name: Register the checksum value
+  shell: grep "{{ item['dest'].split('.')[0] }}" "{{ item['dest'] }}"| awk '{print $1}'
+  loop: "{{ sha256_files.results }}"
+  register: pkgs_checksum_value
+
+- name: Set cli's sha256 value variable
+  set_fact: 
+    aws_iam_authenticator_sha256_value: "{{ pkgs_checksum_value.results[0].item.checksum_src }}"
+    helm_sha256_value: "{{ pkgs_checksum_value.results[1].item.checksum_src }}" 
+    vault_sha256_value: "{{ pkgs_checksum_value.results[2].item.checksum_src }}"
+
+- name: Download cli packages
+  get_url:
+    url: "{{ item.value.url }}"
+    dest: /tmp/download/
+  with_dict: "{{ pkgs }}"
+    
+- name: UNZIPPING cli packages
+  unarchive:
+        src: "/tmp/download/{{ item.value.url.split('/')[-1] }}"
+        dest: "/tmp/download"
+        copy: no
+  with_dict: "{{ pkgs }}"
+  when: "{{ item.value.compressed }}"
