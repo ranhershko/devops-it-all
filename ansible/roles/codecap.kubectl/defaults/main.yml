@@ -1,0 +1,13 @@
+---
+#
+# defaults file for codecap.kubectl
+#
+kubectl_conf:
+  path:
+    bin:    '~/bin'
+    script: '~/scripts'
+  version:              latest
+  latest_url:           'https://storage.googleapis.com/kubernetes-release/release/stable.txt'
+  release_url:          'https://storage.googleapis.com/kubernetes-release/release'
+  install_completion:   true
+  ensure_prerequisites: false

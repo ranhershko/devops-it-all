@@ -1,0 +1,21 @@
+---
+#
+# Download tasks
+#
+- name: 'Ensure bin directory exists'
+  file:
+    path: "{{kubectl_conf.path.bin}}"
+    state: directory
+- name: download file and force basic auth
+  get_url:
+    url:   "{{kubectl_conf.release_url}}/{{(kubectl_conf.version == 'latest')|ternary(latest_version.stdout,kubectl_conf.version)}}/bin/linux/amd64/kubectl"
+    dest:  "{{kubectl_conf.path.bin}}/kubectl-{{(kubectl_conf.version == 'latest')|ternary(latest_version.stdout,kubectl_conf.version)}}"
+- name: 'Create kubectl link'
+  file:
+    src:   "{{kubectl_conf.path.bin}}/kubectl-{{(kubectl_conf.version == 'latest')|ternary(latest_version.stdout,kubectl_conf.version)}}"
+    dest:  "{{kubectl_conf.path.bin}}/kubectl"
+    state: link
+- name: 'Set permissions for kubectl'
+  file:
+    path: "{{kubectl_conf.path.bin}}/kubectl-{{(kubectl_conf.version == 'latest')|ternary(latest_version.stdout,kubectl_conf.version)}}"
+    mode: '0755'

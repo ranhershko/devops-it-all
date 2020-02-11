@@ -1,0 +1,19 @@
+---
+#
+# Tasks to generate bash completion for kubectl
+#
+- name: 'Ensure script directory exists'
+  file:
+    path: "{{kubectl_conf.path.script}}"
+    state: directory
+- name:  'Generate bash completion script'
+  shell: "{{kubectl_conf.path.bin}}/kubectl completion bash > {{kubectl_conf.path.script}}/kubectl-completion-{{(kubectl_conf.version == 'latest')|ternary(latest_version.stdout,kubectl_conf.version)}}"
+  args:
+    warn: false
+    creates: "{{kubectl_conf.path.script}}/kubectl-completion-{{(kubectl_conf.version == 'latest')|ternary(latest_version.stdout,kubectl_conf.version)}}"
+- name: 'Create kubectl link'
+  file:
+    src:   "{{kubectl_conf.path.script}}/kubectl-completion-{{(kubectl_conf.version == 'latest')|ternary(latest_version.stdout,kubectl_conf.version)}}"
+    dest:  "{{kubectl_conf.path.script}}/kubectl-completion"
+    state: link
+    

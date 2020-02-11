@@ -1,0 +1,27 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+docker:
+  containers:
+      - name:  ubuntu
+        image: ubuntu-curl
+        image_version: latest
+        ansible_groups:
+          - group1
+        environment:
+          http_proxy:  http://172.17.0.1:10102
+          https_proxy: http://172.17.0.1:10102
+      # - name:  centos
+      #   image: centos
+      #   image_version: latest
+      #   ansible_groups:
+      #     - group1
+      #   environment:
+      #     http_proxy:  http://172.17.0.1:10102
+      #     https_proxy: http://172.17.0.1:10102
+verifier:
+  name: testinfra
+ansible:
+  sudo: False

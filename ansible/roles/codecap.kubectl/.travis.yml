@@ -1,0 +1,43 @@
+---
+dist: trusty
+# Use the new container infrastructure
+sudo: required
+
+language: python
+python: "2.7"
+
+
+env:
+  - distribution: ubuntu
+    version: 14.04
+
+
+# Install ansible
+addons:
+  apt:
+    packages:
+    - docker
+    - systemd
+    - python-pip
+
+
+before_install:
+  - env
+  - pwd
+
+install:
+  # Install ansible
+  - pip install ansible
+
+  # Check ansible version
+  - ansible --version
+
+  # Create ansible.cfg with correct roles_path
+  - printf '[defaults]\nroles_path=../\nhash_behaviour=merge' >ansible.cfg
+
+script:
+  - ansible-playbook -i tests/travis-inventory --syntax-check      tests/travis-test.yml        -e ansible_python_interpreter=/usr/bin/python
+  - ansible-playbook -i tests/travis-inventory --connection=local  tests/travis-test.yml --sudo -e ansible_python_interpreter=/usr/bin/python
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
