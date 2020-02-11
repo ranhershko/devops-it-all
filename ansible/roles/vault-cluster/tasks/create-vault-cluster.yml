@@ -1,13 +1,16 @@
 ---
 - name: Install helm vault chart on aws eks
-  helm:
-    host: localhost
-    chart:
-      name: vault-helm
-      source:
-        type: git
-        location: https://github.com/hashicorp/vault-helm.git
-    state: present
-    values: "{{ lookup('file', 'vault-values-on-kubernetes.yml') | from_yaml }}"
-    name: "vault-devopsitall"
-    #when: git_clone_result is succeeded
+  block:
+    - helm:
+        chart:
+          name: vault-helm
+          source:
+            type: git
+            location: https://github.com/hashicorp/vault-helm.git
+        state: present
+        values: "{{ lookup('file', 'vault-values-on-kubernetes.yml') | from_yaml }}"
+        name: "vault-devopsitall"
+        #when: git_clone_result is succeeded
+  rescue:
+    - debug:
+        msg: "Vault cluster already exists"
