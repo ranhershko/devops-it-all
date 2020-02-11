@@ -1,3 +1,8 @@
 ---
-- name: run tiller in background
-  shell: nohup tiller start  >/dev/null 2>&1 &
+- name: Kill in start tiller 
+  block:
+    - command: pkill -9 tiller
+  become: true
+  ignore_errors: yes
+  always: 
+    - shell: nohup tiller start  >/dev/null 2>&1 &
