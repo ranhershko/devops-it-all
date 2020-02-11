@@ -13,13 +13,12 @@
 - name: Copy helm bin files to home bin dir
   copy:
     src: "{{ item[0] }}{{ item[1] }}"
-    dest: "{{ user_home_bin }}/{{ item[1] }}"
-    owner: "{{ user_home.split('/')[-1] }}"
-    group: "{{ user_home.split('/')[-1] }}"
+    dest: "/usr/bin/{{ item[1] }}"
     mode: '0755'
   with_nested:
     - "{{ pkgs.helm.download_dir }}"
     - "{{ pkgs.helm.bin_files }}"
+  become: true
 
 - name: Copy aws-iam-authenticator bin file to home bin dir
   copy:
