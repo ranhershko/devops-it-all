@@ -1,24 +1,34 @@
 ---
 - name: Install helm consul chart on aws eks
-  helm:
-    #host: localhost
-    chart:
-      name: "{{ helm_name }}"
-      version: "{{ helm_version }}"
-      source:
-        type: git
-        location: "{{ helm_location }}"
-    state: present
-    values: "{{ lookup('file', 'consul-values-on-kubernetes.yml') | from_yaml }}"
-    #values: "{{ 'consul-values-on-kubernetes.yml' | from_yaml }}"
-    name: "consul-devopsitall"
-    namespace: default
-  
+  block:
+    - helm:
+        chart:
+          name: "{{ helm_name }}"
+          version: "{{ helm_version }}"
+          source:
+            type: git
+            location: "{{ helm_location }}"
+        state: present
+        values: "{{ lookup('file', 'consul-values-on-kubernetes.yml') | from_yaml }}"
+        #values: "{{ 'consul-values-on-kubernetes.yml' | from_yaml }}"
+        name: "consul-devopsitall"
+        namespace: default
+      register: consul_helm_install
+  rescue:
+    - debug:
+        msg: "Consul cluster already exists" 
+    #- set_fact:
+        #consul_helm_install: true
 
-- name:  Pause for 5 min wait for Consul helm chart build to complete ...
+- name: debug consul helm install
+  debug:
+    msg: "{{ consul_helm_install }}" 
+
+- name: Pause for 5 min wait for Consul helm chart build to complete ...
   pause:
     minutes: 5
-
+  when: consul_helm_install.rc != 1
+    
 #- name: Wait for deployment success
   #k8s:
     #definition:
