@@ -5,5 +5,4 @@
    ##### Manage Hashicorp consul, vault 
    ##### Run Jenkins apps pipelines
         WORK IN PROGRESS...
-   <img src="images/env-status.png" width="700" >
-   !['Environment Status'](images/env-status.png)
+   <img src="images/env-status.png" width="1000" >
