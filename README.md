@@ -5,3 +5,4 @@
    ##### Manage Hashicorp consul, vault 
    ##### Run Jenkins apps pipelines
         WORK IN PROGRESS...
+   !['Environment Status'](images/env-status.png)
