@@ -7,9 +7,9 @@
         WORK IN PROGRESS...
    <img src="images/env-status.png" width="1200" >
    
-   Running steps:
-    ###### Git clone devops-it-all repo
-    ###### Cd devops-it-all/ansible
-    ###### run:
-      ####### ansible-playbook play-devops-it-all.yml  --tags first_time_run
-      ####### ansible-playbook play-devops-it-all.yml  --skip-tags first_time_run
+   ## Running steps:
+   ###### Git clone devops-it-all repo
+   ###### Cd devops-it-all/ansible
+   ###### run:
+   ####### ansible-playbook play-devops-it-all.yml  --tags first_time_run
+   ####### ansible-playbook play-devops-it-all.yml  --skip-tags first_time_run
