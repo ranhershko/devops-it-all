@@ -17,18 +17,16 @@
   rescue:
     - debug:
         msg: "Consul cluster already exists" 
-    #- set_fact:
-        #consul_helm_install: true
 
-- name: debug consul helm install
-  debug:
-    msg: "{{ consul_helm_install }}" 
-
-- name: Pause for 5 min wait for Consul helm chart build to complete ...
+- name: Pause for 3 min wait for Consul helm chart build to complete ...
   pause:
-    minutes: 5
-  when: consul_helm_install.rc != 1
+    minutes: 3
+  when: consul_helm_install.changed == true and consul_helm_install.failed == false
     
+- name: vault namespace create
+  shell: kubectl create namespace vault
+  ignore_errors: true
+
 #- name: Wait for deployment success
   #k8s:
     #definition:
