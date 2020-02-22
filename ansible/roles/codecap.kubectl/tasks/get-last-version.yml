@@ -7,6 +7,3 @@
   register: latest_version
   failed_when:  false
   changed_when: false
-# - name: "debug"
-#   debug:
-#     msg: "{{latest_version.stdout}}"
