@@ -8,8 +8,8 @@
    <img src="images/env-status.png" width="1200" >
    
    Running steps:
-    1) git clone devops-it-all repo
-    2) cd devops-it-all/ansible
-    3) run:
-      a) ansible-playbook play-devops-it-all.yml  --tags first_time_run
-      b) ansible-playbook play-devops-it-all.yml  --skip-tags first_time_run
+    ###### Git clone devops-it-all repo
+    ###### Cd devops-it-all/ansible
+    ###### run:
+      ####### ansible-playbook play-devops-it-all.yml  --tags first_time_run
+      ####### ansible-playbook play-devops-it-all.yml  --skip-tags first_time_run
