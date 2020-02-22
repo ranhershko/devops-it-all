@@ -1,29 +1,32 @@
 ---
 - name: Create ssl dir for created crt and key files playbook ssl_created dir
   file:
-    path: "{{ playbook_dir }}/ssl_created"
+    path: "{{ playbook_dir }}/../ssl_created"
     state: directory
     mode: '0700'
+  register: ssl_dir
 
-- name: Generate an OpenSSL private key with values (2048 bits, RSA)
+- name: Generate an OpenSSL private key (2048 bits, RSA)
   openssl_privatekey:
-    path: "{{ playbook_dir }}/ssl_created/vault.key"
+    path: "{{ ssl_dir.path }}/{{ item.name }}.key"
     size: 2048
-  register: for_vault_ssl_key_file
+  loop: "{{ management_apps }}"
 
-- name: Generate an Vault OpenSSL Certificate Signing Request
+- name: Generate management apps OpenSSL Certificate Signing Request
   openssl_csr:
-    path: "{{ playbook_dir }}/ssl_created/vault.csr"
-    privatekey_path: "{{ playbook_dir }}/ssl_created/vault.key"
-    common_name: vault
+    path: "{{ ssl_dir.path }}/{{ item.name }}.csr"
+    privatekey_path: "{{ ssl_dir.path }}/{{ item.name }}.key"
+    common_name: "{{ item.name }}"
     country_name: US
     locality_name: Washington
     state_or_province_name: CA
     organization_name: The Cloud
+  loop: "{{ management_apps }}"
 
-- name: Generate Vault Self Signed OpenSSL certificate
+- name: Generate management apps Self Signed OpenSSL certificate
   openssl_certificate:
-    path: "{{ playbook_dir }}/ssl_created/vault.crt"
-    privatekey_path: "{{ playbook_dir }}/ssl_created/vault.key"
-    csr_path: "{{ playbook_dir }}/ssl_created/vault.csr"
+    path: "{{ ssl_dir.path }}/{{ item.name }}.crt"
+    privatekey_path: "{{ ssl_dir.path }}/{{ item.name }}.key"
+    csr_path: "{{ ssl_dir.path }}/{{ item.name }}.csr"
     provider: selfsigned
+  loop: "{{ management_apps }}"
