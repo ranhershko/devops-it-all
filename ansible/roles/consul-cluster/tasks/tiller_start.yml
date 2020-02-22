@@ -1,8 +1,9 @@
 ---
-- name: Kill in start tiller 
-  block:
-    - command: pkill -9 tiller
+- name: Kill tiller proccess
   become: true
+  command: pkill -9 tiller
   ignore_errors: yes
-  always: 
-    - shell: nohup tiller start  >/dev/null 2>&1 &
+ 
+- name: Start tiller proccess
+  shell: nohup tiller start  >/dev/null 2>&1 &
+  ignore_errors: yes
