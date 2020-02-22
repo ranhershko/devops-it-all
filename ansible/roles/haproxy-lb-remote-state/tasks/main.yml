@@ -1,0 +1,3 @@
+---
+# tasks file for vpc-n-eks-remote-state
+- include: create-haproxy-lb-remote-state.yml
