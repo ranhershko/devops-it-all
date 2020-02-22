@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  roles: 
+    - role: devopsitall-prerequisite-cli
+      tags: [first_time_run]
+    - role: codecap.kubectl
+      tags: [first_time_run]
+    - role: vpc-n-eks-remote-state
+      tags: [first_time_run]
+    - role: vpc-n-eks
+    - role: consul-cluster
+    - role: ssl-create
+    - role: vault-cluster
+    - role: jenkins-env
+    - role: prometheus-env
+    - role: grafana-env
+    - role: haproxy-lb-remote-state
+      tags: [first_time_run]
+    - role: haproxy-lb
