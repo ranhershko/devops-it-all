@@ -13,3 +13,6 @@ kubeconfig*
 *.crt
 *.scr
 *.key
+
+# pub files
+*.pub
