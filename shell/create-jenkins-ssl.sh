@@ -70,7 +70,7 @@ cat "${DIR}/vault.crt" "${DIR}/ca.crt" > "${DIR}/vault-combined.crt"
 kubectl delete secret vault-tls -n $(namespace) --ignore-not-found
 kubectl delete secret vault-tls -n default --ignore-not-found
 
-kubectl create secret generic vault-tls -n $(namespace) \
+kubectl create secret generic vault-tls -n vault \
   --from-file="${DIR}/ca.crt" \
   --from-file="vault.crt=${DIR}/vault-combined.crt" \
   --from-file="vault.key=${DIR}/vault.key"
