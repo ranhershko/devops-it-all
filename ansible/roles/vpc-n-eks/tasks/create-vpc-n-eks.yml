@@ -1,18 +1,36 @@
 ---
 - name: Create aws eks with vpc - take about 10 min long ...
   terraform:
-    binary_path: "{{ user_home_bin }}/terraform"
+    binary_path: "{{ user_home }}/bin/terraform"
     project_path: "{{ vpc_n_eks_terraform_dir }}"
-    state:        present 
+    state: present 
+    lock: yes
+    backend_config:
+      region: "eu-west-1"
+      bucket: "devopsitall-terrform-remote-state"
+      key: "vpc-n-eks-terrform.tfstate"
+      dynamodb_table:  "devopsitall-vpc-n-eks-terrform-remote-lock"
+      encrypt:  true
     #plan_file:    "{{ vpc_n_eks_terraform_dir }}/devops-it-all.tfplan"
+    #state_file:   "{{ vpc_n_eks_terraform_dir }}/terraform.tfstate"
     force_init: true
-  register: terraform_output
+  register: terraform_run
 
 - name: Terraform output
   debug:
     msg: 
-      - "{{ terraform_output.command }}"
-      - "{{ terraform_output.stdout }}"
+      - "{{ terraform_run.command }}"
+      - "{{ terraform_run.stdout }}"
+
+#- name: Update vault values.yaml with kmsid
+  #replace:
+    #dest="{{ playbook_dir }}/roles/vault-cluster/files/vault-values-on-kubernetes.yml"
+    #regexp='(.*)(kms_key_id\s=\s)(.*)'
+    #replace='\1\2{{ kmsid }}'
+
+#- name: sleep for 300 seconds and continue with play when consul cluster deployment status is complete
+  #wait_for:
+    #timeout: 300
 
 - name: Create user .kube dir
   file:
