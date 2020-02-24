@@ -10,6 +10,8 @@
     - role: vpc-n-eks
     - role: consul-cluster
     - role: ssl-create
+    - role: kms-vault-unseal_key
+      tags: [first_time_run]
     - role: vault-cluster
     - role: jenkins-env
     - role: prometheus-env
