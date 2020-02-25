@@ -6,11 +6,11 @@
     state:        present 
     lock: yes
     backend_config:
-      region: "eu-west-1"
-      bucket: "devopsitall-terrform-remote-state"
-      key: "haproxy-lb-terrform.tfstate"
-      dynamodb_table:  "devopsitall-haproxy-autoscale-terrform-remote-lock"
-      encrypt:  true
+      region: "us-east-1"
+      bucket: "devopsitall-terraform-remote-state"
+      key: "haproxy-lb-terraform.tfstate"
+      dynamodb_table:  "devopsitall-haproxy-autoscale-terraform-remote-lock"
+      encrypt:  "true"
     #plan_file:    "{{ haproxy_lb_terraform_dir }}/devops-it-all-remote-state.tfplan"
     #state_file:   "{{ haproxy_lb_terraform_dir }}/terraform.tfstate"
     force_init: true
