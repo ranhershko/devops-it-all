@@ -4,9 +4,3 @@
 - include: pip_install.yml
 - include: create_user_home_bin_n_add_2_path.yml
 - include: copy_bins_2_user_home_bin.yml
-    #apply:
-      #become: true
-#- include_tasks: 
-    #file: create_tiller_service.yml
-    #apply:
-      #become: true 
