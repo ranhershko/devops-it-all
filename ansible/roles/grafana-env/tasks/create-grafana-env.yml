@@ -1,0 +1,12 @@
+---
+- name: Install helm grafana chart on aws eks
+  helm:
+    chart:
+      #name: grafana-helm
+      source:
+        type: git
+        location: https://github.com/helm/charts.git
+        path: stable/grafana
+      state: present
+      #values: "{{ lookup('file', 'grafana-values-on-kubernetes.yml') | from_yaml }}"
+      name: "grafana-devopsitall"
