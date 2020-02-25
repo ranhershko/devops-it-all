@@ -1,0 +1,12 @@
+---
+# defaults file for vpc-n-eks-remote-state
+haproxy_lb_terraform_dir: "{{ playbook_dir }}/../terraform/aws/haproxy-autoscale"
+project_name: devops-it-all
+haproxy_frontend_port: 80
+haproxy_socket: /var/lib/haproxy/stats
+haproxy_connection_num: 10000
+haproxy_chroot: /var/lib/haproxy
+haproxy_user: haproxy
+haproxy_group: haproxy
+haproxy_frontend_mode: http
+haproxy_domain: ranhershko.dns-cloud.net

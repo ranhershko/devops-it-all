@@ -1,0 +1,56 @@
+---
+- name: Get jenkins service name
+  shell: kubectl get svc -l app.kubernetes.io/component=="jenkins-master"|awk '{print $1}'|grep 'jenkins$'
+  register: jenkins_svc
+
+- set_fact:
+    jenkins_svc_name: "{{ jenkins_svc.stdout }}"
+    cacheable: yes
+
+- name: Get prometheus-server service name
+  shell: kubectl get svc -l app=prometheus,component=server -o jsonpath={.items[0].metadata.name}
+  register: prometheus_svc
+
+- set_fact:
+    prometheus_svc_name: "{{ prometheus_svc.stdout }}"
+    cacheable: yes
+
+- name: Get grafana service name
+  shell: kubectl get svc -l app.kubernetes.io/name=grafana -o jsonpath={.items[0].metadata.name}
+  register: grafana_svc
+
+- set_fact:
+    grafana_svc_name: "{{ grafana_svc.stdout }}"
+    cacheable: yes
+
+- name: get my public ip
+  uri:
+    url: "http://api.ipify.org"
+    return_content: yes
+  #until: result.status == "200"
+  #retries: 5
+  #delay: 30
+  register: my_public_ip
+
+- set_fact:
+    management_server_ip: "{{ my_public_ip.content }}"
+    cacheable: yes
+
+- name: Create current haproxy.cfg
+  become: true
+  template:
+    src: "haproxy.cfg.j2"
+    dest: "{{ playbook_dir }}/roles/haproxy-lb/files/haproxy.cfg"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: Create current backends.map
+  become: true
+  template:
+    src: "backends.map.j2"
+    dest: "{{ playbook_dir }}/roles/haproxy-lb/files/backends.map"
+    owner: "root"
+    group: "root"
+    mode: 0644
+

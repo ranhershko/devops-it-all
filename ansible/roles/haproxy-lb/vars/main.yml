@@ -1,0 +1,3 @@
+---
+# vars file for haproxy-lb
+user_home: /home/ran

@@ -1,0 +1,110 @@
+#-----------------#
+#   haproxy.cfg   #
+#     global      #
+#-----------------#
+global
+  bind {{ haproxy_frontend_port }}
+  log /dev/log  local0
+{% if haproxy_socket != '' %}
+  stats socket {{ haproxy_socket }} level admin
+{% endif %}
+  stats   timeout 30s
+  pidfile /var/run/haproxy.pid
+{% if haproxy_connection_num != '' %}
+  maxconn {{ haproxy_connection_num }}
+{% endif %}
+{% if haproxy_chroot != '' %}
+  chroot {{ haproxy_chroot }}
+{% endif %}
+  user {{ haproxy_user }}
+  group {{ haproxy_group }}
+  daemon
+  ca-base /etc/ssl/certs
+  crt-base /etc/ssl/private
+
+  ssl-default-bind-ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
+  ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+
+#--------------------------------------------------------------------#
+# common defaults that all the 'listen' and 'backend' sections will  #
+# use if not designated in their block                               #
+#--------------------------------------------------------------------#
+defaults
+  log                           global
+  mode                          {{ haproxy_frontend_mode }}
+  option                        httplog
+  option                        dontlognull
+  retries                       3
+  timeout connect         10s
+  timeout queue           1m
+  timeout client          1m
+  timeout server          1m
+  timeout http-request    10s
+  timeout http-keep-alive 10s
+  timeout check           10s
+
+#---------------------------------------------------#
+#     main frontend which proxys to the backends    #
+#---------------------------------------------------#
+frontend haproxy_front
+    bind            *:{{ haproxy_frontend_port }}
+    mode            {{ haproxy_frontend_mode }}
+    stats           uri /haproxy?stats
+    stats           show-legends
+    use_backend     backend_%[hdr(host),lower,map(/etc/haproxy/backends.map,default)]
+    default_backend no-match
+
+#------------------#
+#     backend      #
+#------------------#
+backend backend_stats
+    server local 127.0.0.1:8404
+    stats  uri /stats
+    stats  show-legends
+    stats  refresh 10s
+    acl manage_ip src {{ management_server_ip }}
+    http-request deny if ! manage_ip
+
+backend backend_consul
+    balance roundrobin
+    acl manage_ip src {{ management_server_ip }}
+    http-request deny if ! manage_ip
+    server-template consului 3  _consul-devopsitall-consul-ui._tcp.service.consul resolvers consul resolve-prefer ip4 check
+    reqrep ^([^\ :]*)\ /(.*) \1\ /\2
+    acl response-is-redirect res.hdr(Location) -m found
+    rspirep ^Location:\ http://consului(1|2|3)/(.*) Location:\ http://consul.{{ haproxy_domain }}/\2 if responseis-redirect
+
+backend backend_vault
+    balance roundrobin
+    acl manage_ip src {{ management_server_ip }}
+    http-request deny if ! manage_ip
+    server-template vaultui 3  _vault._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+
+backend backend_jenkins
+    balance roundrobin
+    acl manage_ip src {{ management_server_ip }}
+    http-request deny if ! manage_ip
+    server-template jenkinsui 1 _{{ jenkins_svc_name }}._tcp.service.consul resolvers consul resolve-prefer ipv4 chek
+    mode http
+    #http-request set-header X-Forwarded-Port %[dst_port]
+    #http-request add-header X-Forwarded-Proto https if { ssl_fc }
+    reqrep ^([^\ :]*)\ /(.*)     \1\ /\2
+    acl response-is-redirect res.hdr(Location) -m found
+    rspirep ^Location:\ http://jenkinsui1/(.*) Location:\ http://jenkins.{{ haproxy_domain }}/\1  if response-s-redirect
+
+backend backend_prometheus
+    acl manage_ip src {{ management_server_ip }}
+    http-request deny if ! manage_ip
+    balance roundrobin
+    server-template prometheusui 1  _{{ prometheus_svc_name }}._tcp.service.consul resolvers consul resolve-refer ipv4 check
+
+backend backend_grafana
+    balance roundrobin
+    acl manage_ip src {{ management_server_ip }}
+    http-request deny if ! manage_ip
+    server-template grafanaui 1  _{{ grafana_svc_name }}._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+
+backend no-match
+  http-request deny deny_status 400
+
+
