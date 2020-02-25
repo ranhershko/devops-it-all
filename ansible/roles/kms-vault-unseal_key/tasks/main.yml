@@ -1,0 +1,3 @@
+---
+# tasks file for kms-vault-unseal
+- include: create-kms-key-n-update-vault-file.yml
