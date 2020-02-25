@@ -1,0 +1,82 @@
+{
+  "variables": {
+      "aws_access_key":     "{{env `AWS_ACCESS_KEY_ID`}}",
+      "aws_secret_key":     "{{env `AWS_SECRET_ACCESS_KEY`}}",
+      "ami_id": "ami-0ec539abc2ecc4e85"
+    },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key":               "{{user `aws_access_key`}}",
+      "secret_key":               "{{user `aws_secret_key`}}",
+      "region": "us-east-1",
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type":"hvm",
+          "root-device-type":"ebs",
+          "name": "centos-8-minimal-install*",
+          "state":"available"
+        },
+        "owners": ["446539779517"],
+        "most_recent":true
+      },
+      "vpc_filter": {
+        "filters": {
+          "tag:Name": "kubernetes-devops-it-all-vpc",
+          "isDefault": "false"
+        }
+      },
+      "subnet_filter": {
+        "filters": {
+          "tag:Name": "kubernetes-devops-it-all-pub*sub*"
+        },
+        "most_free": true,
+        "random": false
+      },
+      "instance_type": "t2.micro",
+      "associate_public_ip_address": true,
+      "ssh_username": "centos",
+      "ami_name": "devops-it-all-consulNhaproxy{{isotime | clean_ami_name}}",
+      "ami_description": "devops-it-all consulNhaproxy AMI",
+      "tags": {
+        "Name": "devops-it-all-consulNhaproxy-AMI",
+        "purpose": "learning",
+        "ami-name": "devops-it-all-consulNhaproxy-AMI {{timestamp}}",
+        "owner": "Ran"
+      },
+      "run_tags": {
+        "Name": "Packer-devops-it-all-consulNhaproxy",
+        "purpose": "learning",
+        "ami-name": "Packer-devops-it-all-consulNhaproxy {{timestamp}}",
+        "owner": "Ran"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "../shell/ansible.sh"
+    },
+    {
+      "type": "file",
+      "source": "../packer/consul-haproxy/ansible.cfg",
+      "destination": "/home/centos/.ansible.cfg"
+    },
+    {
+      "type": "file",
+      "source": "roles/haproxy-lb/files/haproxy.cfg",
+      "destination": "/tmp/haproxy.cfg"
+    },
+    {
+      "type": "file",
+      "source": "roles/haproxy-lb/files/backends.map",
+      "destination": "/tmp/backends.map"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../packer/consul-haproxy/haproxy.yml",
+      "inventory_file": "inventories/inventory",
+      "playbook_dir": "roles"
+    }
+  ]
+}

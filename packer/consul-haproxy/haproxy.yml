@@ -1,0 +1,135 @@
+---
+- hosts: localhost
+  become: true
+  vars:
+    - consul_version: "1.6.2"
+    - consul_template_version: "0.24.1"
+    - user: "centos"
+
+  tasks:
+    - name: Install packages
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - "haproxy"
+        - "tar"
+        - "unzip"
+        - "bind-utils"
+
+    - name: "Create user {{ user }} .kube dir"
+      file:
+        path: "/home/{{ user }}/.kube"
+        state: directory
+        mode: '0600'
+        owner: "{{ user }}"
+        group: "{{ user }}"
+
+    - name: Download consul sha256
+      get_url:
+        url: "https://releases.hashicorp.com/consul/{{ consul_version }}/consul_{{ consul_version }}_SHA256SUMS"
+        dest: /tmp
+      register: consul_zip_sha256_file
+
+    - name: Download consul template sha256
+      get_url:
+        url: "https://releases.hashicorp.com/consul-template/{{ consul_template_version }}/consul-template_{{ consul_template_version }}_SHA256SUMS"
+        dest: /tmp
+      register: consul_template_zip_sha256_file
+
+    - name: Register the consul checksum value
+      shell: "grep consul_{{ consul_version }}_linux_amd64.zip {{ consul_zip_sha256_file['dest'] }} | awk '{ print $1 }'"
+      register: consul_checksum_value
+
+    - name: Register the consul template checksum value
+      shell: "grep consul-template_{{ consul_template_version }}_linux_amd64.zip {{ consul_template_zip_sha256_file['dest'] }} | awk '{ print $1 }'"
+      register: consul_template_checksum_value
+
+    - name: Download consul binaries
+      get_url:
+        url: "https://releases.hashicorp.com/consul/{{ consul_version }}/consul_{{ consul_version }}_linux_amd64.zip"
+        dest: /tmp
+        checksum: 'sha256:{{ consul_checksum_value.stdout }}'
+      register: consul_zip_file
+
+    - name: Download consul template binaries
+      get_url:
+        url: "https://releases.hashicorp.com/consul-template/{{ consul_template_version }}/consul-template_{{ consul_template_version }}_linux_amd64.zip"
+        dest: /tmp
+        checksum: 'sha256:{{ consul_template_checksum_value.stdout }}'
+      register: consul_template_zip_file
+
+    - debug:
+        msg: "{{ item }}"
+      loop:
+        - "{{ consul_zip_file }}"
+        - "{{ consul_template_zip_file }}"
+
+    #- fail:
+        #msg: failed
+
+    - name: UNZIPPING the consul bin_targz_files
+      unarchive:
+        src: "{{ item['dest'] }}"
+        dest: "/tmp"
+        copy: no
+      loop:
+        - "{{ consul_zip_file }}"
+        - "{{ consul_template_zip_file }}"
+      when: item['changed']
+
+    - name: Copy bin consul to usr bin
+      copy:
+        src: "/tmp/{{ item }}"
+        dest: "/usr/bin/{{ item }}"
+        mode: '0755'
+      loop:
+        - "consul"
+        - "consul-template"
+
+    - name: Download aws-iam-authenticator sha256
+      get_url:
+        url: https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator.sha256
+        dest: /tmp
+      register: aws_iam_authenticator_sha256_file
+
+    - name: Register the checksum value
+      shell: awk '{ print $1 }' "{{ aws_iam_authenticator_sha256_file['dest'] }}" 
+      register: aws_iam_authenticator_checksum_value
+
+    - name: download aws-iam-authenticator binary
+      get_url:
+        url: https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator
+        dest: /usr/bin/aws-iam-authenticator
+        checksum: "sha256:{{ aws_iam_authenticator_checksum_value.stdout }}"
+        mode: 0755
+        owner: root
+
+    - name: Install aws cli
+      pip:
+        name: awscli
+        executable: "{{ item }}"
+        state: latest
+      loop:
+        - "pip3"
+
+    - name: enable haproxy, ensure it is not masked and start it
+      systemd:
+        name: haproxy
+        enabled: yes
+        masked: no
+        state: started
+
+    - name: Copy haproxy configuration to conf dir
+      copy:
+        src: /tmp/haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+
+    - name: Copy haproxy configuration to conf dir
+      copy:
+        src: /tmp/backends.map
+        dest: /etc/haproxy/backends.map
+
+- hosts: localhost
+  roles:
+  - codecap.kubectl
