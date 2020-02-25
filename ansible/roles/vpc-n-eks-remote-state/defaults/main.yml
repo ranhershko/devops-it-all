@@ -1,0 +1,4 @@
+---
+# defaults file for vpc-n-eks-remote-state
+vpc_n_eks_remote_state_terraform_dir: "{{ playbook_dir }}/../terraform/aws/vpc-n-eks-devops-it-all/remote_state"
+project_name: devops-it-all
