@@ -7,8 +7,7 @@ data "terraform_remote_state" "vpc-n-eks" {
   }
 }
 
-data "aws_ami" "devops-it-all-consulNhaproxy-AMI"
-  most_recent = true
+data "aws_ami" "devops-it-all-consulNhaproxy-AMI" {
   owners      = ["self"]
   most_recent = true
 

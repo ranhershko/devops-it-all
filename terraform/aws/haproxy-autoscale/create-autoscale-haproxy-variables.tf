@@ -22,6 +22,7 @@ variable "default_tags" {
 variable "haproxy_instance_type" {
   description = "haproxy type & size"
   type        = string
+  default     = "t2.micro"
 }
 
 variable "haproxy_scale_size" {
