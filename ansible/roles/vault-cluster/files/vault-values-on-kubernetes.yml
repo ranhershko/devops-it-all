@@ -326,7 +326,7 @@ server:
       }
       seal "awskms" {
         region = "us-east-1"
-        kms_key_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        kms_key_id = "2ea2357e-0cbc-4620-8fba-f08279d5d9c1"
       }
 
       storage "consul" {

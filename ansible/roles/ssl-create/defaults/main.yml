@@ -1,5 +1,6 @@
 ---
 # defaults file for ssl-create
+ansible_python_interpreter: /usr/bin/python3
 management_apps:
   - app1:
     name: "consul"

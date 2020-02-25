@@ -1,5 +1,6 @@
 ---
 # defaults file for vpc-n-eks-remote-state
+ansible_python_interpreter: /usr/bin/python3
 haproxy_lb_terraform_dir: "{{ playbook_dir }}/../terraform/aws/haproxy-autoscale"
 project_name: devops-it-all
 haproxy_frontend_port: 80
