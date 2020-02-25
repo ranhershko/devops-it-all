@@ -13,11 +13,14 @@
     user_home_bin: "{{ user_home }}/bin"
     cacheable: yes
 
-- name: Add/Update user_home variable in vpc-n-eks role variables file
+- name: Add/Update user_home variable in roles variables file
   lineinfile:
-    path: "{{ playbook_dir }}/roles/vpc-n-eks/vars/main.yml"
+    path: "{{ playbook_dir }}/roles/{{ item }}"
     regexp: '^user_home:'
     line: "user_home: /home/{{ user_name.stdout }}"
+  loop:
+    - "vpc-n-eks/vars/main.yml" 
+    - "haproxy-lb/vars/main.yml"
 
 - name: Make home bin dir
   file:
