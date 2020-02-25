@@ -1,0 +1,9 @@
+---
+# defaults file for ssl-create
+management_apps:
+  - app1:
+    name: "consul"
+  - app2:
+    name: "jenkins"
+  - app3:
+    name: "vault"
