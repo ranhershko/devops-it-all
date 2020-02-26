@@ -1,4 +1,6 @@
+cat << EOHPRXYMAP > /etc/haproxy/haproxy.cfg
 {% for app in management_apps %}
 {{ app.name }}.{{ haproxy_domain }} {{ app.name }}
 {% endfor %}
 haproxy.{{ haproxy_domain }} stats
+EOHPRXYMAP
