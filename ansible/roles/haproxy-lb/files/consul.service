@@ -1,0 +1,15 @@
+cat << EOCSU >/etc/systemd/system/consul.service
+    [Unit]
+    Description=consul agent
+    Requires=network-online.target
+    After=network-online.target
+    [Service]
+    LimitNOFILE=65536
+    Restart=on-failure
+    ExecStart=/usr/bin/consul agent -config-dir /etc/consul.d
+    ExecReload=/bin/kill -HUP $MAINPID
+    KillSignal=SIGINT
+    Type=simple
+    [Install]
+    WantedBy=multi-user.target
+EOCSU
