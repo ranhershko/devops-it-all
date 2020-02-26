@@ -11,3 +11,10 @@ haproxy_user: haproxy
 haproxy_group: haproxy
 haproxy_frontend_mode: http
 haproxy_domain: ranhershko.dns-cloud.net
+management_apps:
+  - app1:
+    name: "consul"
+  - app2:
+    name: "jenkins"
+  - app3:
+    name: "vault"
