@@ -36,7 +36,7 @@
       "instance_type": "t2.micro",
       "associate_public_ip_address": true,
       "ssh_username": "centos",
-      "ami_name": "devops-it-all-consulNhaproxy{{isotime | clean_ami_name}}",
+      "ami_name": "devops-it-all-consulNhaproxy{{timestamp}}",
       "ami_description": "devops-it-all consulNhaproxy AMI",
       "tags": {
         "Name": "devops-it-all-consulNhaproxy-AMI",
