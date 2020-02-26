@@ -38,8 +38,3 @@ variable "worker_instance_type" {
   description = "Kubernetes worker type & size"
   type        = string
 }
-
-variable "first_time_create" {
-  description = "Variable sign for remote state creation"
-  type        = bool
-}
