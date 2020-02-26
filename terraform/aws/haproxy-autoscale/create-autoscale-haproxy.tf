@@ -7,14 +7,14 @@
 #}
 
 resource "aws_launch_configuration" "haproxy" {
-  name_prefix                  = "haproxy_devopsitall_launch_configuration-"
+  name_prefix                 = "haproxy_launch_configuration_devopsitall-"
   image_id                    = data.aws_ami.devops-it-all-consulNhaproxy-AMI.id
   instance_type               = var.haproxy_instance_type
   key_name                    = "devopsitall"
   security_groups             = [data.terraform_remote_state.vpc-n-eks.outputs.aws_worker_security_group]
-  associate_public_ip_address = true
+  #associate_public_ip_address = true
 
-  user_data_base64            = base64encode(local.userdata)
+  user_data_base64            = data.template_cloudinit_config.haproxy_userdata.renered
   ##cloud-config
   #runcmd:
     #- aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id ${data.aws_eip.haproxy.id} --allow-reassociation
@@ -22,7 +22,7 @@ resource "aws_launch_configuration" "haproxy" {
 }
 
 resource "aws_autoscaling_group" "haproxy" {
-  name                  = "haproxy_devopsitall_autoscaling"
+  name                  = "haproxy_autoscaling_devopsitall"
   launch_configuration  = aws_launch_configuration.haproxy.name
   vpc_zone_identifier   = data.terraform_remote_state.vpc-n-eks.outputs.aws_subnet_ids_public
   min_size              = var.haproxy_scale_size
