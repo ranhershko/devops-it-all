@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "devopsitall-terraform" {
-  bucket = "devopsitall-terrform-remote-state"
+  bucket = "devopsitall-terraform-remote-state"
 
   versioning {
     enabled = true
@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "devopsitall-terraform" {
 }
 
 resource "aws_dynamodb_table" "devopsitall-terraform" {
-  name         = "devopsitall-vpc-n-eks-terrform-remote-lock"
+  name         = "devopsitall-vpc-n-eks-terraform-remote-lock"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {
