@@ -1,4 +1,3 @@
-first_time_create        = true
 region                   = "us-east-1"
 project_name             = "devops-it-all"
 aws_vpc_cidr_block       = "10.10.0.0/16"
