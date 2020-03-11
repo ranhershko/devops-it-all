@@ -2,5 +2,5 @@
 # defaults file for consul
 ansible_python_interpreter: /usr/bin/python3
 helm_name: "consul-helm"
-helm_version: "v0.14.0"
+helm_version: "v0.17.0"
 helm_location: "https://github.com/hashicorp/consul-helm.git"
