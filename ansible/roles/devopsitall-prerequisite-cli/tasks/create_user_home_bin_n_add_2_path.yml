@@ -36,21 +36,21 @@
     insertafter='EOF' 
     state=present
 
-- name: Checks if the .bashrc file already has an entry for the PATH
+- name: Make sure user_home_bin entry exists in PATH
   replace:
     dest="{{ user_home }}/.bashrc"
     regexp="PATH=(.*)(?!{{ user_home_bin }})(.*)"
     replace="PATH={{ user_home_bin }}:\1"
   register: checkIfPATHIsHere
 
-- name: Add a PATH entry with {{user_home_bin}} if the PATH is not already defined
-  lineinfile:
-    dest="{{ user_home }}/.bashrc"
-    state=present
-    line="PATH={{user_home_bin}}:$PATH"
-    regexp=''
-    insertafter=EOF
-  when: checkIfPATHIsHere.changed == false
+#- name: Add a PATH entry with {{user_home_bin}} if the PATH is not already defined
+  #lineinfile:
+    #dest="{{ user_home }}/.bashrc"
+    #state=present
+    #line="PATH={{user_home_bin}}:$PATH"
+    #regexp=''
+    #insertafter=EOF
+  #when: checkIfPATHIsHere.changed == false
 
 - name: Source the bashrc file
   shell: source "{{ user_home }}/.bashrc"
