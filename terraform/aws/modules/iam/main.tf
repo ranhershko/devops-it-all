@@ -38,6 +38,50 @@ resource "aws_iam_role" "kube-worker" {
 EOF
 }
 
+resource "aws_iam_role" "haproxy_ec2" {
+  name = "haproxy_ec2_role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      }
+      }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "haproxy_ec2" {
+  name = "haproxy_ec2_role_policy"
+  role = aws_iam_role.haproxy_ec2.id
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+          "ec2:DescribeAddresses",
+          "ec2:AllocateAddress",
+          "ec2:DescribeInstances",
+          "ec2:AssociateAddress",
+          "ec2:DisassociateAddress",
+          "ec2:ReleaseAddress"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
 #Add AWS Policies for Kubernetes
 
 resource "aws_iam_role_policy" "kube-master" {
