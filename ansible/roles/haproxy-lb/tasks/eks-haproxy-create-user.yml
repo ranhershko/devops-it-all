@@ -1,0 +1,10 @@
+---
+- name: Create eks haprxy user role
+  shell: kubectl apply -f "{{ playbook_dir }}/roles/haproxy-lb/files/haproxy_eks_user_role.yml"
+
+- name: Create eks haprxy user rolebinding
+  shell: kubectl apply -f "{{ playbook_dir }}/roles/haproxy-lb/files/haproxy_eks_default_rolebinding.yaml"
+
+- name: Connect aws role 2 eks haprxy user role
+  shell: eksctl create iamidentitymapping --cluster kubernetes-devops-it-all --arn arn:aws:iam::$(aws sts  get-caller-identity |jq '.Account'):role/haproxy_ec2_run_role --username haproxy-ec2-user
+
