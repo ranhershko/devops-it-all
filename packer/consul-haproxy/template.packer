@@ -64,13 +64,8 @@
     },
     {
       "type": "file",
-      "source": "roles/haproxy-lb/files/haproxy.cfg",
-      "destination": "/tmp/haproxy.cfg"
-    },
-    {
-      "type": "file",
-      "source": "roles/haproxy-lb/files/backends.map",
-      "destination": "/tmp/backends.map"
+      "source": "../packer/consul-haproxy/requirements.txt",
+      "destination": "/tmp/requirements.txt"
     },
     {
       "type": "ansible-local",
