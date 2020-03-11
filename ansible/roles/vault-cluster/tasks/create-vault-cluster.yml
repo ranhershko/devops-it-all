@@ -17,7 +17,7 @@
     - debug:
         msg: "Vault cluster already exists"
 
-- name: Pause for 3 min wait for Consul helm chart build to complete ...
+- name: Pause for 3 min wait for Vault helm chart build to complete ...
   pause:
     minutes: 3
   when: helm_vault_install.changed == true and helm_vault_install.failed == false
