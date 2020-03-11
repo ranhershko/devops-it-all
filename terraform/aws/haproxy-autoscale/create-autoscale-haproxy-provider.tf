@@ -16,6 +16,11 @@ provider "aws" {
   region                  = var.region
 }
 
+provider "kubernetes" {
+  load_config_file      = "true"
+  version               = "1.9"
+}
+
 provider "local" {
   version = "~> 1.2"
 }
