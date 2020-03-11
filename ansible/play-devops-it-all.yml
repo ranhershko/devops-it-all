@@ -2,9 +2,10 @@
 - hosts: localhost
   roles: 
     - role: devopsitall-prerequisite-cli
-      tags: [first_time_run]
+      tags: [prepare_management_server]
+      become: true
     - role: codecap.kubectl
-      tags: [first_time_run]
+      tags: [prepare_management_server]
     - role: vpc-n-eks-remote-state
       tags: [first_time_run]
     - role: vpc-n-eks
