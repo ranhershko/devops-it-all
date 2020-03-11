@@ -5,30 +5,39 @@
     state: directory
     mode: '0777'
 
-- name: Download package sha256
-  get_url:
-    url: "{{ item.value.sha256 }}"
-    dest: /tmp/download/
-  with_dict: "{{ pkgs }}"
-  register: sha256_files  
-
-- name: Register the checksum value
-  shell: grep "{{ item['dest'].split('.')[0] }}" "{{ item['dest'] }}"| awk '{print $1}'
-  loop: "{{ sha256_files.results }}"
-  register: pkgs_checksum_value
-
-- name: Set cli's sha256 value variable
-  set_fact: 
-    aws_iam_authenticator_sha256_value: "{{ pkgs_checksum_value.results[0].item.checksum_src }}"
-    helm_sha256_value: "{{ pkgs_checksum_value.results[1].item.checksum_src }}" 
-    vault_sha256_value: "{{ pkgs_checksum_value.results[2].item.checksum_src }}"
-
-- name: Download cli packages
+#- name: Download package sha256
+  #get_url:
+    #url: "{{ item.value.sha256 }}"
+    #dest: /tmp/download/
+  #with_dict: "{{ pkgs }}"
+  #register: sha256_files  
+  #when: "{{ item.key }}" == 'helm;
+#
+#- name: Register the checksum value
+  #shell: grep "{{ item['dest'].split('.')[0] }}" "{{ item['dest'] }}"| awk '{print $1}'
+  #loop: "{{ sha256_files.results }}"
+  #register: pkgs_checksum_value
+ #
+#- name: Set cli's sha256 value variable
+  #set_fact: 
+    #helm_sha256_value: "{{ pkgs_checksum_value.results[0].item.checksum_src }}" 
+#
+- name: download all cli packages except jq n helm
   get_url:
     url: "{{ item.value.url }}"
-    dest: /tmp/download/
+    dest: "/tmp/download/"
+    checksum: "sha256:{{ item.value.sha256 }}"
+  when: item.key != "helm" and item.key != "jq"
   with_dict: "{{ pkgs }}"
-    
+
+- name: download helm n jq cli packages
+  get_url:
+    url: "{{ item.value.url }}"
+    dest: "/tmp/download/"
+    #checksum: "{{ item.value.sha256 }}"
+  when: item.key == "helm" or item.key == "jq"
+  with_dict: "{{ pkgs }}"
+
 - name: UNZIPPING cli packages
   unarchive:
         src: "/tmp/download/{{ item.value.url.split('/')[-1] }}"
