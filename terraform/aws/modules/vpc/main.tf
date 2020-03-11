@@ -4,8 +4,7 @@ resource "aws_vpc" "kubernetes" {
   enable_dns_hostnames = true
 
   tags = merge(var.default_tags, map(
-      "Name", "kubernetes-${var.project_name}-vpc",
-      "kubernetes.io/cluster/${var.project_name}", "shared"
+      "Name", "kubernetes-${var.project_name}-vpc"
     ))
 }
 
@@ -33,9 +32,7 @@ resource "aws_subnet" "kubernetes-public" {
   cidr_block        = element(var.aws_public_subnets_cidr, count.index)
 
   tags = merge(var.default_tags, map(
-      "Name", "kubernetes-${var.project_name}-pub-sub${count.index + 1}-${element(var.aws_avail_zones, count.index)}",
-      "kubernetes.io/cluster/${var.project_name}", "shared",
-      "kubernetes.io/role/elb", "1"
+      "Name", "kubernetes-${var.project_name}-pub-sub${count.index + 1}-${element(var.aws_avail_zones, count.index)}"
     )
   )
 }
@@ -57,9 +54,7 @@ resource "aws_subnet" "kubernetes-private" {
   cidr_block        = element(var.aws_private_subnets_cidr, count.index)
 
   tags = merge(var.default_tags, map(
-      "Name", "kubernetes-${var.project_name}-priv-sub${count.index + 1}-${element(var.aws_avail_zones, count.index)}",
-      "kubernetes.io/cluster/${var.project_name}", "shared",
-//      "kubernetes.io/role/internal-elb", "1"
+      "Name", "kubernetes-${var.project_name}-priv-sub${count.index + 1}-${element(var.aws_avail_zones, count.index)}"
     )
   )
 }
@@ -105,9 +100,11 @@ resource "aws_security_group" "kubernetes_worker" {
   name   = "kubernetes-${var.project_name}-worker-sg"
   vpc_id = aws_vpc.kubernetes.id
 
-  tags = merge(var.default_tags, map(
-      "Name", "kubernetes-${var.project_name}-workers-sg"
-    ))
+  tags = merge(var.default_tags, { 
+      "Name" = "kubernetes-${var.project_name}-workers-sg"#,
+      #"kubernetes.io/cluster/kubernetes-${var.project_name}" = "owned"
+      }
+    )
 }
 
 resource "aws_security_group_rule" "allow-all-ingress-inside-vpc" {
@@ -115,25 +112,26 @@ resource "aws_security_group_rule" "allow-all-ingress-inside-vpc" {
   from_port         = 0
   to_port           = 65535
   protocol          = "all"
-  cidr_blocks       = [var.aws_vpc_cidr_block]
+  #cidr_blocks      = [var.aws_vpc_cidr_block]
+  self              = true
   security_group_id = aws_security_group.kubernetes_worker.id
 }
 
 resource "aws_security_group_rule" "allow-eks-control-ingress-app-worker" {
-  type              = "ingress"
-  from_port         = 1025
-  to_port           = 65535
-  protocol          = "tcp"
-  security_group_id = aws_security_group.kubernetes_worker.id
-  source_security_group_id = aws_security_group.kubernetes_eks_control.id 
+  type                     = "ingress"
+  from_port                = 1025
+  to_port                  = 65535
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.kubernetes_worker.id
+  source_security_group_id = aws_security_group.kubernetes_eks_control.id
 }
 
 resource "aws_security_group_rule" "allow-eks-control-ingress-https-worker" {
-  type              = "ingress"
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
-  security_group_id = aws_security_group.kubernetes_worker.id
+  type                     = "ingress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.kubernetes_worker.id
   source_security_group_id = aws_security_group.kubernetes_eks_control.id
 }
 
@@ -161,9 +159,11 @@ resource "aws_security_group" "kubernetes_eks_control" {
   name   = "kubernetes-${var.project_name}-eks-control-sg"
   vpc_id = aws_vpc.kubernetes.id
 
-  tags = merge(var.default_tags, map(
-      "Name", "kubernetes-${var.project_name}-workers-sg"
-    ))
+  tags = merge(var.default_tags, {
+      "Name" = "kubernetes-${var.project_name}-control-sg"#,
+      #"kubernetes.io/cluster/kubernetes-${var.project_name}" = "owned"
+      }
+  )
 }
 
 resource "aws_security_group_rule" "allow-eks-ingress-https-from-vpc" {
@@ -184,12 +184,20 @@ resource "aws_security_group_rule" "allow-eks-ingress-https-from-manage-ip" {
   cidr_blocks              = ["${chomp(data.http.myip.body)}/32"]
 }
 
-resource "aws_security_group_rule" "allow-eks-control-all-egress-2-worker" {
-  type              = "egress"
-  from_port         = 1025
-  to_port           = 65535
-  protocol          = "tcp"
-  security_group_id = aws_security_group.kubernetes_eks_control.id
-  source_security_group_id = aws_security_group.kubernetes_worker.id
-}
+#resource "aws_security_group_rule" "allow-eks-control-all-egress-2-worker" {
+  #type                     = "egress"
+  #from_port                = 1025
+  #to_port                  = 65535
+  #protocol                 = "tcp"
+  #security_group_id        = aws_security_group.kubernetes_eks_control.id
+  #source_security_group_id = aws_security_group.kubernetes_worker.id
+#}
 
+resource "aws_security_group_rule" "allow-eks-control-all-egress" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "all"
+  cidr_blocks       = [var.internet_default_route_cidr]
+  security_group_id = aws_security_group.kubernetes_eks_control.id
+}
