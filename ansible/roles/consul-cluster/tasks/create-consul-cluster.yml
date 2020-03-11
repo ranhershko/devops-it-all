@@ -26,19 +26,3 @@
 - name: vault namespace create
   shell: kubectl create namespace vault
   ignore_errors: true
-
-#- name: Wait for deployment success
-  #k8s:
-    #definition:
-      #apiVersion: apps/v1
-      #kind: Job
-      #metadata:
-        #name: Helm_Consul
-        #namespace: default
-      #spec:
-        #pause: True
-    #wait: yes
-    #wait_condition:
-      #type: complete
-      #status: Unknown
-  
