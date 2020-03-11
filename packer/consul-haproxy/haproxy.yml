@@ -113,6 +113,9 @@
       loop:
         - "pip3"
 
+    - name: install cloud_config pip requirment
+      command: "pip3 install -U -r /tmp/requirements.txt"
+
     - name: enable haproxy, ensure it is not masked and start it
       systemd:
         name: haproxy
@@ -120,15 +123,15 @@
         masked: no
         state: started
 
-    - name: Copy haproxy configuration to conf dir
-      copy:
-        src: /tmp/haproxy.cfg
-        dest: /etc/haproxy/haproxy.cfg
+    #- name: Copy haproxy configuration to conf dir
+      #copy:
+        #src: /tmp/haproxy.cfg
+        #dest: /etc/haproxy/haproxy.cfg
 
-    - name: Copy haproxy configuration to conf dir
-      copy:
-        src: /tmp/backends.map
-        dest: /etc/haproxy/backends.map
+    #- name: Copy haproxy configuration to conf dir
+      #copy:
+        #src: /tmp/backends.map
+        #dest: /etc/haproxy/backends.map
 
 - hosts: localhost
   roles:
