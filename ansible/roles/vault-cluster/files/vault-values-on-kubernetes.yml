@@ -15,10 +15,14 @@ injector:
   # True if you want to enable vault agent injection.
   enabled: true
 
+  # External vault server address for the injector to use. Setting this will
+  # disable deployment of a vault server along with the injector.
+  externalVaultAddr: ""
+
   # image sets the repo and tag of the vault-k8s image to use for the injector.
   image:
     repository: "hashicorp/vault-k8s"
-    tag: "0.1.2"
+    tag: "0.3.0"
     pullPolicy: IfNotPresent
 
   # agentImage sets the repo and tag of the Vault image to use for the Vault Agent
@@ -26,7 +30,19 @@ injector:
   # required.
   agentImage:
     repository: "vault"
-    tag: "1.3.1"
+    tag: "1.3.3"
+
+  # Mount Path of the Vault Kubernetes Auth Method.
+  authPath: "auth/kubernetes"
+
+  # Configures the log verbosity of the injector. Supported log levels: Trace, Debug, Error, Warn, Info
+  logLevel: "info"
+
+  # Configures the log format of the injector. Supported log formats: "standard", "json".
+  logFormat: "standard"
+  
+  # Configures all Vault Agent sidecars to revoke their token when shutting down
+  revokeOnShutdown: false
 
   # namespaceSelector is the selector for restricting the webhook to only
   # specific namespaces. This should be set to a multiline string.
@@ -72,7 +88,7 @@ server:
 
   image:
     repository: "vault"
-    tag: "1.3.1"
+    tag: "1.3.3"
     # Overrides the default Image Pull Policy
     pullPolicy: IfNotPresent
 
@@ -120,7 +136,7 @@ server:
   # shareProcessNamespace enables process namespace sharing between Vault and the extraContainers
   # This is useful if Vault must be signaled, e.g. to send a SIGHUP for log rotation
   shareProcessNamespace: false
-  
+
   # extraArgs is a string containing additional Vault server arguments.
   extraArgs: ""
 
@@ -147,8 +163,7 @@ server:
 
   # extraSecretEnvironmentVars is a list of extra enviroment variables to set with the stateful set.
   # These variables take value from existing Secret objects.
-  #extraSecretEnvironmentVars: []
-  extraSecretEnvironmentVars:
+  extraSecretEnvironmentVars: 
     - envName: AWS_ACCESS_KEY_ID
       secretName: eks-creds
       secretKey: AWS_ACCESS_KEY_ID
@@ -166,6 +181,9 @@ server:
     - type: secret
       name: vault-tls
       path: '/vault/userconfig'
+    # - type: secret (or "configMap")
+    #   name: my-secret
+    #   path: null # default is `/vault/userconfig`
 
   # Affinity Settings
   # Commenting out or setting as empty the affinity variable, will allow
@@ -280,8 +298,6 @@ server:
         tls_disable = 1
         address = "[::]:8200"
         cluster_address = "[::]:8201"
-        #tls_cert_file = "/vault/userconfig/vault-tls/vault.crt"
-        #tls_key_file  = "/vault/userconfig/vault-tls/vault.key"
       }
       storage "file" {
         path = "/vault/data"
@@ -326,7 +342,7 @@ server:
       }
       seal "awskms" {
         region = "us-east-1"
-        kms_key_id = "2ea2357e-0cbc-4620-8fba-f08279d5d9c1"
+        kms_key_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
       }
 
       storage "consul" {
