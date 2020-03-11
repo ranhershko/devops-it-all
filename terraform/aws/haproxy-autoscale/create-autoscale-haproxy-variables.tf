@@ -33,3 +33,57 @@ variable "haproxy_scale_size" {
   default     = 1
 }
 
+variable "management_apps" {
+  default = [
+    { name = "consul"},
+    { name = "jenkins"},
+    { name = "vault"},
+    { name = "stats"},
+  ]
+}
+
+variable "domain_name" {
+  default = "ranhershko.dns-cloud.net"
+}
+
+variable "haproxy_frontend_port" {
+  default = 80
+}
+
+variable "haproxy_frontend_mode" {
+  default = "http"
+}
+
+variable "haproxy_socket" {
+  default = "/var/lib/haproxy/stats"
+}
+
+variable "haproxy_connection_num" {
+  default = 10000
+}
+
+variable "haproxy_chroot" {
+  default = "/var/lib/haproxy"
+}
+
+variable "haproxy_user" {
+  default = "haproxy"
+}
+
+variable "haproxy_group" {
+  default = "haproxy"
+}
+
+locals {
+  cloud_config_write_files_pre = <<-EOT
+    #cloud-config
+    write_files:
+      EOT
+}
+
+locals {
+  backend_map_config_userdata = <<EOT
+  - path: /etc/haproxy/backends.map
+    content: |
+      EOT
+}
