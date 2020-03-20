@@ -39,10 +39,10 @@
     mode: '0700'
 
 - name: copy kubconfig file to user home .kube config file
-  file:
+  copy:
     src:  "{{ vpc_n_eks_terraform_dir }}/kubeconfig_kubernetes-{{ project_name }}"
     dest: "{{ user_home }}/.kube/config"
-    state: link
     owner: "{{ user_home.split('/')[-1] }}"
     group: "{{ user_home.split('/')[-1] }}"
-    force: true
+    mode: "0600"
+    force: yes
