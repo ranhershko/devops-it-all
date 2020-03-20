@@ -43,12 +43,16 @@
       #---------------------------------------------------#
       frontend haproxy_front
         bind            *:${haproxy_frontend_port}
+        #bind            *:443 ssl crt /etc/ssl/ca_bundle.crt
         mode            ${haproxy_frontend_mode}
         #stats           uri /haproxy?stats
         #stats           show-legends
         use_backend     backend_%[hdr(host),lower,map(/etc/haproxy/backends.map,default)]
         default_backend no-match
-              
+        #http-request set-header X-Forwarded-Port %[dst_port]
+        #http-request add-header X-Forwarded-Proto https if { ssl_fc }
+        #redirect scheme https if !{ ssl_fc }      
+
       #------------------#
       #     backend      #
       #------------------#
