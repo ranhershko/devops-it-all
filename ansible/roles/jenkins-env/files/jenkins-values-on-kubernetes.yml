@@ -222,13 +222,17 @@ master:
   # List of plugins to be install during Jenkins master start
   installPlugins:
     - kubernetes:1.23.2
-    - workflow-job:2.36
+    - kubernetes-cd:2.3.0
+    - workflow-job:2.37
     - workflow-aggregator:2.6
     - credentials-binding:1.20
-    - git:4.1.1
+    #- git:4.1.1
+    - git:4.2.2
     - github-oauth:0.33
     - greenballs:1.15
-    - configuration-as-code:1.35
+    #- blueocean:1.18.1
+    - configuration-as-code:1.36
+    - configuration-as-code-groovy:1.1
     - Github+Plugin:1.29.5
     - Pipeline+Plugin:2.6
     - Pipeline+GitHub+Library+Plugin
@@ -279,6 +283,18 @@ master:
     configScripts: 
     # welcome-message: |
 
+    credentials:
+      system:
+        domainCredentials:
+        - credentials:
+          - kubeconfig:
+              id: "mykubeconfig4deploy"
+              kubeconfigSource:
+                directEntry:
+                  content: |-
+                    ****
+              scope: GLOBAL
+
     jenkins:
       agentProtocols:
       - "JNLP4-connect"
@@ -286,9 +302,48 @@ master:
       authorizationStrategy:
         loggedInUsersCanDoAnything:
           allowAnonymousRead: false
+      clouds:
+      - kubernetes:
+          containerCapStr: "10"
+          jenkinsTunnel: "boisterous-alpaca-jenkins-agent:50000"
+          jenkinsUrl: "http://boisterous-alpaca-jenkins:8080"
+          maxRequestsPerHostStr: "32"
+          name: "kubernetes"
+          namespace: "default"
+          podLabels:
+          - key: "jenkins/boisterous-alpaca-jenkins-slave"
+            value: "true"
+          serverUrl: "https://kubernetes.default"
+          skipTlsVerify: true
+          templates:
+          - containers:
+            - args: "^${computer.jnlpmac} ^${computer.name}"
+              envVars:
+              - containerEnvVar:
+                  key: "JENKINS_URL"
+                  value: "http://boisterous-alpaca-jenkins.default.svc.cluster.local:8080"
+              image: "jenkins/jnlp-slave:3.27-1"
+              livenessProbe:
+                failureThreshold: 0
+                initialDelaySeconds: 0
+                periodSeconds: 0
+                successThreshold: 0
+                timeoutSeconds: 0
+              name: "jnlp"
+              resourceLimitCpu: "512m"
+              resourceLimitMemory: "512Mi"
+              resourceRequestCpu: "512m"
+              resourceRequestMemory: "512Mi"
+              workingDir: "/home/jenkins"
+            hostNetwork: false
+            label: "boisterous-alpaca-jenkins-slave "
+            name: "default"
+            nodeUsageMode: "NORMAL"
+            serviceAccount: "default"
+            yamlMergeStrategy: "override"
       crumbIssuer:
         standard:
-          excludeClientIPFromCrumb: false
+          excludeClientIPFromCrumb: true
       disableRememberMe: false
       markupFormatter: "plainText"
       mode: NORMAL
@@ -302,7 +357,7 @@ master:
       remotingSecurity:
         enabled: true
       scmCheckoutRetryCount: 0
-      #securityRealm:
+      securityRealm: "legacy"
         #github:
           #clientID: "d44b84a04e7d19f5e6d1"
           #clientSecret: "{AQAAABAAAAAwDyuq3DLDDqyWfnGLrkywu7En1KvCbXUo3I3fwJCWYCRTgoWF0hUSVC7TZ/fRQSFNWCKpPE1WwcNlVxWtcPqGGg==}"
@@ -326,6 +381,8 @@ master:
       sSHD:
         port: -1
     unclassified:
+      appInsightsGlobalConfig:
+        appInsightsEnabled: true
       defaultFolderConfiguration:
         healthMetrics:
         - worstChildHealthMetric:
@@ -336,9 +393,9 @@ master:
         createAccountBasedOnEmail: false
         showEntireCommitSummaryInChanges: false
         useExistingAccountWithSameEmail: false
-      #location:
-        #adminAddress: "address not configured yet <nobody@nowhere>"
-        #url: "http://${HOSTNAME}:8080/"
+      location:
+        adminAddress: "address not configured yet <nobody@nowhere>"
+        url: ""
       mailer:
         charset: "UTF-8"
         useSsl: false
