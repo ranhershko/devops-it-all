@@ -24,7 +24,7 @@ data "aws_eip" "haproxy" {
 }
 
 data "http" "myip" {
-  url = "https://api.ipify.org/"
+  url = "http://api.ipify.org/"
 }
 
 data "template_file" "haproxy_cfg_config_write_files" {

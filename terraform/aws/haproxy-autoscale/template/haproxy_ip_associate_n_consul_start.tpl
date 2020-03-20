@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex 
 
-mkdir /home/${ remote_user }/consul-client-data
+#mkdir /home/${ remote_user }/consul-client-data
 
 chown -R ${ remote_user }:${ remote_user } /home/${ remote_user }/consul-client-data
 chmod -R 700 /home/${ remote_user }/consul-client-data
