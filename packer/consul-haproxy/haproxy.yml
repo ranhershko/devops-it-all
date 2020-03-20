@@ -21,7 +21,8 @@
       file:
         path: "/home/{{ user }}/.kube"
         state: directory
-        mode: '0600'
+        mode: '0700'
+        recurse: yes
         owner: "{{ user }}"
         group: "{{ user }}"
 
