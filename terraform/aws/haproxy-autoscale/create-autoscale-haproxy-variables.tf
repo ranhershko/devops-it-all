@@ -87,3 +87,10 @@ locals {
     content: |
       EOT
 }
+
+locals {
+  haproxy_ssl_crt_config_userdata = <<EOT
+  - path: /etc/haproxy/ca_bundle.crt
+    content: |
+      EOT
+}
