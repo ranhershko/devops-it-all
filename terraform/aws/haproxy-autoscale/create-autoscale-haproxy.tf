@@ -6,7 +6,7 @@
   #}
 #}
 
-resource "aws_iam_role" "haproxy_ec2" {
+resource "aws_iam_role" "haproxy_ec2_eks_readonly" {
   name = "haproxy_ec2_role"
 
   assume_role_policy = <<EOF
@@ -27,51 +27,43 @@ resource "aws_iam_role" "haproxy_ec2" {
 EOF
 }
 
-resource "aws_iam_role_policy" "haproxy_ec2" {
+resource "aws_iam_role_policy" "haproxy_ec2_eks_readonly {
   name = "haproxy_ec2_role_policy"
-  role = aws_iam_role.haproxy_ec2.id
+  role = aws_iam_role.haproxy_ec2_eks_readonly.id
 
   policy = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
-        {
-            "Sid": "VisualEditor1",
-            "Effect": "Allow",
-            "Action": [
-                "eks:ListTagsForResource",
-                "eks:DescribeUpdate",
-                "eks:ListUpdates",
-                "eks:DescribeCluster"
-            ],
-            "Resource": "arn:aws:eks:*:*:cluster/*"
-        },
-        {
-            "Sid": "VisualEditor2",
-            "Effect": "Allow",
-            "Action": "eks:ListClusters",
-            "Resource": "*"
-        },
-        {
-            "Sid": "VisualEditor3",
-            "Effect": "Allow",
-            "Action": "ec2:AssociateAddress",
-            "Resource": "*"
-        },
-        {
-            "Sid": "VisualEditor4",
-            "Effect": "Allow",
-            "Action": "sts:*",
-            "Resource": "*"
-        }
+      {
+        "Sid": "EksReadOnly",
+        "Effect": "Allow",
+        "Action": [
+            "eks:DescribeCluster",
+            "eks:ListCluster"
+        ],
+        "Resource": "*"
+      }, 
+      { 
+        "Sid": "Ec2AssociateAddr",
+        "Effect": "Allow",
+        "Action": "ec2:AssociateAddress",
+        "Resource": "*"
+      },
+      {
+        "Sid": "AssumeSts",
+        "Effect": "Allow",
+        "Action": "sts:*",
+        "Resource": "*"
+      }
     ]
 }
 EOF
 }
 
-resource "aws_iam_instance_profile" "haproxy_ec2" {
-  name = "haproxy_ec2_iam_instance_profile"
-  role = aws_iam_role.haproxy_ec2.name
+resource "aws_iam_instance_profile" "haproxy_ec2_eks_readonly" {
+  name = "haproxy_ec2_eks_readonly_iam_instance_profile"
+  role = aws_iam_role.haproxy_ec2_eks_readonly.name
 }
 
 resource "aws_launch_configuration" "haproxy" {
@@ -81,7 +73,7 @@ resource "aws_launch_configuration" "haproxy" {
   key_name                     = "devopsitall"
   security_groups              = [data.terraform_remote_state.vpc-n-eks.outputs.aws_worker_security_group]
   associate_public_ip_address  = true
-  iam_instance_profile         = aws_iam_instance_profile.haproxy_ec2.name 
+  iam_instance_profile         = aws_iam_instance_profile.haproxy_ec2_eks_readonly.name 
   user_data                    = data.template_cloudinit_config.haproxy_userdata.rendered
 
   lifecycle {
