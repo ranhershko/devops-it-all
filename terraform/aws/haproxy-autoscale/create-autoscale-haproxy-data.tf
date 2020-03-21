@@ -66,7 +66,7 @@ data "template_file" "haproxy_tls_config" {
 data "template_file" "haproxy_tls_config_write_files" {
   template = file("template/haproxy_tls_config_write_files.tpl")
   vars = {
-    haproxy_tls_write_file = haproxy_ssl_crt_config_userdata
+    haproxy_tls_write_file = local.haproxy_ssl_crt_config_userdata
     haproxy_tls = join("", data.template_file.haproxy_tls_config.*.rendered)
   }
 }
@@ -135,6 +135,22 @@ data "template_cloudinit_config" "haproxy_userdata" {
     content_type = "text/x-shellscript"
     content      = "${data.template_file.consul_service_start.rendered}" 
   }
+}
+
+data "template_file" "aws_auth_yaml_config" {
+  template = file("template/aws-auth.yml.tpl")
+
+  vars = {
+    readonly_eks_arn = aws_iam_role.haproxy_ec2_eks_readonly.arn
+  }
+}
+
+data "template_file" "eks_readonly_role_yaml_config" {
+  template = file("template/eks-readonly-role.yml.tpl")
+}
+
+data "template_file" "eks_readonly_role_binding_yaml_config" {
+  template = file("template/eks-readonly-role-binding.yml.tpl")
 }
 
 #data "kubernetes_service" "jenkins" {
