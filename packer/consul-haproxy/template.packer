@@ -55,7 +55,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "../shell/ansible.sh"
+      "script": "../shell/ansible-n-base-packages.sh"
     },
     {
       "type": "file",
