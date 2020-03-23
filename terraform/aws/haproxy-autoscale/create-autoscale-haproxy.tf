@@ -47,7 +47,12 @@ resource "aws_iam_role_policy" "haproxy_ec2_eks_readonly" {
       { 
         "Sid": "Ec2AssociateAddr",
         "Effect": "Allow",
-        "Action": "ec2:AssociateAddress",
+        "Action": [
+          "ec2:AssociateAddress",
+          "ec2:DescribeAddresses",
+          "ec2:AllocateAddress",
+          "ec2:DescribeInstances"
+        ],
         "Resource": "*"
       },
       {
@@ -66,37 +71,37 @@ resource "aws_iam_instance_profile" "haproxy_ec2_eks_readonly" {
   role = aws_iam_role.haproxy_ec2_eks_readonly.name
 }
 
-resource "null_resource" "aws_auth_yaml_config_deployment" {
-  triggers = {
-    manifest_sha1 = "${sha1("${data.template_file.aws_auth_yaml_config.rendered}")}"
-  }
-
-  provisioner "local-exec" {
-    command = "kubectl apply -f -<<EOF\n${data.template_file.aws_auth_yaml_config.rendered}\nEOF"
-  }
-}
-
-resource "null_resource" "eks_readonly_role_yaml_config_deployment" {
-  triggers = {
-    manifest_sha1 = "${sha1("${data.template_file.eks_readonly_role_yaml_config.rendered}")}"
-  }
-
-  provisioner "local-exec" {
-    command = "kubectl apply -f -<<EOF\n${data.template_file.eks_readonly_role_yaml_config.rendered}\nEOF"
-  }
-  depends_on = [null_resource.aws_auth_yaml_config_deployment]
-}
-
-resource "null_resource" "eks_readonly_role_binding_yaml_config_deployment" {
-  triggers = {
-    manifest_sha1 = "${sha1("${data.template_file.eks_readonly_role_binding_yaml_config.rendered}")}"
-  }
-
-  provisioner "local-exec" {
-    command = "kubectl apply -f -<<EOF\n${data.template_file.eks_readonly_role_binding_yaml_config.rendered}\nEOF"
-  }
-  depends_on = [null_resource.eks_readonly_role_yaml_config_deployment]
-}
+#resource "null_resource" "aws_auth_yaml_config_deployment" {
+  #triggers = {
+    #manifest_sha1 = "${sha1("${data.template_file.aws_auth_yaml_config.rendered}")}"
+  #}
+#
+  #provisioner "local-exec" {
+    #command = "kubectl apply -f -<<EOF\n${data.template_file.aws_auth_yaml_config.rendered}\nEOF"
+  #}
+#}
+#
+#resource "null_resource" "eks_readonly_role_yaml_config_deployment" {
+  #triggers = {
+    #manifest_sha1 = "${sha1("${data.template_file.eks_readonly_role_yaml_config.rendered}")}"
+  #}
+#
+  #provisioner "local-exec" {
+    #command = "kubectl apply -f -<<EOF\n${data.template_file.eks_readonly_role_yaml_config.rendered}\nEOF"
+  #}
+  #depends_on = [null_resource.aws_auth_yaml_config_deployment]
+#}
+#
+#resource "null_resource" "eks_readonly_role_binding_yaml_config_deployment" {
+  #triggers = {
+    #manifest_sha1 = "${sha1("${data.template_file.eks_readonly_role_binding_yaml_config.rendered}")}"
+  #}
+#
+  #provisioner "local-exec" {
+    #command = "kubectl apply -f -<<EOF\n${data.template_file.eks_readonly_role_binding_yaml_config.rendered}\nEOF"
+  #}
+  #depends_on = [null_resource.eks_readonly_role_yaml_config_deployment]
+#}
 
 resource "aws_launch_configuration" "haproxy" {
   name_prefix                  = "haproxy_launch_configuration_devopsitall-"
