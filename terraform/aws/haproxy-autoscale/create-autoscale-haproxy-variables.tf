@@ -10,6 +10,21 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "jenkins_svc_name" {
+  description = "Jenkins service name"
+  type        = string
+}
+
+variable "prometheus_server_svc_name" {
+  description = "prometheus server service name"
+  type        = string
+}
+
+variable "grafana_svc_name" {
+  description = "grafana service name"
+  type        = string
+}
+
 variable "project_name" {
   description = "Kubernetes project name"
   type        = string
