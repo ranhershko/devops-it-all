@@ -87,7 +87,7 @@
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
         http-request deny if ! manage_ip
-        server-template jenkinsui 1 _lucky-salamander-jenkins-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template jenkinsui 1 _${jenkins_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
         #http-request set-header X-Forwarded-Port %[dst_port]
         #http-request add-header X-Forwarded-Proto https if { ssl_fc }
         reqrep ^([^\ :]*)\ /(.*)     \1\ /\2
@@ -100,14 +100,14 @@
         acl manage_ip src ${management_server_ip}
         http-request deny if ! manage_ip
         balance roundrobin
-        server-template prometheusui 1  _jumpy-seagull-prometheus-server-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template prometheusui 1  _${prometheus_server_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
            
       backend backend_grafana
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
         http-request deny if ! manage_ip
-        server-template grafanaui 1  _hardy-sloth-grafana-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template grafanaui 1  _${grafana_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
       
       backend no-match
         http-request deny deny_status 400
