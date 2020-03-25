@@ -71,16 +71,28 @@ resource "aws_iam_instance_profile" "haproxy_ec2_eks_readonly" {
   role = aws_iam_role.haproxy_ec2_eks_readonly.name
 }
 
+resource "null_resource" "get_management_service_names" {
+  provisioner "local-exec" {
+    command = "../../../shell/get_mgmt_svc_names.sh"
+  }
+}
+
+#resource "null_resource" "current_aws_auth_yaml" {
+  #provisioner "local-exec" {
+    #command = "kubectl -n kube-system get configmap aws-auth -o yaml | sed -n '/mapRoles:/,/system:nodes/p' > template/current_role_map.yml.tpl"
+  #}
+#}
+
 #resource "null_resource" "aws_auth_yaml_config_deployment" {
   #triggers = {
     #manifest_sha1 = "${sha1("${data.template_file.aws_auth_yaml_config.rendered}")}"
   #}
-#
+
   #provisioner "local-exec" {
     #command = "kubectl apply -f -<<EOF\n${data.template_file.aws_auth_yaml_config.rendered}\nEOF"
   #}
 #}
-#
+
 #resource "null_resource" "eks_readonly_role_yaml_config_deployment" {
   #triggers = {
     #manifest_sha1 = "${sha1("${data.template_file.eks_readonly_role_yaml_config.rendered}")}"
@@ -91,7 +103,7 @@ resource "aws_iam_instance_profile" "haproxy_ec2_eks_readonly" {
   #}
   #depends_on = [null_resource.aws_auth_yaml_config_deployment]
 #}
-#
+
 #resource "null_resource" "eks_readonly_role_binding_yaml_config_deployment" {
   #triggers = {
     #manifest_sha1 = "${sha1("${data.template_file.eks_readonly_role_binding_yaml_config.rendered}")}"
@@ -116,7 +128,7 @@ resource "aws_launch_configuration" "haproxy" {
   lifecycle {
     create_before_destroy = true
   }
-  depends_on = [null_resource.eks_readonly_role_binding_yaml_config_deployment]
+  #depends_on = [null_resource.eks_readonly_role_binding_yaml_config_deployment]
 }
 
 resource "aws_autoscaling_group" "haproxy" {
