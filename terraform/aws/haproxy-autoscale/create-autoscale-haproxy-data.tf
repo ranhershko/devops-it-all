@@ -30,16 +30,20 @@ data "http" "myip" {
 data "template_file" "haproxy_cfg_config_write_files" {
   template = file("template/haproxy.cfg.tpl")
   vars = {
-    haproxy_frontend_port   = var.haproxy_frontend_port
-    haproxy_frontend_mode   = var.haproxy_frontend_mode
-    haproxy_socket          = var.haproxy_socket
-    haproxy_connection_num  = var.haproxy_connection_num
-    haproxy_chroot          = var.haproxy_chroot
-    haproxy_user            = var.haproxy_user
-    haproxy_group           = var.haproxy_group
-    management_server_ip    = chomp(data.http.myip.body)
-    domain_name             = var.domain_name
+    haproxy_frontend_port      = var.haproxy_frontend_port
+    haproxy_frontend_mode      = var.haproxy_frontend_mode
+    haproxy_socket             = var.haproxy_socket
+    haproxy_connection_num     = var.haproxy_connection_num
+    haproxy_chroot             = var.haproxy_chroot
+    haproxy_user               = var.haproxy_user
+    haproxy_group              = var.haproxy_group
+    management_server_ip       = chomp(data.http.myip.body)
+    domain_name                = var.domain_name
+    jenkins_svc_name           = var.jenkins_svc_name 
+    prometheus_server_svc_name = var.prometheus_server_svc_name 
+    grafana_svc_name           = var.grafana_svc_name
   }
+  depends_on = [null_resource.get_management_service_names]
 }
 
 data "template_file" "backends_map_config" {
@@ -118,7 +122,6 @@ data "template_file" "consul_service_start" {
   }
 } 
 
-
 data "template_cloudinit_config" "haproxy_userdata" {
   gzip          = false
   base64_encode = false
@@ -137,21 +140,29 @@ data "template_cloudinit_config" "haproxy_userdata" {
   }
 }
 
-data "template_file" "aws_auth_yaml_config" {
-  template = file("template/aws-auth.yml.tpl")
+#data "template_file" "current_aws_auth_role_map_yaml" {
+  #template = file("template/current_role_map.yml.tpl")
+#
+  #depends_on = [null_resource.current_aws_auth_yaml]
+#}
 
-  vars = {
-    readonly_eks_arn = aws_iam_role.haproxy_ec2_eks_readonly.arn
-  }
-}
+#data "template_file" "aws_auth_yaml_config" {
+  #template = file("template/aws-auth.yml.tpl")
+#
+  #vars = {
+    #readonly_eks_arn = aws_iam_role.haproxy_ec2_eks_readonly.arn
+    #current_map_role = "${data.template_file.current_aws_auth_role_map_yaml.rendered}"
+  #}
+#}
 
-data "template_file" "eks_readonly_role_yaml_config" {
-  template = file("template/eks-readonly-role.yml.tpl")
-}
 
-data "template_file" "eks_readonly_role_binding_yaml_config" {
-  template = file("template/eks-readonly-role-binding.yml.tpl")
-}
+#data "template_file" "eks_readonly_role_yaml_config" {
+  #template = file("template/eks-readonly-role.yml.tpl")
+#}
+#
+#data "template_file" "eks_readonly_role_binding_yaml_config" {
+  #template = file("template/eks-readonly-role-binding.yml.tpl")
+#}
 
 #data "kubernetes_service" "jenkins" {
   #"metadata" {  
