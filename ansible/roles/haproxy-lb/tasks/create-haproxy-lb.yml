@@ -1,4 +1,10 @@
 ---
+- name: Set haproxy terraform mgmt_svc_name_variables
+  shell: "{{ playbook_dir }}/../shell/set_mgmt_svc_name_variables.sh"
+
+- name: Set haproxy terraform eks worker role arn variable
+  shell: "{{ playbook_dir }}/../shell/set_worker_role_arn_variable.sh"
+
 - name: Create haproxy_lb
   terraform:
     binary_path: "{{ user_home }}/bin/terraform"
