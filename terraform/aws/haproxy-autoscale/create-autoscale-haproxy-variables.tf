@@ -89,6 +89,11 @@ variable "haproxy_group" {
   default = "haproxy"
 }
 
+variable "eks_worker_role_arn" {
+  description = "Current eks worker role arn"
+  type        = string
+}
+  
 locals {
   cloud_config_write_files_pre = <<-EOT
     #cloud-config
