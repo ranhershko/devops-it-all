@@ -1,15 +1,15 @@
 apiVersion: v1
-metadata:
-  name: aws-auth
-  namespace: kube-system
-kind: ConfigMap
 data:
   mapRoles: |+
-    - rolearn: arn:aws:iam::689166299232:role/kubernetes-devops-it-all20200321033326285700000008
+    - rolearn: ${eks_worker_role_arn}
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
-    - rolearn: ${readonly_eks_arn}
-      username: eks-readonly-user
-
+    - rolearn: arn:aws:iam::689166299232:role/haproxy_ec2_role
+      username: eks-readonly-user 
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+  selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
