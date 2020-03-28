@@ -9,7 +9,7 @@
             type: git
             location: "{{ helm_location }}"
         state: present
-        values: "{{ lookup('file', 'consul-values-on-kubernetes.yml') | from_yaml }}"
+        values: "{{ lookup('file', 'consul-default-values-override-kubernetes.yml') | from_yaml }}"
         name: "consul-devopsitall"
         namespace: default
       register: consul_helm_install
