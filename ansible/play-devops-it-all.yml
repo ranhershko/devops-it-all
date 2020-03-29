@@ -10,6 +10,7 @@
       tags: [first_time_run]
     - role: vpc-n-eks
     - role: consul-cluster
+    - role: consul-exporter
     - role: ssl-create
     - role: kms-vault-unseal_key
       tags: [first_time_run]
