@@ -13,10 +13,10 @@
    ###### 3) SSL wildcard certificate for this Dns wildcard record
 
    ## Running steps:
-   ###### git clone devops-it-all repo
-   ###### cd devops-it-all/ansible
-   ###### ansible-playbook play-devops-it-all.yml --tags prepare_management_server,first_time_run 
-   ###### ansible-playbook play-devops-it-all.yml --skip-tags prepare_management_server,first_time_run
+   ###### 1) git clone devops-it-all repo
+   ###### 2) cd devops-it-all/ansible
+   ###### 3) ansible-playbook play-devops-it-all.yml --tags prepare_management_server,first_time_run 
+   ###### 4) ansible-playbook play-devops-it-all.yml --skip-tags prepare_management_server,first_time_run
 
    ## When done:
    ###### 1) cd devops-it-all/terraform/aws/haproxy-autoscale/
