@@ -1,1 +1,0 @@
-eksctl create iamidentitymapping --cluster yourClusterName --arn arn:aws:iam::yourAccountID:role/yourIAMRoleName --username haproxy-ec2-user
