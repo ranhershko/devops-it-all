@@ -10,5 +10,5 @@
    ## Running steps:
    ###### git clone devops-it-all repo
    ###### cd devops-it-all/ansible
-   ###### ansible-playbook play-devops-it-all.yml  --tags first_time_run
-   ###### ansible-playbook play-devops-it-all.yml  --skip-tags first_time_run
+   ###### ansible-playbook play-devops-it-all.yml --tags prepare_management_server,first_time_run 
+   ###### ansible-playbook play-devops-it-all.yml --skip-tags prepare_management_server,first_time_run
