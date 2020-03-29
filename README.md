@@ -25,6 +25,6 @@
    ###### 4) terraform destroy --auto-approve
    ###### 5) cd ~/devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/
    ###### 6) terraform destroy --auto-approve
-   ###### 7) AWS web console = > Amazon S3 => devopsitall-terraform-remote-state => Change Version from Hide to Show and delete all files
+   ###### 7) AWS web console => Amazon S3 => devopsitall-terraform-remote-state => Change Version from Hide to Show and delete all files
    ###### 8) cd ~/devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
    ###### 9) terraform destroy --auto-approve
