@@ -7,6 +7,11 @@
         WORK IN PROGRESS...
    <img src="images/env-status.png" width="1200" >
    
+   ## Prerequisite:
+   ###### 1) AWS Elastic IP nameed: haproxy_scale_eip
+   ###### 2) Dns wildcard record for the Elastic IP
+   ###### 3) SSL wildcard certificate for this Dns wildcard record
+
    ## Running steps:
    ###### git clone devops-it-all repo
    ###### cd devops-it-all/ansible
