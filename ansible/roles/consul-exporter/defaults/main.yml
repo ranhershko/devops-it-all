@@ -1,0 +1,5 @@
+---
+# defaults file for consul-exporter---
+ansible_python_interpreter: /usr/bin/python3
+helm_name: "consul-exporter-devopsitall"
+helm_location: "https://github.com/helm/charts.git"

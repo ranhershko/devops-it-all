@@ -1,0 +1,3 @@
+---
+# tasks file for consul-exporter
+- include: create-consul-exporter.yml

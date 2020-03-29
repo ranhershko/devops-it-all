@@ -1,0 +1,12 @@
+---
+- name: Install helm consul-exporter chart on aws eks
+  helm:
+    chart:
+      name: "{{ helm_name }}"
+      source:
+        type: git
+        location: "{{ helm_location }}"
+        path: stable/prometheus-consul-exporter
+    state: present
+    values: "{{ lookup('file', 'consul-exporter-default-values-override-kubernetes.yml') | from_yaml }}"
+    namespace: default
