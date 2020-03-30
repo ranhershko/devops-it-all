@@ -1,4 +1,4 @@
-  - path: /etc/dnsmasq.d/10-consul
+  - path: /etc/dnsmasq.d/10-consul.conf
     content: |
       # Enable forward lookup of the 'consul' domain:
       server=/consul/127.0.0.1#8600
