@@ -8,5 +8,5 @@
         location: https://github.com/helm/charts.git
         path: stable/prometheus
       state: present
-      #values: "{{ lookup('file', 'prometheus-values-on-kubernetes.yml') | from_yaml }}"
+      values: "{{ lookup('file', 'prometheus-values-on-kubernetes.yml') | from_yaml }}"
       name: "prometheus-devopsitall"
