@@ -109,6 +109,20 @@
         http-request deny if ! manage_ip
         server-template grafanaui 1  _${grafana_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
       
+      backend backend_kibana
+        balance roundrobin
+        mode ${haproxy_frontend_mode}
+        acl manage_ip src ${management_server_ip}
+        http-request deny if ! manage_ip
+        server-template kibanaui 1  _${kibana_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+
+      backend backend_elasticsearch
+        balance roundrobin
+        mode ${haproxy_frontend_mode}
+        acl manage_ip src ${management_server_ip}
+        http-request deny if ! manage_ip
+        server-template elasticsearchui 1  _elasticsearch-master-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+
       backend no-match
         http-request deny deny_status 400
          
