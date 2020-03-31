@@ -1,0 +1,3 @@
+---
+# tasks file for elasticsearch-cluster---
+- include: create-elasticsearch-cluster.yml

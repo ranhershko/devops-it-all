@@ -1,0 +1,5 @@
+---
+# defaults file for elasticsearch-cluster---
+ansible_python_interpreter: /usr/bin/python3
+helm_name: "elasticsearch-devopsitall"
+helm_location: "https://github.com/elastic/helm-charts.git"

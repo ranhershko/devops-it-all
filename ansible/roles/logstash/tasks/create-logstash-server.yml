@@ -1,0 +1,12 @@
+---
+- name: Install helm logstash chart on aws eks
+  helm:
+    chart:
+      name: "{{ helm_name }}"
+      source:
+        type: git
+        location: "{{ helm_location }}"
+        path: logstash
+      state: present
+      values: "{{ lookup('file', 'logstash-values-on-kubernetes.yml') | from_yaml }}"
+      namespace: default

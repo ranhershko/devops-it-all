@@ -1,0 +1,12 @@
+---
+- name: Install helm elasticsearch chart on aws eks
+  helm:
+    chart:
+      name: "{{ helm_name }}"
+      source:
+        type: git
+        location: "{{ helm_location }}"
+        path: elasticsearch
+      state: present
+      values: "{{ lookup('file', 'elasticsearch-values-on-kubernetes.yml') | from_yaml }}"
+      namespace: default

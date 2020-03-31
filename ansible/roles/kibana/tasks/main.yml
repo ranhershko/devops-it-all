@@ -1,0 +1,3 @@
+---
+# tasks file for kibana---
+- include: create-kibana-server.yml

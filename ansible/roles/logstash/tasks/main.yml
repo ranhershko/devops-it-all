@@ -1,0 +1,3 @@
+---
+# tasks file for logstash---
+- include: create-logstash-server.yml

@@ -1,0 +1,12 @@
+---
+- name: Install helm kibana chart on aws eks
+  helm:
+    chart:
+      name: "{{ helm_name }}"
+      source:
+        type: git
+        location: "{{ helm_location }}"
+        path: kibana
+      state: present
+      values: "{{ lookup('file', 'kibana-values-on-kubernetes.yml') | from_yaml }}"
+      namespace: default
