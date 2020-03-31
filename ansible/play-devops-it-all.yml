@@ -18,6 +18,9 @@
     - role: jenkins-env
     - role: prometheus-env
     - role: grafana-env
+    - role: logstash
+    - role: elasticsearch-cluster
+    - role: kibana
     - role: haproxy-lb-remote-state
       tags: [first_time_run]
-    #- role: haproxy-lb
+    - role: haproxy-lb
