@@ -25,6 +25,11 @@ variable "grafana_svc_name" {
   type        = string
 }
 
+variable "kibana_svc_name" {
+  description = "kibana service name"
+  type        = string
+}
+
 variable "project_name" {
   description = "Kubernetes project name"
   type        = string
@@ -54,6 +59,8 @@ variable "management_apps" {
     { name = "jenkins"},
     { name = "vault"},
     { name = "stats"},
+    { name = "elasticsearch"},
+    { name = "kibana"},
   ]
 }
 
