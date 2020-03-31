@@ -42,6 +42,7 @@ data "template_file" "haproxy_cfg_config_write_files" {
     jenkins_svc_name           = var.jenkins_svc_name 
     prometheus_server_svc_name = var.prometheus_server_svc_name 
     grafana_svc_name           = var.grafana_svc_name
+    kibana_svc_name            = var.kibana_svc_name
   }
 }
 
