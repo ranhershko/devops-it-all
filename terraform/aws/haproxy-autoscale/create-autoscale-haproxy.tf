@@ -53,13 +53,6 @@ resource "aws_iam_role_policy" "haproxy_ec2_eks_readonly" {
 EOF
 }
 
-#      {
-#        "Sid": "AssumeSts",
-#        "Effect": "Allow",
-#        "Action": "sts:*",
-#        "Resource": "*"
-#      }
-
 resource "aws_iam_instance_profile" "haproxy_ec2_eks_readonly" {
   name = "haproxy_ec2_eks_readonly_iam_instance_profile"
   role = aws_iam_role.haproxy_ec2_eks_readonly.name
