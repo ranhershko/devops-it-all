@@ -1,5 +1,5 @@
 ---
-- name: Create aws eks with vpc - it'll take about 10 min ...
+- name: Create aws vpc with eks - it'll take about 10 min ...
   terraform:
     binary_path: "{{ user_home }}/bin/terraform"
     project_path: "{{ vpc_n_eks_terraform_dir }}"
