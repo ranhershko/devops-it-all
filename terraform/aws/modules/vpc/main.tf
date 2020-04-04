@@ -107,6 +107,15 @@ resource "aws_security_group" "kubernetes_worker" {
     )
 }
 
+resource "aws_security_group_rule" "allow-https-ingress-from-github-webhook" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = var.github_webhook_ips
+  security_group_id = aws_security_group.kubernetes_worker.id
+}
+
 resource "aws_security_group_rule" "allow-all-ingress-inside-vpc" {
   type              = "ingress"
   from_port         = 0
