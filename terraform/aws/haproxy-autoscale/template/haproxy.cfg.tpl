@@ -43,15 +43,11 @@
       #---------------------------------------------------#
       frontend haproxy_front
         bind            *:${haproxy_frontend_port}
-        #bind            *:443 ssl crt /etc/ssl/ca_bundle.crt
+        bind            *:443 ssl crt /etc/ssl/ca_bundle.crt
         mode            ${haproxy_frontend_mode}
-        #stats           uri /haproxy?stats
-        #stats           show-legends
         use_backend     backend_%[hdr(host),lower,map(/etc/haproxy/backends.map,default)]
         default_backend no-match
-        #http-request set-header X-Forwarded-Port %[dst_port]
-        #http-request add-header X-Forwarded-Proto https if { ssl_fc }
-        #redirect scheme https if !{ ssl_fc }      
+        redirect scheme https if !{ ssl_fc } # Redirect http requests to https
 
       #------------------#
       #     backend      #
@@ -63,13 +59,13 @@
         stats  show-legends
         stats  refresh 10s
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        http-request deny if !manage_ip
           
       backend backend_consul
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        http-request deny if !manage_ip
         server-template consului 3  _consul-devopsitall-consul-ui-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
         reqrep ^([^\ :]*)\ /(.*) \1\ /\2
         acl response-is-redirect res.hdr(Location) -m found
@@ -79,26 +75,27 @@
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        http-request deny if !manage_ip
         server-template vaultui 3  _vault._tcp.service.consul resolvers consul resolve-prefer ipv4 check
           
       backend backend_jenkins
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        acl github_whitelist src 192.30.252.0/22 185.199.108.0/22 140.82.112.0/20
+        http-request deny if !manage_ip !github_whitelist
         server-template jenkinsui 1 _${jenkins_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
-        #http-request set-header X-Forwarded-Port %[dst_port]
-        #http-request add-header X-Forwarded-Proto https if { ssl_fc }
+        http-request set-header X-Forwarded-Port %[dst_port]
+        http-request add-header X-Forwarded-Proto https if { ssl_fc }
         reqrep ^([^\ :]*)\ /(.*)     \1\ /\2
         acl response-is-redirect res.hdr(Location) -m found
-        rspirep ^Location:\ http://jenkinsui1/(.*) Location:\ http://jenkins.${domain_name}/\1  if response-is-redirect
+        rspirep ^Location:\ (http)://jenkinsui1/(.*) Location:\ https://jenkins.${domain_name}:443/\2  if response-is-redirect
            
       backend backend_prometheus
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        http-request deny if !manage_ip
         balance roundrobin
         server-template prometheusui 1  _${prometheus_server_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
            
@@ -106,21 +103,21 @@
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        http-request deny if !manage_ip
         server-template grafanaui 1  _${grafana_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
       
       backend backend_kibana
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        http-request deny if !manage_ip
         server-template kibanaui 1  _${kibana_svc_name}-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
 
       backend backend_elasticsearch
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
-        http-request deny if ! manage_ip
+        http-request deny if !manage_ip
         server-template elasticsearchui 1  _elasticsearch-master-default._tcp.service.consul resolvers consul resolve-prefer ipv4 check
 
       backend no-match
