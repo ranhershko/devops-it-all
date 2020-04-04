@@ -39,3 +39,13 @@ variable "ssh_port" {
   type        = number
   default     = 22
 }
+
+variable "github_webhook_ips" {
+  description = "Github webhook ips"
+  type        = list(string)
+  default     = [
+    "192.30.252.0/22",
+    "185.199.108.0/22",
+    "140.82.112.0/20"
+  ]
+}
