@@ -63,17 +63,32 @@ data "template_file" "backends_map_config_write_files" {
   }
 }
 
-#data "template_file" "haproxy_tls_config" {
-  #template = file("template/ca_bundle.crt.tpl")
-#}
+data "template_file" "certificate_crt_content_indentation" {
+  template = file("template/indentat_certificate_crt.tpl")
 
-#data "template_file" "haproxy_tls_config_write_files" {
-  #template = file("template/haproxy_tls_config_write_files.tpl")
-  #vars = {
-    #haproxy_tls_write_file = local.haproxy_ssl_crt_config_userdata
-    #haproxy_tls = join("", data.template_file.haproxy_tls_config.*.rendered)
-  #}
-#}
+  vars = {
+    certificate_crt_content = indent(6, file("template/certificate_crt.tpl"))
+    #certificate_crt_content = join("", indent(6, data.template_file.certificate_crt_content.*.rendered))
+  }
+}
+
+data "template_file" "private_key_content_indentation" {
+  template = file("template/indentat_private_key.tpl")
+
+  vars = {
+    private_key_content = indent(6, file("template/private_key.tpl"))
+    #private_key_content = join("", indent(6, data.template_file.private_key_content.*.rendered))
+  }
+}
+
+data "template_file" "haproxy_crt" {
+  template = file("template/haproxy_crt.tpl")
+  vars = {
+    haproxy_tls_write_file = local.haproxy_ssl_crt_config_userdata
+    certificate_file_content = join("", data.template_file.certificate_crt_content_indentation.*.rendered)
+    private_key_content = join("", data.template_file.private_key_content_indentation.*.rendered)
+  }
+}
 
 data "template_file" "consul_client_config" {
   template = file("template/consul_client.hcl.tpl")
@@ -108,7 +123,7 @@ data "template_file" "cloud_config_all_write_files" {
     cloud_config_consul_service_write_files_data = join("", tolist(data.template_file.consul_service_config.*.rendered))
     cloud_config_resolved_conf_write_files_data = join("", tolist(data.template_file.resolved_conf_config.*.rendered))
     cloud_config_dnsmasq_consul_write_files_data = join("", tolist(data.template_file.dnsmasq_consul_config.*.rendered))
-    #cloud_config_haproxy_tls_write_files_data = join("", tolist(data.template_file.haproxy_tls_config_write_files.*.rendered))
+    cloud_config_haproxy_tls_write_files_data = join("", tolist(data.template_file.haproxy_crt.*.rendered))
   }
 }
 
