@@ -1,4 +1,7 @@
 ---
+- name: management namespace create
+  shell: kubectl create namespace management
+  ignore_errors: true
 - name: Install helm consul chart on aws eks
   block:
     - helm:
@@ -11,7 +14,7 @@
         state: present
         values: "{{ lookup('file', 'consul-default-values-override-kubernetes.yml') | from_yaml }}"
         name: "consul-devopsitall"
-        namespace: default
+        namespace: management
       register: consul_helm_install
   rescue:
     - debug:
@@ -22,6 +25,6 @@
     minutes: 3
   when: consul_helm_install.changed == true and consul_helm_install.failed == false
     
-- name: vault namespace create
-  shell: kubectl create namespace vault
-  ignore_errors: true
+#- name: vault namespace create
+  #shell: kubectl create namespace vault
+  #ignore_errors: true

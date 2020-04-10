@@ -9,4 +9,4 @@
         path: stable/prometheus-consul-exporter
     state: present
     values: "{{ lookup('file', 'consul-exporter-default-values-override-kubernetes.yml') | from_yaml }}"
-    namespace: default
+    namespace: management
