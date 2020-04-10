@@ -1,5 +1,5 @@
 ---
 # defaults file for logstash---
 ansible_python_interpreter: /usr/bin/python3
-helm_name: "logstash-devopsitall"
+helm_name: "logstash"
 helm_location: "https://github.com/elastic/helm-charts.git"

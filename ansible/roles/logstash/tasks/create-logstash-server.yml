@@ -1,12 +1,18 @@
 ---
 - name: Install helm logstash chart on aws eks
-  helm:
-    chart:
-      name: "{{ helm_name }}"
-      source:
-        type: git
-        location: "{{ helm_location }}"
-        path: logstash
-      state: present
-      values: "{{ lookup('file', 'logstash-values-on-kubernetes.yml') | from_yaml }}"
-      namespace: default
+  block:
+    - helm:
+        chart:
+          name: "{{ helm_name }}"
+          source:
+            type: git
+            location: "{{ helm_location }}"
+            path: logstash
+        state: present
+        values: "{{ lookup('file', 'logstash-values-on-kubernetes.yml') | from_yaml }}"
+        name: "logstash-devopsitall"
+        namespace: "management"
+      register: logstash_helm_install
+  rescue:
+    - debug:
+        msg: "logstash helm chart already exists"
