@@ -1,12 +1,19 @@
 ---
 - name: Install helm prometheus chart on aws eks
-  helm:
-    chart:
-      #name: prometheus-helm
-      source:
-        type: git
-        location: https://github.com/helm/charts.git
-        path: stable/prometheus
-      state: present
-      values: "{{ lookup('file', 'prometheus-values-on-kubernetes.yml') | from_yaml }}"
-      name: "prometheus-devopsitall"
+  block:
+    - helm:
+        chart:
+          name: "{{ helm_name }}"
+          source:
+            type: git
+            location: "{{ helm_location }}"
+            path: stable/prometheus
+        state: present
+        values: "{{ lookup('file', 'prometheus-values-on-kubernetes.yml') | from_yaml }}"
+        name: "prometheus-devopsitall"
+        namespace: management
+      register: prometheus_helm_install
+  rescue:
+    - debug:
+        msg: "prometheus already exists" 
+
