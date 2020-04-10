@@ -43,7 +43,7 @@ secretMounts: []
 #    path: /usr/share/elasticsearch/config/certs
 
 image: "docker.elastic.co/elasticsearch/elasticsearch"
-imageTag: "7.6.1"
+imageTag: "7.6.2"
 imagePullPolicy: "IfNotPresent"
 
 podAnnotations: {}
@@ -56,11 +56,11 @@ esJavaOpts: "-Xmx1g -Xms1g"
 
 resources:
   requests:
-    cpu: "500m"
-    memory: "1Gi"
+    cpu: "1000m"
+    memory: "2Gi"
   limits:
-    cpu: "500m"
-    memory: "1Gi"
+    cpu: "1000m"
+    memory: "2Gi"
 
 initResources: {}
   # limits:
@@ -160,8 +160,7 @@ service:
   labelsHeadless: {}
   type: ClusterIP
   nodePort: ""
-  annotations: 
-    "consul.hashicorp.com/service-port": "http"
+  annotations: {}
   httpPortName: http
   transportPortName: transport
   loadBalancerIP: ""
