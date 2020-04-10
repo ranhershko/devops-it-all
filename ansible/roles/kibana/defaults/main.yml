@@ -1,5 +1,5 @@
 ---
 # defaults file for kibana---
 ansible_python_interpreter: /usr/bin/python3
-helm_name: "kibana-devopsitall"
+helm_name: "kibana"
 helm_location: "https://github.com/elastic/helm-charts.git"
