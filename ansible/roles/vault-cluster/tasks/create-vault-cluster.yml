@@ -10,7 +10,7 @@
         state: present
         values: "{{ lookup('file', 'vault-values-on-kubernetes.yml') | from_yaml }}"
         name: "vault-devopsitall"
-        namespace: "vault"
+        namespace: "management"
       register: helm_vault_install
       ignore_errors: true
   rescue:
@@ -23,7 +23,7 @@
   when: helm_vault_install.changed == true and helm_vault_install.failed == false
 
 - name: Vault initialize & unseal
-  shell: 'kubectl exec -it vault-devopsitall-0 -n vault vault operator init'
+  shell: 'kubectl exec -it vault-devopsitall-0 -n management vault operator init'
   register: vault_init_out
   ignore_errors: true
   no_log: True
