@@ -3,3 +3,4 @@
   kubectl: 
     kubectl_pod: vault-devopsitall-0
     kubectl_extra_args: vault operator init
+    kubectl_namespace: management
