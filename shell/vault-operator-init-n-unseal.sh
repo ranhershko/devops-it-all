@@ -2,12 +2,12 @@
 
 count=0
 
-for vaultServer in `kubectl get pods|grep vault-devopsitall-[0-9]|awk '{print $1}'`; do
+for vaultServer in `kubectl get pods --namespace=management|grep vault-devopsitall-[0-9]|awk '{print $1}'`; do
   if [ ${count} -eq 0 ]; then
-    kubectl exec -ti ${vaultServer} vault operator init
+    kubectl exec -ti ${vaultServer}  --namespace=management vault operator init
     count=1
   fi
-  kubectl exec -ti ${vaultServer} vault operator unseal
+  kubectl exec -ti ${vaultServer} --namespace=management vault operator unseal
 done
   
     
