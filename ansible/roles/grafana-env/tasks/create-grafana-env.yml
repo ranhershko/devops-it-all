@@ -1,12 +1,18 @@
 ---
-- name: Install helm grafana chart on aws eks
-  helm:
-    chart:
-      #name: grafana-helm
-      source:
-        type: git
-        location: https://github.com/helm/charts.git
-        path: stable/grafana
-      state: present
-      #values: "{{ lookup('file', 'grafana-values-on-kubernetes.yml') | from_yaml }}"
-      name: "grafana-devopsitall"
+- name: Install helm jenkins chart on aws eks
+  block:
+    - helm:
+        chart:
+          name: "{{ helm_name }}"
+          source:
+            type: git
+            location: "{{ helm_location }}"
+            path: stable/grafana
+        state: present
+        #values: "{{ lookup('file', 'grafana-values-on-kubernetes.yml') | from_yaml }}"
+        name: "grafana-devopsitall"
+        namespace: "management"
+      register: grafana_helm_install
+  rescue:
+    - debug:
+        msg: "grafana helm chart already exists"
