@@ -1,13 +1,18 @@
 ---
 - name: Install helm jenkins chart on aws eks
-  helm:
-    chart:
-      #name: jenkins-helm
-      version: "0.34.0"
-      source:
-        type: git
-        location: https://github.com/helm/charts.git
-        path: stable/jenkins
-      state: present
-      values: "{{ lookup('file', 'jenkins-values-on-kubernetes.yml') | from_yaml }}"
-      name: "jenkins-devopsitall"
+  block:
+    - helm:
+        chart:
+          name: "{{ helm_name }}"
+          source:
+            type: git
+            location: "{{ helm_location }}"
+            path: stable/jenkins
+        state: present
+        values: "{{ lookup('file', 'jenkins-values-on-kubernetes.yml') | from_yaml }}"
+        name: "jenkins-devopsitall"
+        namespace: "management"
+      register: jenkins_helm_install
+  rescue:
+    - debug:
+        msg: "jenkins helm chart already exists"
