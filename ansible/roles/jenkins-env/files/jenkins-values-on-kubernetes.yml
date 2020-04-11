@@ -7,7 +7,7 @@
 # See templates/_helpers.tpl
 #nameOverride: "devopsitall"
 # fullnameOverride:
-namespaceOverride: "devopsitall"
+namespaceOverride: management
 
 # For FQDN resolving of the master service. Change this value to match your existing configuration.
 # ref: https://github.com/kubernetes/dns/blob/master/docs/specification.md
@@ -184,7 +184,7 @@ master:
   # GKE users: only regional static IPs will work for Service Load balancer.
   # slaveListenerLoadBalancerIP: 1.2.3.4
   slaveListenerServiceAnnotations: {}
-  slaveKubernetesNamespace:
+  slaveKubernetesNamespace: management
 
   # Example of 'LoadBalancer' type of agent listener with annotations securing it
   # slaveListenerServiceType: LoadBalancer
@@ -212,23 +212,35 @@ master:
 
   # List of plugins to be install during Jenkins master start
   installPlugins:
-    - git:4.2.2
-    - generic-webhook-trigger:1.67
-    - Github:1.29.5
-    - github-oauth:0.33
-    - github-pullrequest:0.2.8
-    - greenballs:1.15
     - kubernetes:1.25.2
     - kubernetes-cd:2.3.0
-    - workflow-job:2.38
     - workflow-aggregator:2.6
+    - workflow-job:2.38
     - credentials-binding:1.21
-    - blueocean:1.22.0
-    - configuration-as-code:1.38
+    - git:4.2.2
+    - generic-webhook-trigger:1.67
+    - github:1.29.5
+    - github-oauth:0.33
+    - github-pullrequest:0.2.8
     - configuration-as-code-groovy:1.1
+    - greenballs:1.15
+    - blueocean:1.22.0
     - groovy:2.2
-    #- hashicorp-vault-plugin:3.1.1
-    #- hashicorp-vault-pipeline:1.3
+    - locale:1.4
+    
+  #    
+    #- configuration-as-code:1.36
+    #- configuration-as-code-groovy:1.1
+    #- github-oauth:0.33
+    #- github-pullrequest:0.2.8
+    #- greenballs:1.15
+    #- kubernetes-cd:2.3.0
+    #- workflow-job:2.38
+    #- workflow-aggregator:2.6
+    #- blueocean:1.22.0
+    #- groovy:2.2
+    ##- hashicorp-vault-plugin:3.1.1
+    ##- hashicorp-vault-pipeline:1.3
 
   # Enable to always override the installed plugins with the values of 'master.installPlugins' on upgrade or redeployment.
   overwritePlugins: true
@@ -263,7 +275,7 @@ master:
   # etc.  Best reference is https://<jenkins_url>/configuration-as-code/reference.  The example below creates a welcome message:
   JCasC:
     enabled: true
-    defaultConfig: true
+    defaultConfig: false
     pluginVersion: "1.36"
     # it's only used when plugin version is <=1.18 for later version the
     # configuration as code support plugin is no longer needed
@@ -277,17 +289,25 @@ master:
         domainCredentials:
         - credentials:
           - basicSSHUserPrivateKey:
-              id: "ran-github"
+              id: "GithubSshKey"
               privateKeySource:
                 directEntry:
-                  privateKey: "{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}"
+                  privateKey: "{GithubSshKey}"
               scope: GLOBAL
-              username: "ran"
+              username: "ran.hershko@gmail.com"
           - usernamePassword:
-              id: "ran-dockerhub"
-              password: "{AQAAABAAAAAQk7oKUGKp2vl3RNt2UzjAD8500Goy2bc6SVl4O2y/TV0=}"
+              id: "DockerHubPass"
+              password: "{DockerHubPass}"
               scope: GLOBAL
               username: "ranhershko"
+          - kubeconfig:
+              description: "mykubeconfig"
+              id: "mykubeconfig"
+              kubeconfigSource:
+                directEntry:
+                  content: |-
+                    ****
+              scope: GLOBAL
 
     jenkins:
       agentProtocols:
@@ -301,7 +321,7 @@ master:
           containerCapStr: "10"
           maxRequestsPerHostStr: "32"
           name: "kubernetes"
-          namespace: "default"
+          namespace: "management"
           serverUrl: "https://kubernetes.default"
           skipTlsVerify: true
           templates:
@@ -341,9 +361,26 @@ master:
       projectNamingStrategy: "standard"
       quietPeriod: 5
       remotingSecurity:
-        enabled: true
+        enabled: false
       scmCheckoutRetryCount: 0
-      securityRealm: "legacy"
+      securityRealm:
+        local:
+          allowsSignup: false
+          enableCaptcha: false
+          users:
+          - id: "admin"
+            name: "admin"
+            properties:
+            - "apiToken"
+            - favoriting:
+                autofavoriteEnabled: true
+            - "favorite"
+            - "myView"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - mailer:
+                emailAddress: "admin@admin"
       slaveAgentPort: 50000
       updateCenter:
         sites:
@@ -382,7 +419,7 @@ master:
         useSsl: false
       pipeline-model-docker:
         registry:
-          credentialsId: "ran-dockerhub"
+          credentialsId: "DockerHubPass"
           url: "https://hub.docker.com/r/ranhershko/"
       pollSCM:
         pollingThreadCount: 10
@@ -430,7 +467,7 @@ master:
       # If specified, the sidecar will search for JCasC config-maps inside this namespace.
       # Otherwise the namespace in which the sidecar is running will be used.
       # It's also possible to specify ALL to search in all namespaces:
-      # searchNamespace:
+      searchNamespace: management
 
     # Allows you to inject additional/other sidecars
     other: []
@@ -526,11 +563,11 @@ master:
   prometheus:
     # If enabled, add the prometheus plugin to the list of plugins to install
     # https://plugins.jenkins.io/prometheus
-    enabled: true
+    enabled: false
     # Additional labels to add to the ServiceMonitor object
     serviceMonitorAdditionalLabels: {}
     # Set a custom namespace where to deploy ServiceMonitor resource
-    # serviceMonitorNamespace: monitoring
+    serviceMonitorNamespace: management
     scrapeInterval: 60s
     # This is the default endpoint used by the prometheus plugin
     scrapeEndpoint: /prometheus
