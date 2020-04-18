@@ -18,6 +18,10 @@ output "aws_eks_control_security_group" {
   value = aws_security_group.kubernetes_eks_control.id
 }
 
+output "aws_vpc_nat_public_ips" {
+  value = aws_eip.kubernetes.*.public_ip
+}
+
 output "default_tags" {
   value = var.default_tags
 }
