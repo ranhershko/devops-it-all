@@ -21,8 +21,8 @@
    ###### 3) Running the environment build: 
    #### Automatically: 
    ##### ../shell/run-devops-it-all.sh "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password"
-   #### Manually: 
-   ##### ../shell/run-devops-it-all.sh => answer the github dockerhub login information
+   #### Manually: (answer the github dockerhub login information)
+   ##### ../shell/run-devops-it-all.sh
         
    ## When done:
    ###### 1) cd devops-it-all/terraform/aws/haproxy-autoscale/
