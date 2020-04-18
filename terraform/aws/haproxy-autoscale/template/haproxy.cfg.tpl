@@ -74,9 +74,10 @@
       backend backend_vault
         balance roundrobin
         mode ${haproxy_frontend_mode}
-        acl manage_ip src ${management_server_ip}
-        http-request deny if !manage_ip
-        server-template vaultui 3  _vault._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        acl not_worker_nat_ips src ${not_nat_public_ips}
+        acl manage_ip src ${management_server_ip} 
+        http-request deny if !manage_ip not_worker_nat_ips
+        server-template vaultui 3  _vault-devopsitall-ui-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
           
       backend backend_jenkins
         balance roundrobin
