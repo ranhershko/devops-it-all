@@ -7,7 +7,7 @@ chmod -R 700 /home/${ remote_user }/consul-client-data
 
 export AWS_DEFAULT_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)
 
-ln -s /usr/local/bin/aws /usr/bin/aws
+ln -s /usr/local/bin/aws /usr/bin/aws || true
 aws ec2 wait instance-running --instance-ids $(curl http://169.254.169.254/latest/meta-data/instance-id)
 aws ec2 associate-address --instance-id $(curl http://169.254.169.254/latest/meta-data/instance-id) --allocation-id ${haproxy_eip} --allow-reassociation
 runuser -l  ${ remote_user } -c "aws eks update-kubeconfig --name kubernetes-devops-it-all --region $(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)"
