@@ -8,10 +8,10 @@
    <img src="images/env-status.png" width="1200" >
    
    ## Prerequisite:
-   ###### 1) Create an AWS Elastic IP nameed: haproxy_scale_eip
-   ###### 2) Create a Dns wildcard record for that Elastic IP
+   ###### 1) Create an AWS Elastic IP named: haproxy_scale_eip
+   ###### 2) Create a DNS wildcard record for this Elastic IP
    ###### 3) Create SSL wildcard certificate for this Dns wildcard record
-   ###### 4) Github user email and ssh private key that used by that account
+   ###### 4) Github user email and ssh private key that used by this account
    ###### 4) Dockerhub account user and password 
 
 
@@ -19,8 +19,8 @@
    ###### 1) git clone devops-it-all repo
    ###### 2) cd devops-it-all/ansible
    ###### 3) Running the environment build: 
-   ######## a) Automatic: ../shell/run-devops-it-all.sh "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password"
-   ######## b) Manually: ../shell/run-devops-it-all.sh => answer the github dockerhub login information
+   ####### a) Automatic: ../shell/run-devops-it-all.sh "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password"
+   ####### b) Manually: ../shell/run-devops-it-all.sh => answer the github dockerhub login information
         
    ## When done:
    ###### 1) cd devops-it-all/terraform/aws/haproxy-autoscale/
