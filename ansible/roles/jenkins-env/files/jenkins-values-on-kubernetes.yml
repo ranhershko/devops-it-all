@@ -83,7 +83,7 @@ master:
 
   # enables configuration done directly via XML files
   # People who want to configure Jenkins via https://github.com/jenkinsci/configuration-as-code-plugin only can set it to false
-  enableXmlConfig: false
+  enableXmlConfig: true
   # Allows to configure different SecurityRealm using Jenkins XML
   securityRealm: |-
      <securityRealm class="hudson.security.LegacySecurityRealm"/>
@@ -227,6 +227,8 @@ master:
     - blueocean:1.22.0
     - groovy:2.2
     - locale:1.4
+    - hashicorp-vault-plugin:3.2.0
+    - hashicorp-vault-pipeline:1.3
     
   #    
     #- configuration-as-code:1.36

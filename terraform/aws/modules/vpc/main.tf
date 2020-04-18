@@ -116,6 +116,15 @@ resource "aws_security_group_rule" "allow-https-ingress-from-github-webhook" {
   security_group_id = aws_security_group.kubernetes_worker.id
 }
 
+resource "aws_security_group_rule" "allow-worker-ingress-using-nat-ips" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = aws_eip.kubernetes.*.public_ip
+  security_group_id = aws_security_group.kubernetes_worker.id
+}
+
 resource "aws_security_group_rule" "allow-all-ingress-inside-vpc" {
   type              = "ingress"
   from_port         = 0
@@ -140,7 +149,7 @@ resource "aws_security_group_rule" "allow-eks-control-ingress-https-worker" {
   from_port                = 443
   to_port                  = 443
   protocol                 = "tcp"
-  security_group_id        = aws_security_group.kubernetes_worker.id
+  cidr_blocks              = aws_eip.kubernetes.*.public_ip
   source_security_group_id = aws_security_group.kubernetes_eks_control.id
 }
 
