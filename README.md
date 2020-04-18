@@ -19,8 +19,10 @@
    ###### 1) git clone devops-it-all repo
    ###### 2) cd devops-it-all/ansible
    ###### 3) Running the environment build: 
-   ##### Automatically: ../shell/run-devops-it-all.sh "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password"
-   ##### Manually: ../shell/run-devops-it-all.sh => answer the github dockerhub login information
+   #### Automatically: 
+   ##### ../shell/run-devops-it-all.sh "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password"
+   #### Manually: 
+   ##### ../shell/run-devops-it-all.sh => answer the github dockerhub login information
         
    ## When done:
    ###### 1) cd devops-it-all/terraform/aws/haproxy-autoscale/
