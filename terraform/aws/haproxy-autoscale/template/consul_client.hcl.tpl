@@ -6,4 +6,4 @@
       datacenter = "dc1"
       enable_syslog = true
       log_level = "DEBUG"
-      retry_join = ["provider=k8s label_selector=\"app=consul,component=server\""]
+      retry_join = ["provider=k8s namespace=management label_selector=\"app=consul,component=server\""]
