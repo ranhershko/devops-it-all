@@ -43,6 +43,7 @@ data "template_file" "haproxy_cfg_config_write_files" {
     prometheus_server_svc_name = var.prometheus_server_svc_name 
     grafana_svc_name           = var.grafana_svc_name
     kibana_svc_name            = var.kibana_svc_name
+    not_nat_public_ips         = "!${chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[0])}/32 !${chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[1])}/32 !${chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[2])}/32"
   }
 }
 
