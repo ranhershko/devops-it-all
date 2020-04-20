@@ -24,7 +24,7 @@
    ### Manually: (answer github & dockerhub login information)
    ##### ../shell/run-devops-it-all.sh
         
-   ## When done:
+   ## When done: (destroy)
    ###### 1) cd devops-it-all/terraform/aws/haproxy-autoscale/
    ###### 2) terraform destroy --auto-approve
    ###### 3) cd ~/devops-it-all/terraform/aws/haproxy-autoscale/remote_state/
@@ -34,4 +34,5 @@
    ###### 7) AWS web console => Amazon S3 => devopsitall-terraform-remote-state => Change Version switch to Show and delete all files
    ###### 8) cd ~/devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
    ###### 9) terraform destroy --auto-approve
+   ###### 11) rm ~/.kube/config
    ###### 10) There maybe be a volumes in the ec2 blade that need to delete manually
