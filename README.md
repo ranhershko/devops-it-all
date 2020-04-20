@@ -1,9 +1,13 @@
 # devops-it-all
    
    ## As it say - try to devops it all:
-   ##### Build AWS vpc, eks..
-   ##### Manage Hashicorp consul, vault..
-   ##### Build and run Jenkins devops-it-all apps pipeline
+   ##### Create automation environment using shell. python, ansible, terraform, helm, packer
+   ##### Build on Amazon AWS VPC, EKS..
+   ##### Build and run Jenkins devops-it-all apps common automation pipeline 
+   #####      using https://github.com/ranhershko/devops-it-all-jenkinsfile repo
+   ##### Using Hashicorp consul service discovery and vault manage secrets..
+   ##### Build ELK stack for manage logs
+   ##### Build Build Prometheus monitoring system and Grafana for querying and visualize metrics
         WORK IN PROGRESS...
    <img src="images/env-status.png" width="1200" >
    
