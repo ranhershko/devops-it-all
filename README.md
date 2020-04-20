@@ -7,7 +7,7 @@
    #####      using https://github.com/ranhershko/devops-it-all-jenkinsfile repo
    #### Using Hashicorp consul service discovery and vault manage secrets..
    #### Build ELK stack for manage logs
-   #### Build Build Prometheus monitoring system and Grafana for querying and visualize metrics
+   #### Build Prometheus monitoring system and Grafana for querying and visualize metrics
         WORK IN PROGRESS...
    <img src="images/env-status.png" width="1200" >
    
