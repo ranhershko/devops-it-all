@@ -160,7 +160,7 @@ service:
   labelsHeadless: {}
   type: ClusterIP
   nodePort: ""
-  annotations: {}
+  annotations: { "consul.hashicorp.com/service-port": "http" }
   httpPortName: http
   transportPortName: transport
   loadBalancerIP: ""
