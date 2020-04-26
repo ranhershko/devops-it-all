@@ -18,8 +18,6 @@ resource "aws_iam_role" "haproxy_ec2_eks_readonly" {
 EOF
 }
 
-#"Service": "sts.amazonaws.com"
-
 resource "aws_iam_role_policy" "haproxy_ec2_eks_readonly" {
   name = "haproxy_ec2_role_policy"
   role = aws_iam_role.haproxy_ec2_eks_readonly.id
