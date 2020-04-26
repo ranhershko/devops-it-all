@@ -1,0 +1,18 @@
+---
+- name: Install helm filebeat chart on aws eks
+  block:
+    - helm:
+        chart:
+          name: "{{ helm_name }}"
+          source:
+            type: git
+            location: "{{ helm_location }}"
+            path: filebeat
+        state: present
+        values: "{{ lookup('file', 'filebeat-values-on-kubernetes.yml') | from_yaml }}"
+        name: "filebeat-devopsitall"
+        namespace: "management"
+      register: filebeat_helm_install
+  rescue:
+    - debug:
+        msg: "filebeat helm chart already exists"
