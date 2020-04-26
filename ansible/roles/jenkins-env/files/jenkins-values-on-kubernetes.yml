@@ -399,6 +399,9 @@ master:
         usageStatisticsEnabled: true
       sSHD:
         port: -1
+      scriptApproval:
+        approvedSignatures:
+        - "staticMethod groovy.util.Eval me java.lang.String"
     unclassified:
       appInsightsGlobalConfig:
         appInsightsEnabled: true
