@@ -1,5 +1,5 @@
 rbac:
-  create: true
+  create: false
 
 podSecurityPolicy:
   enabled: false
@@ -602,6 +602,7 @@ server:
   ## Additional Prometheus server container arguments
   ##
   extraArgs: {}
+    #web.external-url: https://prometheus.ranhershko.dns-cloud.net
 
   ## Additional InitContainers to initialize the pod
   ##
@@ -1149,26 +1150,26 @@ serverFiles:
         static_configs:
           - targets:
             - localhost:9090
-      - job_name: 'consul_sd'
-        consul_sd_configs:
-          - server: 'localhost:8500'
-        relabel_configs:
-          - source_lables: ['__meta_consul_service']    
-            regex: (.*)-grafana
-            replacement: '${1}'
-          - source_lables: ['__meta_consul_service']
-            regex: (.*)-prometheus-server
-            replacement: '${1}'
-            target_label: 'job'
-          - source_lables: ['__meta_consul_service']
-            regex: (.*)-jenkins
-            replacement: '${1}'
-            target_label: 'job'
-          - source_lables: ['__meta_consul_service']
-            regex: consul
-            action: drop
-          - source_labels: ['__meta_consul_node']
-            target_label: 'node'
+      #- job_name: 'consul_sd'
+        #consul_sd_configs:
+          #- server: 'consul-devopsitall-consul-ui'
+        #relabel_configs:
+          #- source_lables: ['__meta_consul_service']    
+            #regex: (.*)-grafana
+            #replacement: '${1}'
+          #- source_lables: ['__meta_consul_service']
+            #regex: (.*)-prometheus-server
+            #replacement: '${1}'
+            #target_label: 'job'
+          #- source_lables: ['__meta_consul_service']
+            #regex: (.*)-jenkins
+            #replacement: '${1}'
+            #target_label: 'job'
+          #- source_lables: ['__meta_consul_service']
+            #regex: consul
+            #action: drop
+          #- source_labels: ['__meta_consul_node']
+            #target_label: 'node'
 
       # A scrape configuration for running Prometheus on a Kubernetes cluster.
       # This uses separate scrape configs for cluster components (i.e. API server, node)
@@ -1191,7 +1192,8 @@ serverFiles:
 
         # Default to scraping over https. If required, just disable this or change to
         # `http`.
-        scheme: https
+        #scheme: https
+        scheme: http
 
         # This TLS & bearer token file config is used to connect to the actual scrape
         # endpoints for cluster components. This is separate to discovery auth
@@ -1222,7 +1224,8 @@ serverFiles:
 
         # Default to scraping over https. If required, just disable this or change to
         # `http`.
-        scheme: https
+        #scheme: https
+        scheme: http
 
         # This TLS & bearer token file config is used to connect to the actual scrape
         # endpoints for cluster components. This is separate to discovery auth
@@ -1259,7 +1262,8 @@ serverFiles:
 
         # Default to scraping over https. If required, just disable this or change to
         # `http`.
-        scheme: https
+        #scheme: https
+        scheme: http
 
         # This TLS & bearer token file config is used to connect to the actual scrape
         # endpoints for cluster components. This is separate to discovery auth
