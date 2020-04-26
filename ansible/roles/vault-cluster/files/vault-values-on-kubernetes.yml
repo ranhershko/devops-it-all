@@ -358,6 +358,10 @@ server:
       #   key_ring    = "vault-helm-unseal-kr"
       #   crypto_key  = "vault-helm-unseal-key"
       #}
+      telemetry {
+        prometheus_retention_time = "24h"
+        disable_hostname = true
+      }
     # A disruption budget limits the number of pods of a replicated application
     # that are down simultaneously from voluntary disruptions
     disruptionBudget:
