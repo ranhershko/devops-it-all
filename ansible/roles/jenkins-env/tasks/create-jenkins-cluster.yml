@@ -4,6 +4,7 @@
     - helm:
         chart:
           name: "{{ helm_name }}"
+          version: "{{ helm_version }}"
           source:
             type: git
             location: "{{ helm_location }}"
@@ -16,3 +17,4 @@
   rescue:
     - debug:
         msg: "jenkins helm chart already exists"
+
