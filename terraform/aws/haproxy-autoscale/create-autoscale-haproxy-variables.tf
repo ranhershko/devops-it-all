@@ -15,11 +15,6 @@ variable "jenkins_svc_name" {
   type        = string
 }
 
-variable "prometheus_server_svc_name" {
-  description = "prometheus server service name"
-  type        = string
-}
-
 variable "grafana_svc_name" {
   description = "grafana service name"
   type        = string
