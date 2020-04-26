@@ -74,10 +74,12 @@
       backend backend_vault
         balance roundrobin
         mode ${haproxy_frontend_mode}
-        acl not_worker_nat_ips src ${not_nat_public_ips}
+        acl worker_nat_ipa src ${nat_a_public_ip}
+        acl worker_nat_ipb src ${nat_b_public_ip}
+        acl worker_nat_ipc src ${nat_c_public_ip}
         acl manage_ip src ${management_server_ip} 
-        http-request deny if !manage_ip not_worker_nat_ips
-        server-template vaultui 3  _vault-devopsitall-ui-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        http-request deny if !manage_ip !worker_nat_ipa !worker_nat_ipb !worker_nat_ipc
+        server-template vaultui 3  _vault-devopsitall-ui-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check ssl verify none
           
       backend backend_jenkins
         balance roundrobin
@@ -90,7 +92,7 @@
         http-request add-header X-Forwarded-Proto https if { ssl_fc }
         reqrep ^([^\ :]*)\ /(.*)     \1\ /\2
         acl response-is-redirect res.hdr(Location) -m found
-        rspirep ^Location:\ (http)://jenkinsui1/(.*) Location:\ https://jenkins.${domain_name}:443/\2  if response-is-redirect
+        rspirep ^Location:\ (http)://jenkinsui1/(.*) Location:\ https://jenkins.${domain_name}/\2  if response-is-redirect
            
       backend backend_prometheus
         balance roundrobin
@@ -98,14 +100,17 @@
         acl manage_ip src ${management_server_ip}
         http-request deny if !manage_ip
         balance roundrobin
-        server-template prometheusui 1  _${prometheus_server_svc_name}-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template prometheusui 1 _prometheus-devopsitall-server-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
            
       backend backend_grafana
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
+        cookie HA_BACKEND_ID insert indirect nocache
+        option httplog
+        default-server maxconn 256 maxqueue 128 weight 100
         http-request deny if !manage_ip
-        server-template grafanaui 1  _${grafana_svc_name}-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template grafanaui 1  _${grafana_svc_name}-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check cookie 1 
       
       backend backend_kibana
         balance roundrobin
