@@ -1,5 +1,5 @@
-Role Name
-=========
+Grafana-env role
+================
 
 An ansible role to install grafana with kubernetes dashboard
 
