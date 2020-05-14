@@ -14,7 +14,6 @@ The Grafana helm install from local devops-it-all helm project dir
 
 Example Playbook use
 --------------------
-
     - hosts: servers
       roles:
          - role: grafana-env
