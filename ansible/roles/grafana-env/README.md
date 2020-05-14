@@ -4,7 +4,7 @@ Role Name
 An ansible role to install grafana with kubernetes dashboard
 
     WORK IN PROGRESS...
-<img src="images/grafanaDashboard.PNG" width="1200" >
+<img src="../../../images/grafanaDashboard.PNG" width="1200" >
 
 
 Requirements
