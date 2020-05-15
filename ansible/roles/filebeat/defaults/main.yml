@@ -1,5 +1,5 @@
 ---
 # defaults file for filebeat---
 ansible_python_interpreter: /usr/bin/python3
-helm_name: "filebeat"
-helm_location: "https://github.com/elastic/helm-charts.git"
+filebeat_helm_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/filebeat"
+project_name: devops-it-all
