@@ -1,0 +1,5 @@
+---
+# defaults file for prometheus-helm-remote-state
+ansible_python_interpreter: /usr/bin/python3
+prometheus_helm_remote_state_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/prometheus/remote_state"
+project_name: devops-it-all
