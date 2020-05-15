@@ -1,18 +1,22 @@
 ---
 - name: Install helm elasticsearch chart on aws eks
-  block:
-    - helm:
-        chart:
-          name: "{{ helm_name }}"
-          source:
-            type: git
-            location: "{{ helm_location }}"
-            path: elasticsearch
-        state: present
-        values: "{{ lookup('file', 'elasticsearch-values-on-kubernetes.yml') | from_yaml }}"
-        name: "elasticsearch-devopsitall"
-        namespace: "management"
-      register: elasticsearch_helm_install
-  rescue:
-    - debug:
-        msg: "elasticsearch helm chart already exists"
+  terraform:
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
+    project_path: "{{ elasticsearch_helm_terraform_dir }}"
+    state: present
+    lock: yes
+    backend_config:
+      region: "us-east-1"
+      bucket: "devopsitall-terraform-remote-state"
+      key: "management-helm/elasticsearch-terraform.tfstate"
+      dynamodb_table:  "devopsitall-helm-elasticsearch-terraform-remote-lock"
+      encrypt: "true"
+    force_init: true
+  register: terraform_run
+
+- name: grafana helm Terraform output
+  debug:
+    msg:
+      - "{{ terraform_run.command }}"
+      - "{{ terraform_run.stdout }}"
+

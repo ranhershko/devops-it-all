@@ -1,0 +1,3 @@
+---
+# tasks file for elasticsearch-helm-remote-state
+- include: create-elasticsearch-helm-remote-state.yml
