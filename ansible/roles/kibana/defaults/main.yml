@@ -1,5 +1,5 @@
 ---
 # defaults file for kibana---
 ansible_python_interpreter: /usr/bin/python3
-helm_name: "kibana"
-helm_location: "https://github.com/elastic/helm-charts.git"
+kibana_helm_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/kibana"
+project_name: devops-it-all

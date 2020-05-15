@@ -1,0 +1,6 @@
+---
+# defaults file for kibana-helm-remote-state
+#
+ansible_python_interpreter: /usr/bin/python3
+kibana_helm_remote_state_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/kibana/remote_state"
+project_name: devops-it-all

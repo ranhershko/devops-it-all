@@ -1,0 +1,3 @@
+---
+# tasks file for kibana-helm-remote-state
+- include: create-kibana-helm-remote-state.yml
