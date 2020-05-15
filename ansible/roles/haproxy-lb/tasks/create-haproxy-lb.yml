@@ -1,13 +1,10 @@
 ---
-- name: Set haproxy terraform mgmt_svc_name_variables
-  shell: "{{ playbook_dir }}/../shell/set_mgmt_svc_name_variables.sh"
-
 - name: Set haproxy terraform eks worker role arn variable
   shell: "{{ playbook_dir }}/../shell/set_worker_role_arn_variable.sh"
 
 - name: Create haproxy_lb
   terraform:
-    binary_path: "{{ user_home }}/bin/terraform"
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
     project_path: "{{ haproxy_lb_terraform_dir }}"
     state:        present 
     lock: yes
@@ -17,8 +14,6 @@
       key: "haproxy-lb-terraform.tfstate"
       dynamodb_table:  "devopsitall-haproxy-autoscale-terraform-remote-lock"
       encrypt:  "true"
-    #plan_file:    "{{ haproxy_lb_terraform_dir }}/devops-it-all-remote-state.tfplan"
-    #state_file:   "{{ haproxy_lb_terraform_dir }}/terraform.tfstate"
     force_init: true
   register: terraform_run
 

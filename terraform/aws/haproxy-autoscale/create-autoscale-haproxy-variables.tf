@@ -10,31 +10,11 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "jenkins_svc_name" {
-  description = "Jenkins service name"
-  type        = string
-}
-
-variable "grafana_svc_name" {
-  description = "grafana service name"
-  type        = string
-}
-
-variable "kibana_svc_name" {
-  description = "kibana service name"
-  type        = string
-}
-
 variable "project_name" {
   description = "Kubernetes project name"
   type        = string
   default     = "devops-it-all"
 }
-
-#variable "default_tags" {
-  #description = "Default tags for all resources"
-  #type        = map
-#}
 
 variable "haproxy_instance_type" {
   description = "haproxy type & size"
@@ -51,11 +31,14 @@ variable "haproxy_scale_size" {
 variable "management_apps" {
   default = [
     { name = "consul"},
-    { name = "jenkins"},
     { name = "vault"},
-    { name = "stats"},
+    { name = "jenkins"},
+    { name = "prometheus"},
+    { name = "grafana"},
     { name = "elasticsearch"},
+    { name = "logstash"},
     { name = "kibana"},
+    { name = "stats"},
   ]
 }
 

@@ -39,9 +39,6 @@ data "template_file" "haproxy_cfg_config_write_files" {
     haproxy_group              = var.haproxy_group
     management_server_ip       = chomp(data.http.myip.body)
     domain_name                = var.domain_name
-    jenkins_svc_name           = var.jenkins_svc_name 
-    grafana_svc_name           = var.grafana_svc_name
-    kibana_svc_name            = var.kibana_svc_name
     nat_a_public_ip            = chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[0]) 
     nat_b_public_ip            = chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[1])
     nat_c_public_ip            = chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[2])

@@ -1,11 +1,9 @@
 ---
-- name: Create haproxy_lb remote state
+- name: Create terraform dynamoDB lock table
   terraform:
-    binary_path: "{{ user_home_bin }}/terraform"
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
     project_path: "{{ haproxy_lb_remote_state_terraform_dir }}"
     state:        present 
-    #plan_file:    "{{ vpc_n_eks_terraform_dir }}/devops-it-all-remote-state.tfplan"
-    #state_file:   "{{ vpc_n_eks_terraform_dir }}/terraform.tfstate"
     force_init: true
   register: terraform_run
 
@@ -14,7 +12,7 @@
     msg: 
       - "{{ terraform_run }}"
 
-- name: sleep for 300 seconds and continue with play when terraform vpc-n-eks-n-haproxy_lb s3 and dynamoDB remote states are ready
+- name: Ansible-playbook automation sleep for 300 seconds until terraform s3 remote state  bucket is ready
   wait_for:
     timeout: 300
   when: terraform_run.changed and terraform_run.failed == false
