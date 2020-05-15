@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: elasticsearch-master-elasticsearch-master-0
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  claimRef:
+    namespace: management
+    name: elasticsearch-master-elasticsearch-master
+  storageClassName: local-storage
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: elasticsearch-master-elasticsearch-master-1
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 11Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  claimRef:
+    namespace: management
+    name: elasticsearch-master-elasticsearch-master
+  storageClassName: local-storage
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: elasticsearch-master-elasticsearch-master-2
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  claimRef:
+    namespace: management
+    name: elasticsearch-master-elasticsearch-master
+  storageClassName: local-storage

@@ -1,0 +1,12 @@
+elasticsearchHosts: "http://devopsitall-elasticsearch-master.management.svc:9200"
+#kibanaConfig: 
+  #kibana.yml: |
+    #elasticsearch:
+      #hosts: "http://devopsitall-elasticsearch-master.management.svc:9200"
+resources:
+  requests:
+    cpu: "500m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"

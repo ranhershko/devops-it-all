@@ -1,0 +1,1 @@
+../../../aws-remote-state-provider.tf

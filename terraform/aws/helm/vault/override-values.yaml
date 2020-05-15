@@ -1,0 +1,41 @@
+ui:
+  enabled: true
+server:
+  extraSecretEnvironmentVars:
+    - envName: AWS_ACCESS_KEY_ID
+      secretName: eks-creds
+      secretKey: AWS_ACCESS_KEY_ID
+    - envName: AWS_SECRET_ACCESS_KEY
+      secretName: eks-creds
+      secretKey: AWS_SECRET_ACCESS_KEY
+  extraVolumes:
+    - type: secret
+      name: vault-tls
+      path: '/vault/userconfig'
+  ha:
+    enabled: true
+    replicas: 3
+    config:
+      listener "tcp" {
+        address     = "127.0.0.1:8200"
+        tls_disable = "true"
+      }
+      listener "tcp" {
+        address     = "POD_IP:8200"
+        tls_cert_file = "/vault/userconfig/vault-tls/vault.crt"
+        tls_key_file  = "/vault/userconfig/vault-tls/vault.key"
+        tls_disable_client_certs = true
+      }
+      seal "awskms" {
+        region = "us-east-1"
+        kms_key_id = "2ea2357e-0cbc-4620-8fba-f08279d5d9c1"
+      }
+      telemetry {
+        prometheus_retention_time = "24h"
+        disable_hostname = true
+      }
+      storage "consul" {
+        path = "vault"
+        address = "HOST_IP:8500"
+      }
+

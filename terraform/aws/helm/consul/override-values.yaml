@@ -1,0 +1,10 @@
+server:
+  replicas: 3
+  bootstrapExpect: 3
+global:
+  name: "consul-devopsitall"
+connectInject:
+  enabled: true
+  default: true
+syncCatalog:
+  enabled: true

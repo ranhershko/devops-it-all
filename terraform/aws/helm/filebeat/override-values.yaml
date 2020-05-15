@@ -1,0 +1,8 @@
+clusterName: "devopsitall-elasticsearch"
+#hostNetworking: true
+resources:
+  limits:
+    cpu: "500m"
+extraEnvs:
+  - name: "ELASTICSEARCH_HOSTS"
+    value: "devopsitall-elasticsearch-master.management.svc"

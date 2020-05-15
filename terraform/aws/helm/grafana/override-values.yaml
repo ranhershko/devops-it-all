@@ -1,0 +1,27 @@
+datasources:
+  datasources.yaml:
+    datasources:
+    - name: 'Prometheus'
+      type: 'prometheus'
+      url: 'http://prometheus-devopsitall-server'
+      access: 'proxy'
+      isDefault: 'true'
+
+dashboardProviders: 
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'KubernetesClusterDashboard'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: '/var/lib/grafana/dashboards/default'
+
+dashboards: 
+  default:
+    KubernetesClusterDashboard:
+      file: 'dashboards/KubernetesClusterDashboard.json'
+

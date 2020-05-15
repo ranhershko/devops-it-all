@@ -1,0 +1,183 @@
+namespaceOverride: management
+master:
+  runAsUser: 1000
+  fsGroup: 1000
+  healthProbeLivenessInitialDelay: 180
+  healthProbeReadinessInitialDelay: 150
+  slaveKubernetesNamespace: management
+  installPlugins:
+    - kubernetes:1.25.3
+    - kubernetes-cd:2.3.0
+    - workflow-aggregator:2.6
+    - workflow-job:2.38
+    - credentials-binding:1.21
+    - git:4.2.2
+    - generic-webhook-trigger:1.67
+    - github:1.29.5
+    - github-oauth:0.33
+    - github-pullrequest:0.2.8
+    - configuration-as-code-groovy:1.1
+    - configuration-as-code:1.39
+    - greenballs:1.15
+    - blueocean:1.22.0
+    - groovy:2.2
+    - locale:1.4
+    - hashicorp-vault-plugin:3.2.0
+    - hashicorp-vault-pipeline:1.3
+  overwritePlugins: true
+  JCasC:
+    enabled: true
+    credentials:
+      system:
+        domainCredentials:
+        - credentials:
+          - basicSSHUserPrivateKey:
+              id: "GithubSshKey"
+              privateKeySource:
+                directEntry:
+                  privateKey: "{GithubSshKey}"
+              scope: GLOBAL
+              username: "ran.hershko@gmail.com"
+          - usernamePassword:
+              id: "DockerHubPass"
+              password: "{DockerHubPass}"
+              scope: GLOBAL
+              username: "ranhershko"
+          - kubeconfig:
+              description: "mykubeconfig"
+              id: "mykubeconfig"
+              kubeconfigSource:
+                directEntry:
+                  content: |-
+                    ****
+              scope: GLOBAL
+    jenkins:
+      agentProtocols:
+      - "JNLP4-connect"
+      - "Ping"
+      authorizationStrategy:
+        loggedInUsersCanDoAnything:
+          allowAnonymousRead: false
+      clouds:
+      - kubernetes:
+          containerCapStr: "10"
+          maxRequestsPerHostStr: "32"
+          name: "kubernetes"
+          namespace: "management"
+          serverUrl: "https://kubernetes.default"
+          skipTlsVerify: true
+          templates:
+          - containers:
+            - args: "^${computer.jnlpmac} ^${computer.name}"
+              envVars:
+              image: "jenkins/jnlp-slave:3.27-1"
+              livenessProbe:
+                failureThreshold: 0
+                initialDelaySeconds: 0
+                periodSeconds: 0
+                successThreshold: 0
+                timeoutSeconds: 0
+              name: "jnlp"
+              resourceLimitCpu: "512m"
+              resourceLimitMemory: "512Mi"
+              resourceRequestCpu: "512m"
+              resourceRequestMemory: "512Mi"
+              workingDir: "/home/jenkins"
+            hostNetwork: false
+            label: "boisterous-alpaca-jenkins-slave "
+            name: "default"
+            nodeUsageMode: "NORMAL"
+            serviceAccount: "default"
+            yamlMergeStrategy: "override"
+      crumbIssuer:
+        standard:
+          excludeClientIPFromCrumb: true
+      disableRememberMe: false
+      markupFormatter: "plainText"
+      mode: NORMAL
+      myViewsTabBar: "standard"
+      numExecutors: 2
+      primaryView:
+        all:
+          name: "all"
+      projectNamingStrategy: "standard"
+      quietPeriod: 5
+      remotingSecurity:
+        enabled: false
+      scmCheckoutRetryCount: 0
+      securityRealm:
+        local:
+          allowsSignup: false
+          enableCaptcha: false
+          users:
+          - id: "admin"
+            name: "admin"
+            properties:
+            - "apiToken"
+            - favoriting:
+                autofavoriteEnabled: true
+            - "favorite"
+            - "myView"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - mailer:
+                emailAddress: "admin@admin"
+      slaveAgentPort: 50000
+      updateCenter:
+        sites:
+        - id: "default"
+          url: "https://updates.jenkins.io/update-center.json"
+      views:
+      - all:
+          name: "all"
+      viewsTabBar: "standard"
+    security:
+      apiToken:
+        creationOfLegacyTokenEnabled: false
+        tokenGenerationOnCreationEnabled: false
+        usageStatisticsEnabled: true
+      sSHD:
+        port: -1
+      scriptApproval:
+        approvedSignatures:
+        - "staticMethod groovy.util.Eval me java.lang.String"
+    unclassified:
+      appInsightsGlobalConfig:
+        appInsightsEnabled: true
+      defaultFolderConfiguration:
+        healthMetrics:
+        - worstChildHealthMetric:
+            recursive: true
+      gitHubPluginConfig:
+        hookUrl: "http://${HOSTNAME}:8080/github-webhook/"
+      gitSCM:
+        createAccountBasedOnEmail: false
+        globalConfigName: "ranhershko"
+        showEntireCommitSummaryInChanges: false
+        useExistingAccountWithSameEmail: false
+      location:
+        adminAddress: "address not configured yet <nobody@nowhere>"
+        url: "https://jenkins.ranhershko.dns-cloud.net/"
+      mailer:
+        charset: "UTF-8"
+        useSsl: false
+      pipeline-model-docker:
+        registry:
+          credentialsId: "DockerHubPass"
+          url: "https://hub.docker.com/r/ranhershko/"
+      pollSCM:
+        pollingThreadCount: 10
+      whitelist:
+        enabled: false
+    tool:
+      git:
+        installations:
+        - home: "git"
+          name: "Default"
+  sidecars:
+    configAutoReload:
+      searchNamespace: management
+  prometheus:
+    serviceMonitorNamespace: management
+

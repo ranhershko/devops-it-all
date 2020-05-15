@@ -1,0 +1,23 @@
+logstashConfig:
+  logstash.yml: |
+    http:
+      host: "0.0.0.0"
+resources:
+  requests:
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+logstashJavaOpts: "-Xmx256m -Xms256m"
+service:
+  annotations: {}
+  type: ClusterIP
+  ports:
+    - name: beats
+      port: 5044
+      protocol: TCP
+      targetPort: 5044
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
