@@ -1,0 +1,1960 @@
+commit 6520e5ca9336a53c18ed7d5b9f973eb36db57902
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu May 14 17:12:30 2020 +0300
+
+    update ansible role README
+
+commit d3afe2d2486fe28df0e1fe15713aa048b315300e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu May 14 17:10:31 2020 +0300
+
+    update ansible role README
+
+commit 10053dd3f40431c43b5ef9ba6fccd6edce4294d3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu May 14 17:08:11 2020 +0300
+
+    update ansible role README
+
+commit e6f48c953722ab1d7db71f5aee7a0c82a9edc779
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu May 14 17:07:07 2020 +0300
+
+    update ansible role README
+
+commit b7142b156fc650c02185b0d44b35a54010e0339d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu May 14 17:05:04 2020 +0300
+
+    update ansible role README
+
+commit 68cdc21333200dffc4cfe8938c6a23da22091c7a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu May 14 17:02:16 2020 +0300
+
+    Add grafanaDashboard image and update ansible role README
+
+commit 7e141c8bf485f57e47084dc9427361caa2ab9e8c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat May 2 13:26:14 2020 +0300
+
+    	modified:   env-status.png
+
+commit 627c6915d54787d365337a34629669b452166110
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat May 2 13:16:46 2020 +0300
+
+    	modified:   env-status.png
+
+commit 088cc57c6d8b3611937fb4dfa520aa59e2fb592c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu Apr 30 10:43:38 2020 +0300
+
+    	modified:   images/env-status.png
+
+commit d8626853bd4f1b451bb11f2d86ec26baee3962f9
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 12:35:21 2020 +0300
+
+    set oidc_provider & aws_account_id variables
+
+commit 3c54d4c9d586a823d3ec39589a9e72d9f223a421
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 12:29:50 2020 +0300
+
+    Add grafana-env role values file
+
+commit 2e724497818c58950beeec655e3f0a2f74e71504
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 12:24:42 2020 +0300
+
+    Add filebeat role
+
+commit 79d0977df51e341ea57216c10ad9a2a0842c87d9
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 12:02:44 2020 +0300
+
+    add vault backend nat ip's acl
+
+commit af4b079319fa170068ae3707f88d4a94fe6896ae
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 12:01:03 2020 +0300
+
+    Delete old remark
+
+commit c400ad6dcaf2b4568ad6ca18f6155c4c289e2f0b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 12:00:16 2020 +0300
+
+    delete prometheus_server_svc_name variable
+
+commit 5d4f757bb5b01d7cd0bcfa06d61c2e33f586e0a1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:59:24 2020 +0300
+
+    Add nat ip's variables for eks service communication with haproxy
+
+commit 84afbbf3a17c0b982eccbee96349a9fc2b08b113
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:57:25 2020 +0300
+
+    delete prometheus_server_svc_name variable set
+
+commit 87f3a04d5e24f774557419d03a6638f91efc0f68
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:53:55 2020 +0300
+
+    Add telemetry
+
+commit ff76f316460dc5487cfa1df86993dc404a3fff82
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:50:38 2020 +0300
+
+    Disable consul_sd_configs & relabel_configs and change scheme to http
+
+commit 24de894b4436345f7ffc385f8c4651d5854dd626
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:48:55 2020 +0300
+
+    memory limit decreased
+
+commit 3a4268fe5471bb248c5745fd631c547f187276c5
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:47:39 2020 +0300
+
+    Add helm version variable
+
+commit 091d51e36f847ff9d9edc4ed193ac35d6e5bce29
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:46:45 2020 +0300
+
+    Add scriptApproval groovy.util.Eval me java.lang.String
+
+commit 9f833acc2bb19f7261863058ed7b90c1e90d9680
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:45:20 2020 +0300
+
+    Add helm version variable
+
+commit 1304946646ad19907d9adddeac7d5a4090d19c6b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:37:48 2020 +0300
+
+    	modified:   ../images/env-status.png
+
+commit e67168ed7764f91a33b0e9a57ff24db9504f67d8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Apr 26 11:31:26 2020 +0300
+
+    Add elasticsearch annotations for default service-port http
+
+commit fc96a2b52d38c9e507929de7875a4d74f0bed286
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Apr 20 07:33:35 2020 +0300
+
+    	modified:   images/env-status.png
+
+commit 60182f29b57789c5c42ad354f9379bf8e9089890
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Apr 20 06:58:55 2020 +0300
+
+    	modified:   README.md
+
+commit 96af87284de548fe076057757fa9c65f06aa3cc7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Apr 20 06:53:19 2020 +0300
+
+    	modified:   README.md
+
+commit 2d7f1d05991a16bb55218187411494a4b4a906c3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Apr 20 06:52:20 2020 +0300
+
+    	modified:   README.md
+
+commit 260c480d933690728f434555456fd6040d14d597
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Apr 20 06:48:45 2020 +0300
+
+    	modified:   README.md
+
+commit 90dcef1dccb9ecc125e3395ef6de0f1b3802ff55
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Apr 20 05:47:51 2020 +0300
+
+    	modified:   README.md
+
+commit b57877bb8a8b64e385b1eb92c9eb2ea58143d487
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 22:34:48 2020 +0300
+
+    	modified:   ../images/env-status.png
+
+commit afce335a547c6028c31e6589c70ebc8493933526
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 22:28:39 2020 +0300
+
+    	modified:   ../images/env-status.png
+
+commit 34fdb8fdd673e2afb4491ecf5de021d49064bc56
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 22:00:14 2020 +0300
+
+    	modified:   README.md
+
+commit e5ddcc473af465be7b77f52af87435518685313b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:57:22 2020 +0300
+
+    	modified:   README.md
+
+commit 271b1137cb9fc4ca7c900d3f04d75a5b5b6a9763
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:51:16 2020 +0300
+
+    	modified:   README.md
+
+commit d23c66383681a4d275ba24fe911055e4035f8936
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:49:45 2020 +0300
+
+    	modified:   README.md
+
+commit 3445ce9bcd79046cdca11d6fe1204b2fd9edd9ed
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:48:28 2020 +0300
+
+    	modified:   README.md
+
+commit b4906847df105d14b74d8a5c992a74e38a34fd53
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:46:31 2020 +0300
+
+    	modified:   README.md
+
+commit 9618294797872826b1db805efb6cd41f9cc1f788
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:45:20 2020 +0300
+
+    	modified:   README.md
+
+commit 0d70c811aa4c38c0947b3659c07d0202f2372d0f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:43:55 2020 +0300
+
+    	modified:   README.md
+
+commit 5be7f64fa136baf42d8643a16d73eea07334add5
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 21:38:32 2020 +0300
+
+    	modified:   README.md
+
+commit 0aef302ddd08f2745d94fdba852e80356f2befc9
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:54:49 2020 +0300
+
+    Add enviroment run main shell
+
+commit d99b513885cc2e9fdf1ec442fe3338a76d21cfa1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:51:55 2020 +0300
+
+    Add NAT ips to terraform vpc build output
+
+commit 0d2caabcb309be94798b60b097d79a33ee98e07f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:51:13 2020 +0300
+
+    Add NAT ips to terraform vpc module output
+
+commit 379942db717606e7088db5b8888961c4ca7dba9f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:49:56 2020 +0300
+
+    Add NAT ips to haproxy security group
+
+commit 31d772f4fbc2283168b78c57a289050224b905c2
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:48:28 2020 +0300
+
+    	modified:   terraform/aws/modules/vpc/data.tf
+
+commit 1100e1afbefd7743837ca5cc3576ebd4dc6659da
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:47:41 2020 +0300
+
+    Disable failed status when aws link exists
+
+commit 63a65ecf92f90152384405f44afe2681bc2e54c0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:46:30 2020 +0300
+
+    Add NAT ips to haproxy vault backend access
+
+commit b2c2f08bfa2176727e2c2f087166bbcb2978f89e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:44:29 2020 +0300
+
+    Add all namespaces to eks-readonly-role-binding
+
+commit 4d3581075402f8276dc3c83a3b77493bb95f4504
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:43:34 2020 +0300
+
+    Change management apps from default to kubernetes management namespace
+
+commit 1b6eb603780ae55cdaf99cec03b2958341c9dd62
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:42:13 2020 +0300
+
+    Add VPC NAT ips to vault management
+
+commit 9ec91ad12e80238011940eaecd72df155680d5a7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:40:41 2020 +0300
+
+    	deleted:    shell/tiller-kill
+
+commit 4e71ec987ac0dacb305beaa834dda1953bf32e7d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:39:25 2020 +0300
+
+    	modified:   shell/prerequisite.sh
+
+commit 3bdcabb7fa985281f2a0f154fc30254312e7f61a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:38:44 2020 +0300
+
+    	modified:   shell/service-deploy-status.sh
+
+commit bc93f914f0c5438d9363e01ac2da62dd8de42fc1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:37:03 2020 +0300
+
+    	modified:   shell/create-jenkins-ssl.sh
+
+commit 71b536cc4b5bd0f5e168c4cc26276b8d01709f25
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:35:53 2020 +0300
+
+    	modified:   shell/ansible-n-base-packages.sh
+
+commit d73bbbc46a1d07fca8ae2c4386eeb208e8cb9b3c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:34:51 2020 +0300
+
+    Add jenkins vault secrets creation
+
+commit 701475c9f61b36db2f1fe7b4c447bbde14d9f95e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:33:12 2020 +0300
+
+    Disable root token creation
+
+commit 187acf3f6399053fb22e21b1e42cab8fce6b08ac
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 18 15:31:45 2020 +0300
+
+    Add jenkins vault plugin
+
+commit d1acdf13fb2cc9558ff03b4616cca1f29383c526
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 11 03:05:34 2020 +0300
+
+    	modified:   roles/jenkins-env/files/jenkins-values-on-kubernetes.yml
+
+commit 74e6018a8ef0e5f76199585972ddbca002e19315
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:56:23 2020 +0300
+
+    Update vault-operator-init-n-unseal script to use k8s management namespace
+
+commit 5ee19a739bf5a45913c9b394f0d20f63a4f20474
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:55:23 2020 +0300
+
+    	modified:   ../shell/set_worker_role_arn_variable.sh
+
+commit 523c5e807bf0f3f6559ba776bd2473533feb330c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:54:39 2020 +0300
+
+    Update set_mgmt_svc_name_variables script to use k8s management namespace
+
+commit d56637069f2f132de4458a7f9d25c3f3ea9b19e6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:53:23 2020 +0300
+
+    Update eks-creds-k8s-secret-exists script to use k8s management namespace
+
+commit d3e01e50de67aac0b0d0d3c2de890453c5d606a7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:52:39 2020 +0300
+
+    Update create-k8s-secret-vault.root script to use k8s management namespace
+
+commit 5e6267d43f3c8b3fdc38c7a574adea631c5fb97c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:51:33 2020 +0300
+
+    	modified:   ../shell/create-k8s-secret-aws-keys.sh
+
+commit 85b03480b47a7454d442cd9421bc8f59723c523e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:50:49 2020 +0300
+
+    Update create-k8s-secret-app-ssl to use k8s management namespace
+
+commit 80dceaf681505ed3251914cfe15a5c425faaca78
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:49:39 2020 +0300
+
+    Update apps-tls-k8s-secret-exists check to use k8s management namespace
+
+commit 1bc6f4b185bfaaa0b2799f6dab687e58e48232c1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:47:57 2020 +0300
+
+    Update vault-cluster role create-vault-cluster task to use management namespace
+
+commit 115d903ef3a04bc3cdbc7d075de9fd7da46b7599
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:46:52 2020 +0300
+
+    Update vault-cluster role Initialize-n-unseal to use management namespace
+
+commit 13599a24ad5b15a4443dbd5a820f3db54bcd7572
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:45:45 2020 +0300
+
+    Change prometheus helm task to ansible block and update app k8s namespace to management
+
+commit c6254b039838b887603ccd71efef8c32d118d858
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:44:58 2020 +0300
+
+    Change jenkins helm task to ansible block and update app k8s namespace to management
+
+commit a5065df4f43f91962b590aed42b178f86a0a0cea
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:43:05 2020 +0300
+
+    Update terraform haproxy-autoscale config template to k8s management namespace
+
+commit b7cff63e8c8b406d1dc0d21ff22b64f9eea1e93b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:41:11 2020 +0300
+
+    Add grafana ansible helm role defaults file
+
+commit cc238f73a91a4589128a767b54b404e1fcefe152
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:40:11 2020 +0300
+
+    Add kibana ansible helm role
+
+commit a146bab3aeaf57d029c8cf3c977101fa0fadd34c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:38:09 2020 +0300
+
+    Add logstash ansible helm role
+
+commit 00f3106035bdc16367e0d9fd362689a0e8830a99
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:34:57 2020 +0300
+
+    Add prometheus ansible helm role defaults file
+
+commit 96f9601fcf55e6da50302eea289cca4c22c40ceb
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:34:12 2020 +0300
+
+    Add prometheus ansible helm role values file
+
+commit eb00ecc23691255eb69cf2d3b39b7b8b2c69387e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:32:02 2020 +0300
+
+    Add pcaker haproxy python requirements file
+
+commit 051ca0767c61ca23ade3f1ccf16c3ec611e39b31
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:30:49 2020 +0300
+
+    Empty and Delete terraform remote state s3 bucket
+
+commit 487990f63b382b4ccc71e62d27e9bf5fbd8489af
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:28:34 2020 +0300
+
+    Create terrform haproxy-autoscale local variables file
+
+commit 11283ee08af3f169b24045ace8da27a26dc98d62
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:26:53 2020 +0300
+
+    Add terraform haproxy certificate template
+
+commit f8d9e28d32d15c197cca7aefbb62b454a7b3d3eb
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:26:03 2020 +0300
+
+    Add terraform haproxy certificate template
+
+commit 966907a94c6b200ab9ddc2d6bec8c3d3d324bf2f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:24:56 2020 +0300
+
+    Add terraform haproxy private_key template
+
+commit 45137772c9cd27fae6cbb2901d10df2d689c7576
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:23:20 2020 +0300
+
+    Update elasticsearch-cluster ansible role
+
+commit b3041a6fcd04c070f476e52ef9ae64102dba362e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:18:45 2020 +0300
+
+    Update jenkins ansible role defaults
+
+commit e0d83054185a5b6daadfa1e274c062508523a72e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:16:55 2020 +0300
+
+    Change haproxy conf files build management apps from k8s default namespace to management
+
+commit c54e12b6ee728442d10765d877e8d061d895615e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:14:47 2020 +0300
+
+    Change grafana helm task to ansible block and update app k8s namespace to management
+
+commit 5fa8b395df6ab0aac1733d09127ca876f9227da7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:13:42 2020 +0300
+
+    Change elasticsearch-cluster helm task to ansible block and update app k8s namespace to management
+
+commit 4a8e64d2a6823b04349a4a28362d4ca4a95f00e2
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:11:52 2020 +0300
+
+    Update elasticsearch-cluster helm name
+
+commit 3553b46432a406ded2c2dbc91b0a4afe28ffdac2
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:11:09 2020 +0300
+
+    Update elasticsearch-cluster helm values file
+
+commit c01b9fee80aef97c7ac6262c13a1f7a967e08076
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Apr 10 18:09:36 2020 +0300
+
+    Change k8s apps namespace from default to management
+
+commit 05d29d919058bf848d817ed26430be0bb11ea3d6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Apr 7 18:19:13 2020 +0300
+
+    Update plugin
+
+commit fd8439f61e856522eab7684cf8d79a65c3a155c8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:48:29 2020 +0300
+
+    Change eks kubernetes worker instance type variable
+
+commit 24bec6e52fa44bafbfbccb8ac5903294beff1406
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:45:44 2020 +0300
+
+    Add github webhook white list ips variable
+
+commit a66f0bb16ab57ea4884802db78cccabe2ab400ae
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:41:33 2020 +0300
+
+    Add github_whitelist to haproxy security group ingress rule
+
+commit 679b7d07e93229535f6404430476f63ac80fad07
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:39:26 2020 +0300
+
+    1) Add haproxy 443 to bind ports 2) Add github_whitelist to haproxy jenkins backend allow access ips 3) Reformat acl configuration
+
+commit 800dce211957ba3b0abc6847d017345e77a861ec
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:34:51 2020 +0300
+
+    Add haproxy tls crt to cloud init template
+
+commit 3a621a82ed4b5c2a90fb66a30ce657f48cc59b88
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:33:51 2020 +0300
+
+    Delete AssumeSts from policy
+
+commit f99fbc34ac2fb71cb0181fdbdc4dd9f120392f50
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:31:48 2020 +0300
+
+    Move terraform locals variables configuration to separate file
+
+commit fa4387508eb14773137edb414eeab02bb3a5be2e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:29:07 2020 +0300
+
+    Add haproxy tls crt to cloud init
+
+commit bec1500802e6b38540c3a604855a56b4dff6af01
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:26:44 2020 +0300
+
+    rename task
+
+commit 691d5467727db104d58c455e67ad6acd1e8e31a3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Apr 4 23:24:43 2020 +0300
+
+    	modified:   ansible/roles/elasticsearch-cluster/files/elasticsearch-values-on-kubernetes.yml
+
+commit c86a2883282420b0386f2deebad45a97e90a54c6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 06:21:07 2020 +0300
+
+    Add elasticsearch, kibana and logstash ansible roles
+
+commit b3a387f6f3326ee2ae12ed49e7522fb4bbf357c7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 06:11:41 2020 +0300
+
+    Resize default eks workers vm
+
+commit 7e63c2560fc3578c1010a08aead68588c082ac4e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 06:10:19 2020 +0300
+
+    Add elasticsearch & kibana to haproxy backends configuration
+
+commit bf161a306ae2849ab08352b2ec4ec1774f7e1db8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 06:08:41 2020 +0300
+
+    Add elasticsearch & kibana to management_apps variable
+
+commit 8766805dc52d32cc77964d8e54829c27f6fd795d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 06:05:22 2020 +0300
+
+    Add kibana service name variable setting
+
+commit a1b2b8a8b527f4e9070146e7538fea571964d05d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 06:04:38 2020 +0300
+
+    Add kibana service name variable setting
+
+commit 2c0f104a80688478955542c1d6caafb687e050b4
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 06:01:41 2020 +0300
+
+    Add ELK Stack
+
+commit 1ba3019ccc7369f394e2efaf913eafcd6976c48e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 00:27:03 2020 +0300
+
+    Rename dnsmasq.d consul conf file
+
+commit 26c311285c826077cf44959650cf10fe71a4f769
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 31 00:24:53 2020 +0300
+
+    Add Prometheus helm values files
+
+commit 7f9a1746026edf53c2999f8146ab390b4710fd91
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 16:33:52 2020 +0300
+
+    	modified:   README.md
+
+commit 0f9921e8fbd1d96fe948549359914b9623e4deb0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 16:32:47 2020 +0300
+
+    	modified:   README.md
+
+commit cde286c49c1c6a171337cd2f779a57a46b710e29
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 16:26:20 2020 +0300
+
+    	modified:   README.md
+
+commit 98851ca2adb312a2605ca55222765c514cf20845
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 16:16:33 2020 +0300
+
+    	modified:   README.md
+
+commit a419ac3b802b8f8d9a455f09b383fb5d971407bd
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 16:08:40 2020 +0300
+
+    	modified:   images/env-status.png
+
+commit 3438f8600abdb5ff04381ae613ca8767476d7293
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 15:17:16 2020 +0300
+
+    	modified:   ../../../../README.md
+
+commit b31e6a87e1714326152d942785df48c881e08b12
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 15:09:12 2020 +0300
+
+    Fixed
+
+commit 2fec046572f951763f61b31b2f54b8f0ae8ba503
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 14:56:52 2020 +0300
+
+    Add haproxy_eks role & rolebinding
+
+commit a2f453beb4da53cff5b99fc33d129038eeaa47b5
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 14:44:07 2020 +0300
+
+    Add prometheus consul metric
+
+commit 1bfd763f023ef3d21932db3e58f63c887632fbc0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sun Mar 29 14:42:07 2020 +0300
+
+    Add prometheus consul metric
+
+commit 6b59b635cd61269d9e59229154fadc0e8b8aad53
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 18:07:37 2020 +0300
+
+    Rename consul helm override values
+
+commit 76f09930597ffb1af64aa1603d56d19db6f37bd9
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:48:30 2020 +0300
+
+    Disable all tasks in haproxy main ansible task except haproxy create
+
+commit 232b9dc58349b6806cb2d9b388911c1299471757
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:38:24 2020 +0300
+
+    Add eks_worker_role_arn variable set script
+
+commit 7ddae9ecdc8a1db63578355101adbe4f2a6f2c6d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:36:38 2020 +0300
+
+    Set service management name variables
+
+commit 65d8dc44d8e8efca33484ffcc6f3ffe4bc3e6a59
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:32:57 2020 +0300
+
+    Change auto-map eks_worker_role_arn use of variable instead of constant
+
+commit dc7c79a9e2899ec1d54097e27194f3ebb82464f3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:30:36 2020 +0300
+
+    Add haproxy readonly role, rolebinding and auth_map
+
+commit d9bfaa1283ccfad8ba1041790d35fd8ae36b8268
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:28:26 2020 +0300
+
+    Add eks worker role arn variable
+
+commit ff3d783540657cee788cb58314188b5e50d0beb8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:27:21 2020 +0300
+
+    Configure auto_map, role and rolebinding for eks-readonly-role
+
+commit 0a0971f1938385bf539905007c8bed6d11b67664
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 28 14:24:13 2020 +0300
+
+    get management apps service names & worker role arn
+
+commit 0213036ae9afd4ae9cd8e8a0acd3c1d8149023bc
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 25 18:41:41 2020 +0200
+
+    Update terraform haprocy template use management service name variable instead of Constants
+
+commit 991b74786f301dfb4a7158fbc0ca721f975d7abd
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 25 18:39:37 2020 +0200
+
+    Add management service name null_resources
+
+commit 1e857d2849260f3f0b6636e946bbd0ca05db73a3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 25 18:38:35 2020 +0200
+
+    Add management service name variables
+
+commit 8ce57257debabbf587b7d4df72bc9c78f834527a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 25 18:18:16 2020 +0200
+
+    Add management service names to haproxy.cfg
+
+commit a4356bc835b22f68aae307de86a3f77879dd4dd8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 24 20:47:26 2020 +0200
+
+    Add haproxy packer build
+
+commit 069b170d1dae4e9d1990669c7c57dab74fd2d751
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 24 20:46:11 2020 +0200
+
+    Fixed values file name
+
+commit c53ba6d90ec910a212e7bd0cfd483f4a1cb541c1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Mar 24 20:43:56 2020 +0200
+
+    Update consul helm version
+
+commit dd63c3d6b09451ed351f101a02fbb737f254fa51
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Mar 23 04:48:45 2020 +0200
+
+    haproxy-autoscale terraform provider and terraform backend spearated
+
+commit 1b8d65518264f5e313f9dc5562b922cf32d24b74
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Mar 23 03:16:15 2020 +0200
+
+    Fixed associate-address update-kubeconfig aws-cli
+
+commit 75c2c0658ea35240a97ea6fd5779876801dd4a58
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Mar 23 03:14:42 2020 +0200
+
+    Disable haproxy tls cert create
+
+commit 36ecc3dba973f4d01e42e6140d6c612b311044ad
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Mar 23 03:13:43 2020 +0200
+
+    Fix aws-auth terraform template
+
+commit c67fdcdad5deab86394d0b4162c204876caf74c2
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Mar 23 03:12:02 2020 +0200
+
+    Fix Ec2AssociateAddr policy permission and disable k8s role and rolebinding
+
+commit 2258bafb2e7f5d4df834bf27c15b6811ccf8de5e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Mar 23 03:09:17 2020 +0200
+
+    Disable haproxy tls
+
+commit 1b199cc41dbf3b6ab040bcf5d78c14af83716491
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Mar 23 03:07:36 2020 +0200
+
+    Disable HAproxy Packer image
+
+commit 8ec86fb01315173f1e4994c2c5cb1e0fa061d042
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 21 07:17:13 2020 +0200
+
+    Add haproxy_tls_config_write_files template
+
+commit 81a352c183cf48733ac6627cf6b400c8d46049e6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 21 07:16:01 2020 +0200
+
+    Add aws_auth_yaml eks_readonly_role_yaml eks_readonly_role_binding_yaml templates
+
+commit ec67f96c6a394d36b2741b06bd76971b3d954587
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 21 07:14:23 2020 +0200
+
+    Add aws_auth_yaml eks_readonly_role_yaml eks_readonly_role_binding_yaml null_resources for kubectl deploy
+
+commit b16ff76df5f99c51f6d54296b6bb002607fda711
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 21 07:12:32 2020 +0200
+
+    Add aws_auth_yaml eks_readonly_role_yaml eks_readonly_role_binding_yaml templates
+
+commit f2c512f908483519ebea56c0856956257771c480
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 21 07:10:25 2020 +0200
+
+    Renaming a script following a script change of meaning
+
+commit f425c990e1aab5f0fe097aa2009e7cde4cbe2d72
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Mar 21 01:17:11 2020 +0200
+
+    Update haproxy ec2 policy, role and instance profile to eks readonly
+
+commit 0a4f8314920a541d51888b269074fe173fa86171
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 23:38:24 2020 +0200
+
+    Add tls haproxy userdata configuration
+
+commit 585c5db1de9ac01eaaf2db5e1b9fd5defaa8b2d0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 23:36:43 2020 +0200
+
+    Add tls haproxy userdata configuration
+
+commit 4eb2472aaa3196918f039fca92fdca8d46ccff34
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 23:35:53 2020 +0200
+
+    Add tls haproxy userdata configuration
+
+commit 6153cb769580af314b166acfd4057ba10b61f80a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 22:50:03 2020 +0200
+
+    Add haprocy ssl configuration options
+
+commit 01d6690caa46abad426acb9f6bac3fff57ec4f59
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 20:07:27 2020 +0200
+
+    Change user .kube permission and add recurse option
+
+commit 0cd7309f328e6a6d88c4ac29f90c4f9b2122b293
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 19:44:08 2020 +0200
+
+    Change ansible module from file to copy
+
+commit a82ddcd692d31cc01841ae9e200764ac9e62351c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 19:24:33 2020 +0200
+
+    	modified:   terraform/aws/haproxy-autoscale/create-autoscale-haproxy-data.tf
+    	modified:   terraform/aws/haproxy-autoscale/template/haproxy_ip_associate_n_consul_start.tpl
+
+commit 7603155723d2431fb538ba1799fc2d9e780c2d20
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 18:35:52 2020 +0200
+
+    Add base packages install
+
+commit 1ca417ea5d5a79c62ff48a1c173b0cb9c29a6ba5
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Mar 20 18:32:23 2020 +0200
+
+    add Jenkins plugins & Jenkins kubernetes plugin config & Jenkins kubernetes kubeconfig credentials
+
+commit 559c2eb3c427daa9f3e3622292703f1b18822056
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:31:46 2020 +0200
+
+    add haproxy cloud-config userdata templates
+
+commit 14e69688884e35659cc62fbf4e40cdfec3f0e87c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:20:44 2020 +0200
+
+    add kubernetes user create role rolebinding & iamidentitymapping
+
+commit dfe53d83994024abdb500171cc10a27ec8ace2d3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:16:57 2020 +0200
+
+    add kubernetes user create haproxy main task
+
+commit 810ef025c115ac2ade4b236a45b3391ecdea0826
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:15:12 2020 +0200
+
+    disable k8s ansible desployment
+
+commit 3a2d078e01e278a91f10396994242adb89dee4fa
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:13:47 2020 +0200
+
+    Update vault helm version values
+
+commit f75fe32beceb7a15c8f9fe9bb67bc870ebd569d8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:08:57 2020 +0200
+
+    add packages checksum check part of get_url instead of checksum download
+
+commit 0a80697be1448c4ae8d5617d86783bd3d76c2985
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:05:55 2020 +0200
+
+    	modified:   ansible/roles/haproxy-lb/templates/haproxy.cfg.j2
+
+commit 3e6d06424be1673e9d361f774a608628228e7c93
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:04:56 2020 +0200
+
+    fixed user path variable set
+
+commit a46f3e74c3caa1cddb247b831e5166c8056ddb18
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 03:03:14 2020 +0200
+
+    add jq & eksctl installation
+
+commit 2f016706344f9cdf2601d115a955fb4d3ec6ec06
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:53:23 2020 +0200
+
+    update consul helm version
+
+commit 72b965e0e29478832b3d785d86066161a8e11c3d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:51:33 2020 +0200
+
+    add jenkins files-found-trigger plugin
+
+commit e0a3791b504c439d46907143fe4a6802008bbf4f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:47:39 2020 +0200
+
+    fix doc info
+
+commit c7522beec9cdbb817d30634d550a628e5836e056
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:46:55 2020 +0200
+
+    add doc info
+
+commit bbf3da05f1d3d679614bf185058d508f24e57290
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:45:58 2020 +0200
+
+    add haproxy python requirements
+
+commit aa5a35c8f9b60b6cdac43c376c450b59fb751f0e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:44:36 2020 +0200
+
+    add haproxy image python requirements
+
+commit 68cce7571d7e7f7fa7a13a52bcba353f95ace2dd
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:43:06 2020 +0200
+
+    add jq & dnsmasq installation
+
+commit f4abf7987ffd2a23b89c50ef7f9d6f3d93ac0fd7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:42:17 2020 +0200
+
+    configure haproxy cloud-config
+
+commit e2ecad40f2fc0a70f28e3e3ade1ae5fcb16e55eb
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:40:10 2020 +0200
+
+    delete old config
+
+commit c887c0eaf8d6b7f2fa2ce05f7df70e2b85cd9485
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:37:45 2020 +0200
+
+    change terraform kubernetes provider version
+
+commit e74a75c983482cbec980194878bee17f47bdfb1c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:36:01 2020 +0200
+
+    add haproxy conf variables and userdata locals
+
+commit a4955f55e139c015681d88c46e69327c27881240
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:34:25 2020 +0200
+
+    	modified:   terraform/aws/haproxy-autoscale/create-autoscale-haproxy.tf
+
+commit 9a9ec084c0cad5067c9d1de326aac6c9e7c1a73f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:33:10 2020 +0200
+
+    add role & policy
+
+commit 35a9064b74bc9fbf66b4f0827da0688b973eb36a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:32:13 2020 +0200
+
+    delete old tags
+
+commit 40167c54e7b5c27b62e1de9c824f3010b94a59dd
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:30:45 2020 +0200
+
+    	modified:   terraform/aws/vpc-n-eks-devops-it-all/create-vpc-n-eks-backend.tf
+
+commit 4953ebc96450729b6d9c8057f358472a4cc88355
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:29:53 2020 +0200
+
+    disablr version
+
+commit 4cd764ae09d64f373e9d4b4a5dc099d8a1bc1300
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:29:08 2020 +0200
+
+    Add eks private endpoint and change to custom security group
+
+commit 655232b2443f5909bbaa3b73ef645cf30d9ffaed
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Mar 11 02:27:27 2020 +0200
+
+    Add ansible prepare_management_server tag
+
+commit aff08288c50eee4b05403807f34b1299c798fc6f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:20:56 2020 +0200
+
+    	new file:   ../terraform/aws/vpc-n-eks-devops-it-all/create-vpc-n-eks-output.tf
+
+commit 501e72934fae0d9c68cce6b04d2a925e594275a8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:20:09 2020 +0200
+
+    	new file:   roles/haproxy-lb/files/consul.service
+
+commit 14ea3ce4f220b651142ac9c94210ab6725772692
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:18:44 2020 +0200
+
+    Add userdata format
+
+commit f44af623a7653fbc44f2785da4b590f0b49c2ee0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:17:47 2020 +0200
+
+    	modified:   roles/haproxy-lb/templates/haproxy.cfg.j2
+
+commit 814f7b1d27e88da7e7ea2a8ef2cfcfe91550f3e7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:17:12 2020 +0200
+
+    update packer ami_name
+
+commit 25c219839f76307a2c6b08ce908b06580108aab0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:16:44 2020 +0200
+
+    update packer ami_name
+
+commit fba9f6ac0bb20246724634f5c59976d06aebd583
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:15:53 2020 +0200
+
+    Update aws region
+
+commit 040a670734f02d291ab86d89bb955a2ba6546852
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:14:59 2020 +0200
+
+    Add terraform template_cloud_init data
+
+commit 577dd54f43af01503bdb09a70d26885ce5afc02e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:12:42 2020 +0200
+
+    rename variables
+
+commit 00f16e77613ba1eaf1fdf41831e98257e93fadbd
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:12:18 2020 +0200
+
+    rename variables
+
+commit 37ca6238688334b9e2dabd11b7c3740471583d9f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:11:45 2020 +0200
+
+    rename variables
+
+commit 4cd46a53aa4b9c0d3b2cec574ef8ec172f09de64
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:11:12 2020 +0200
+
+    rename variables
+
+commit f670609c9242d43dd88f4e1dd783d1fadcdabfeb
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:10:24 2020 +0200
+
+    	modified:   ../terraform/aws/vpc-n-eks-devops-it-all/create-vpc-n-eks-variables.tf
+
+commit 2245cc1129d3cbc235bc28f22b063b93dd90e25d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:09:45 2020 +0200
+
+    	modified:   ../terraform/aws/vpc-n-eks-devops-it-all/remote_state/vpc-n-eks-devops-it-all-remote-state-main.tf
+
+commit 7c81d7f9bb6fd378de7c4ff39a20c3326126c0d7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:08:47 2020 +0200
+
+    	modified:   ../terraform/aws/vpc-n-eks-devops-it-all/terraform.tfvars
+
+commit 2a73794272c2a39f1f2a8403ca16f0b8f2303e90
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Wed Feb 26 16:06:11 2020 +0200
+
+    	modified:   roles/haproxy-lb/defaults/main.yml
+
+commit 2a954e761a63f51b05e39ddd792e4eb6e259e413
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 23:27:08 2020 +0200
+
+    Fix typo, change resion
+
+commit 056f52a2ba2ebb6f1eba1abdc84edf5e2c36c2f0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 13:33:38 2020 +0200
+
+    Update env status image
+
+commit c8ede09256d4d5729eec87059da497b07ccd8640
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 13:15:11 2020 +0200
+
+    Config ansible_python_interpreter variable value python3
+
+commit d5ab401db369a96f6e591257ad9e7fb423cb4176
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 12:45:05 2020 +0200
+
+    Add packer haproxy image build
+
+commit c12cede6846d52c102ef77c9a739ce2e76efc327
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 12:42:17 2020 +0200
+
+    Add ansible jenkins-env role
+
+commit 23beaa5f225ddedd13f973706bda51b571d14a9d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 12:37:14 2020 +0200
+
+    Add ansible haproxy-lb role
+
+commit 3212cf2fe799e9d5ff47572385d31a1771dfcfe1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 12:31:41 2020 +0200
+
+    	new file:   ansible/roles/consul-cluster/README.md
+    	new file:   ansible/roles/consul-cluster/meta/main.yml
+    	new file:   ansible/roles/ssl-create/meta/main.yml
+    	new file:   ansible/roles/vault-cluster/README.md
+    	new file:   ansible/roles/vault-cluster/meta/main.yml
+    	new file:   ansible/roles/vpc-n-eks/meta/main.yml
+
+commit a83c5eabce18c62136e94fda63fc8e8b32d9989b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 12:30:00 2020 +0200
+
+    Add ansible grafana-env module
+
+commit 86eb36e2b8a9bbd71013e5dafb7ab6d63fe88185
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:55:45 2020 +0200
+
+    update default
+
+commit d66ab06f95a565cecae0507d59d3cfe641bb7d0e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:54:50 2020 +0200
+
+    	new file:   ansible/roles/devopsitall-prerequisite-cli/README.md
+    	new file:   ansible/roles/devopsitall-prerequisite-cli/meta/main.yml
+    	new file:   ansible/roles/devopsitall-prerequisite-cli/tests/inventory
+    	new file:   ansible/roles/devopsitall-prerequisite-cli/tests/test.yml
+
+commit 9059ccaaacb9ed2c089fa0926a0cd59fd0daa0b8
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:52:03 2020 +0200
+
+    	clean:   ansible/roles/devopsitall-prerequisite-cli/tasks/main.yml
+
+commit 0d93cb7e5068aa50600c48b4a1c2828c88f90c6b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:48:32 2020 +0200
+
+    	new file:   ansible/roles/consul-cluster/tests/inventory
+    	new file:   ansible/roles/consul-cluster/tests/test.yml
+
+commit dead05dbb1ed01030e84e574d26eaa2cc005f8ea
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:16:26 2020 +0200
+
+    Create ansible kms-vault-unseal_key role
+
+commit 2fc4c44a7b24a21a13660c3abfd305a71e304943
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:11:26 2020 +0200
+
+    Add ansible prometheus-env role
+
+commit 59fe4466fc6e3ea4c0eb79e0b0d4f8aab82e7272
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:07:56 2020 +0200
+
+    	new file:   ansible/roles/prometheus-env/tests/inventory
+    	new file:   ansible/roles/prometheus-env/tests/test.yml
+
+commit 03d8fff04cb496d8173cdd6caabf9b3d9781cf00
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:05:30 2020 +0200
+
+    	new file:   ansible/roles/ssl-create/README.md
+
+commit d9acbfa797ba94125c7bd7ab1f1c6232a862a023
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:04:59 2020 +0200
+
+    add ansible ssl-create role management_apps default
+
+commit 40594e99a0f680d3285b7b3425fd9b7880d37e10
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 11:02:42 2020 +0200
+
+    add ansible vault-cluster Initialize-n-unseal task
+
+commit 9b0ec529ee9a7204bc7c9e1bb5431945b6f7c4fc
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 10:59:38 2020 +0200
+
+    	new file:   ansible/roles/vault-cluster/tests/inventory
+
+commit 052b778fa6a68f1b32ab36e59045bdbfe876653b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 10:55:24 2020 +0200
+
+    Add ansible vpc-n-eks remote-state configuration
+
+commit 20baa7ec154d2daba35852592f246ee14bf94101
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 10:51:34 2020 +0200
+
+    	new file:   ansible/roles/vpc-n-eks/README.md
+
+commit e9f323fd745938c8d9094b53079a61bdcf80d6e9
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 10:50:22 2020 +0200
+
+    vpc-n-eks test
+
+commit d2a0e87bd74fb7155aebf677d44b8c35f92d90cf
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 10:48:12 2020 +0200
+
+    Add terraform haproxy auto-scale local variable
+
+commit 4b749c21c53ede28ef374b35c5d8623d714cf8c9
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 10:42:45 2020 +0200
+
+    Add haproxy ansible role main variables update
+
+commit d37a7925ea11336a1dc1d8847597af9d9c6d0130
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 25 10:41:38 2020 +0200
+
+    Fix terraform configuration
+
+commit 64fcf80493137239f867ead869c244c1c04569e1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 23:16:24 2020 +0200
+
+    k8s management apps ssl secrets check
+
+commit 0fcfa34d8ec1eb4672c0c128af6f411c477bd730
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 23:15:45 2020 +0200
+
+    create k8s management apps ssl secret
+
+commit 237f6e5928bf2fb7f9699703a064570dd95866ea
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 23:13:28 2020 +0200
+
+    vault secrets create
+
+commit f73a10b272033020fc20d59da14e074eed634170
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 23:12:39 2020 +0200
+
+    vault init-n-unseal script
+
+commit 1ce8c281b99c90a0481c9cee90c4a35e287efb70
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 23:09:59 2020 +0200
+
+    haproxy-autoscale terraform with creation with remote state
+
+commit 7fb6267015eef3ce1f76723f5afb769695ef6fdc
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 23:01:05 2020 +0200
+
+    vpc-n-eks terraform creation
+
+commit 862ac3e24856c915267507609780e06ef09bf5e7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:52:25 2020 +0200
+
+    update gitignore
+
+commit 551a696301f002772eea74aa333478244badc4f1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:49:42 2020 +0200
+
+    rename files
+
+commit 8c9be615c72bd2bb1696e17ecccb4269950ab2c4
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:46:05 2020 +0200
+
+    create separate security group output for eks workers & eks control plane
+
+commit d87575754f793ee9f50f2f2159770072fdba6dc0
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:44:52 2020 +0200
+
+    create separate security group output for eks workers & eks control plane
+
+commit c4ad448381064ba6aeb56db902043805174bbb6f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:41:03 2020 +0200
+
+    file permission changed
+
+commit 9cc1ca98b5b19aea02e13c7705a35c97dc58705e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:40:15 2020 +0200
+
+    Update variables
+
+commit bdc56d40129037789b730313f4b425e14eef3ffa
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:39:07 2020 +0200
+
+    files permission changed
+
+commit fcde251584e2a6b076a374fba45580bced562665
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:35:36 2020 +0200
+
+    Change eks-creds secret creation to vault namespace
+
+commit 5ed27d6766ddf958428b11f8390252c5e21bee4a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:34:36 2020 +0200
+
+    Change vault secret creation to vault namespace
+
+commit 99847e7787f5ffd4bfa2a574863c475dbe5f0482
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:32:55 2020 +0200
+
+    Add vpc-n-eks ansible terraform configuration remote state status
+
+commit 5b49a036b1b1dcef1ab59766a40ba70648375c2b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:28:10 2020 +0200
+
+    Add vault initialize and 3 min pause let consul helm and vault helm finish the build
+
+commit 3b61b17cbffc02914bbfaa026a79fa7e9c33f168
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:21:21 2020 +0200
+
+    add ignore errors option for aws_key & vault_ root_ token creation
+
+commit 3325bbeeab500bf21d6fe33a613075f7b2292666
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:15:28 2020 +0200
+
+    	modified:   Add kms-vault-unseal_key role with first run tag
+
+commit babca2a85a01858fc103581e979b296334a80863
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:10:11 2020 +0200
+
+    Update env status image
+
+commit 7836de42c3e6c7645a5e7ce196bf02ed177af71e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:08:42 2020 +0200
+
+    Update env status image
+
+commit 9eba2e6351f9ec00e426ba03f4a978397445370b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 24 22:06:31 2020 +0200
+
+    Update env status image
+
+commit 8913bc08014c43da638d9b0b01033bc9a3addb48
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:44:55 2020 +0200
+
+    remove key
+
+commit a58ce6627ca7b487ba2880722110b3f93ee94eb9
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:39:48 2020 +0200
+
+    Change k8s ssl secrets create to all management apps
+
+commit 926d74f9f3bc032f32f0ddf72882c3c91e782569
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:37:26 2020 +0200
+
+    Change ssl create to all management apps
+
+commit 8892a986b084cc9373605b936f400fca81bd69ed
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:35:19 2020 +0200
+
+    Add/Update user_home variable in vpc-n-eks role variables file
+
+commit 71d220244056328b30fb333d2be390658b202256
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:31:19 2020 +0200
+
+    Create haproxy-scale terraform remote state management
+
+commit 9229f7353b3b382ec1a57432bf18123583752251
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:28:53 2020 +0200
+
+    Change vpc-n-eks terraform build to remote state manage
+
+commit 8ed136fe1dc90dc613e56d80a89270eb69ca4f1d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:24:08 2020 +0200
+
+    Update README
+
+commit 570ec288b0a1222930f89e7d66adbc3d0ba1ead6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:23:07 2020 +0200
+
+    Update README
+
+commit ab67a065c195cbde78d483437f276790831c7b01
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:22:14 2020 +0200
+
+    Update README
+
+commit 654eaca3c43bbd53e7b8885d41e0960f59c5b2ff
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:18:56 2020 +0200
+
+    Update ansible main playbook and rename
+
+commit 73582c0066fdd6ca720a6592ccfa1e8aadf9f77b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:15:17 2020 +0200
+
+    Change helm tiller kill & start ansible block
+
+commit 0b915157e0e6c659af2d4f3442132f96f50056c3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:13:36 2020 +0200
+
+    Update ansible consul cluster role main task
+
+commit 6c8ce6aa58dca05457ec63d3c5f137f5b564255b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:11:58 2020 +0200
+
+    Add vault namespace, add consul cluster ansible rescue and decreased consul cluster build wait time
+
+commit 2442bf34b5bd47cdbd59cee5ad02f8f13c8e2389
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:08:21 2020 +0200
+
+    Update files permission
+
+commit 476b859a39bbc5f02d3229b242ff07d9a6661964
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:07:05 2020 +0200
+
+    Update files permission
+
+commit 549177c393e202c33619877b20f5bfed779ec68c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:03:58 2020 +0200
+
+    Update README file
+
+commit fa8a49dddee702312150ca3dfcbd305c80172896
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 22:03:22 2020 +0200
+
+    Update file permission
+
+commit e9c81b8b527ac422f3847ff0992bef8ac7393d2e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Sat Feb 22 13:10:17 2020 +0200
+
+    Update status image
+
+commit f6953899e3a70feaa1e7b9b5387d58c5f1efa686
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 04:05:48 2020 +0200
+
+    Fix eenvironment status img
+
+commit 7f1c6bb2635ca9249625f0999d87332e57b1892f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 04:01:59 2020 +0200
+
+    Fix README
+
+commit 291e8678971a62c1bcab4803d505eee0e463f4a7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 04:01:20 2020 +0200
+
+    Fix README
+
+commit c0ade5b5eff2310f5c99280ab72f35234fe6c736
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 03:59:07 2020 +0200
+
+    Fix README
+
+commit 93c7de8f7d710e1471ae23711585891725236c2e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 03:57:59 2020 +0200
+
+    Fix README
+
+commit 3030c0cca15f452bec4eabd3e33e29d64fc47682
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 03:56:40 2020 +0200
+
+    Fix README
+
+commit 3ca3970373e3b6dbafb7f729bdd10d88aba07512
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 03:55:29 2020 +0200
+
+    Update README
+
+commit fed55d9236dad87c057317824222963e46d80858
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 03:48:10 2020 +0200
+
+    Update README
+
+commit 85b224a10e265b2127d93dd5e112a7ffcf300290
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Fri Feb 14 03:47:45 2020 +0200
+
+    Add environment status image
+
+commit 5e4d7ff8af89c1c07bf4f2cc829b5bd458a34b2c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:58:41 2020 +0200
+
+    Update k8s secrets exists check
+
+commit 25e9aacad275fe99c91a81c781bbcfee2e33125a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:54:47 2020 +0200
+
+    Update vault-cluster check task
+
+commit e96375879482a36171b2e05400ebf2cdc49fbb57
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:54:05 2020 +0200
+
+    Update vault-cluster aws keys create-secret task check
+
+commit 40dddda1bb99079503b46dc586956e2b0d002925
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:53:10 2020 +0200
+
+    Update ansible vault ssl-create k8s_secrets task
+
+commit 924a825cdd44a00e1315b157b0b6c6a9adca0f71
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:52:08 2020 +0200
+
+    Change helm & tiller install dir
+
+commit 1fbb3e7af416405b89f46e078c80bfd1c885cc62
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:51:29 2020 +0200
+
+    Update ansible consul-cluster tiller_start task
+
+commit 7a766446ad22fd7b808b64048cd63e17af86599f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:50:46 2020 +0200
+
+    Update consul-cluster main task
+
+commit 3ddff38b4fb298a48f0d6ee4310d92a808f68f24
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:50:01 2020 +0200
+
+    Add consul cluster install check and msg
+
+commit 151432c4c3e17dfa7c0c935dd34dc74900d483b3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:48:02 2020 +0200
+
+    Add ansible codecap.kubectl module
+
+commit 4beb5a495c1ac0d3bbdf44c524646b84ba5f343e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 16:46:50 2020 +0200
+
+    Ansible run until vault cluster is up
+
+commit a3c81a60a394c41ea2c5631929f3d0372b2c2852
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 05:05:14 2020 +0200
+
+    Update README
+
+commit 8bf4c0a3d9ffd68aaf34e26a2ded303173730c55
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 05:04:09 2020 +0200
+
+    Update README
+
+commit 75f77cba447542205f3f8671fc44f0f974c9bcb3
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Tue Feb 11 05:03:27 2020 +0200
+
+    Update README
+
+commit 19d0d77e0a226ece34bf266a7f90ba6593c2bb18
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:34:14 2020 +0200
+
+    Update README
+
+commit da7d07f7a2c206d723460ef4e82285840b6deb3b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:32:39 2020 +0200
+
+    Update README
+
+commit acc1f4a1c1736bf0423747bc1ed6c4f30335fb56
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:30:41 2020 +0200
+
+    Update README
+
+commit 5845d94acc80c4a1a5b073a3bac230710a512d79
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:19:40 2020 +0200
+
+    Add ansible install script
+
+commit efb43d2f7f67c3f6bb14f8342a53ac5363e0a44c
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:17:52 2020 +0200
+
+    Add ansible inventories and vars
+
+commit 85d9e8aeffa382dece8cf8fd69d76981e78eeec4
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:16:28 2020 +0200
+
+    Add ansible roles python requirements
+
+commit f7f246284952e49df5bba70e83a70576ff20322d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:11:34 2020 +0200
+
+    Update vault-cluster role main task
+
+commit a8f8a5f0a43bb78b63a5f326fbdf11c37e6dee4b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:11:11 2020 +0200
+
+    create vault-cluster role vault creation task
+
+commit 51efaefce1d02f5b6151d697da734412116771a1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:10:28 2020 +0200
+
+    create vault-cluster role eks-creds secrets
+
+commit 7201309823484148c6626e96bbc39ba1ff15c5aa
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:08:57 2020 +0200
+
+    add vault-cluster role helm values.yaml
+
+commit ba8d1a396882b1569617f5dfdca5cc7f77355012
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:07:56 2020 +0200
+
+    add vault-cluster role defaults
+
+commit ae444e59143fd98bef99c2cd04702820140e256b
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:05:59 2020 +0200
+
+    Update ssl-create role main task
+
+commit 8761aefe5095bfdae889c8bea035e9fc163c4515
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:05:26 2020 +0200
+
+    Update ssl-create role ssl keys k8s secrets task
+
+commit 47123fbbd312b3f95d967e7603b2d78fc54eeda1
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 23:04:54 2020 +0200
+
+    Update ssl-create role create ssl keys task
+
+commit 3c6cc5488d6f5e7d2252d8762866caf920b736da
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:59:54 2020 +0200
+
+    Update consul-cluster role main task
+
+commit 87e81565261e669f63f0aa32014412d4c80d6430
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:59:23 2020 +0200
+
+    add consul-cluster consul cluster creation role task
+
+commit 6c1b5a82cf0855a58d1adcb83df0e8240d7c4e3a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:58:42 2020 +0200
+
+    add consul-cluster start tiller role task
+
+commit b4f7aaf7c7ad172b83cabe9acf1c1e29b2097b76
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:56:45 2020 +0200
+
+    add consul-cluster helm values.yaml file
+
+commit b565447e74258650d299a2e45cc25cb50afda2c6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:55:16 2020 +0200
+
+    update consul-cluster role defaults
+
+commit 9fd584edd96edecb3d1152f768073cf007b0517e
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:52:54 2020 +0200
+
+    update vpc-n-eks role main task
+
+commit b48afa3c1fd073cef919c1ea87b461487b2abebc
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:52:13 2020 +0200
+
+    Add vpc-n-eks role terraform creation module
+
+commit e89c602b9fc0226d4c85f4aef7d5f24f5e914ced
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:51:13 2020 +0200
+
+    Add vpc-n-eks role default
+
+commit 3aa76f3241f6164807a797417d0f7e7fe47e777d
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:47:43 2020 +0200
+
+    Update devopsitall-prerequisite-cli role main task
+
+commit 5242c98f63a80949478362006379a448c742338a
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:46:24 2020 +0200
+
+    Add devopsitall-prerequisite-cli roles defaults
+
+commit 1b92cda2edf8f9b9401e9af5e74f8302e2a8e275
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:43:32 2020 +0200
+
+    Copy cli 2 home/bin roles/devopsitall-prerequisite-cli/tasks/copy_bins_2_user_home_bin.yml
+
+commit ad08b26aacf2b4a56c0e5ff04ffd6b60b07f6132
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:42:00 2020 +0200
+
+    Create home/bin and update PATH roles/devopsitall-prerequisite-cli/tasks/create_user_home_bin_n_add_2_path.yml
+
+commit 7f130b74465f647c62ab4ea374e614f356e4ea93
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:40:46 2020 +0200
+
+    Add pip install roles/devopsitall-prerequisite-cli/tasks/pip_install.yml
+
+commit a08b2f1baf21d50b7236864aa75ecf959e4a470f
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 22:39:18 2020 +0200
+
+    Add download_n_install   roles/devopsitall-prerequisite-cli/tasks/download_n_install.yml
+
+commit 3e9354d6dab1a43ab1f7e648bedbba2e4a3df9d6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 21:46:23 2020 +0200
+
+    added iam creation module for eks
+
+commit 5bfcae8b09179db24223f4d906bc26f88d229f23
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 21:45:41 2020 +0200
+
+    added vpc creation module for eks
+
+commit 9d8f090bb0d25ec2f85520b3ea7901dc1606dc19
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 21:42:56 2020 +0200
+
+    AWS VPC & EKS creation
+
+commit 46e0758e1e029845ef4e4939f872150e92ff98d7
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 21:38:58 2020 +0200
+
+    automation shell scripts
+
+commit bef510ea2b2edd53a9f9cea9203622cc8b3fe4b2
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Mon Feb 10 21:36:02 2020 +0200
+
+    Update ssl key's gitignore
+
+commit b65908796af3299ade014ecf638e48c442b673f6
+Author: Ran Hershko <ran.hershko@gmail.com>
+Date:   Thu Jan 23 13:34:15 2020 +0200
+
+    let's start...
