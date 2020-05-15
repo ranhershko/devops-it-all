@@ -1,0 +1,3 @@
+---
+# tasks file for grafana-helm-remote-state
+- include: create-grafana-helm-remote-state.yml

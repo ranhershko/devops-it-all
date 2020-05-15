@@ -1,5 +1,5 @@
 ---
 # defaults file for grafana-env
 ansible_python_interpreter: /usr/bin/python3
-helm_name: "grafana"
-helm_location: "https://github.com/helm/charts.git"
+grafana_helm_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/grafana"
+project_name: devops-it-all
