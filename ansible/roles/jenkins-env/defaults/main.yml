@@ -1,6 +1,6 @@
 ---
 # defaults file for jenkins-env
 ansible_python_interpreter: /usr/bin/python3
-helm_name: "jenkins"
+jenkins_helm_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/jenkins"
+project_name: devops-it-all
 helm_version: "1.16.2"
-helm_location: "https://github.com/helm/charts.git"

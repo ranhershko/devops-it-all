@@ -1,0 +1,17 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::{{ aws_account_id | default('aws_account_id')}}:oidc-provider/{{ oidc_provider | default('oidc_provider')}}"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "{{ oidc_provider | default('oidc_provider')}}:aud": "system:serviceaccount:kube-system:jenkins-admin"
+        }
+      }
+    }
+  ]
+}

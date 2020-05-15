@@ -1,0 +1,3 @@
+---
+# tasks file for jenkins-helm-remote-state
+- include: create-jenkins-helm-remote-state.yml

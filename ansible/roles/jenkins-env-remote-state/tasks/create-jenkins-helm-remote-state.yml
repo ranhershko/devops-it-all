@@ -1,0 +1,13 @@
+---
+- name: helm - Create terraform dynamoDB lock table
+  terraform:
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
+    project_path: "{{ jenkins_helm_remote_state_terraform_dir }}"
+    state: present 
+    force_init: true
+  register: terraform_run
+
+- name: Terraform output
+  debug:
+    msg: 
+      - "{{ terraform_run }}"

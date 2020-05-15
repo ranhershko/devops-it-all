@@ -1,0 +1,25 @@
+---
+- name: Create current jenkins assume role policy
+  template:
+    src: JenkinsPodAssumeRole.json.j2
+    dest: "{{ playbook_dir }}/roles/jenkins-env/files/JenkinsEksPodAssumeDeployRolePolicy.json"
+    mode: '0600'
+
+- name: Create Jenkins pod role
+  iam_role:
+    name: jenkins_eks_pod_deploy
+    assume_role_policy_document: "{{ lookup('file', 'JenkinsEksPodAssumeDeployRolePolicy.json') }}" 
+    description: Jenkins EKS deploy role
+
+- name: Assign jenkins_eks_pod_deploy policy to the jenkins_eks_pod_deploy role
+  iam_policy:
+    iam_type: role
+    iam_name: jenkins_eks_pod_deploy
+    policy_name: jenkins_eks_pod_deploy
+    state: present
+    policy_document: "{{ playbook_dir }}/roles/jenkins-env/files/JenkinsEksPodDeployRolePolicy.json"
+
+- name: Annotate kube-system/jenkins service account with the jenkins_eks_pod_deploy role ARN
+  shell: |
+    kubectl create serviceaccount --namespace kube-system jenkins-admin
+    kubectl annotate serviceaccount -n kube-system jenkins-admin "eks.amazonaws.com/role-arn"="arn:aws:iam::{{ aws_account_id }}:role/jenkins_eks_pod_deploy"
