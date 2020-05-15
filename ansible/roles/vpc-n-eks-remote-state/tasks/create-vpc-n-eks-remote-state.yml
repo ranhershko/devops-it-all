@@ -1,11 +1,9 @@
 ---
-- name: Create aws eks and vpc remote state
+- name: Create S3 remote state bucket and vpc-n-eks dynamoDB lock table
   terraform:
-    binary_path: "{{ user_home_bin }}/terraform"
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
     project_path: "{{ vpc_n_eks_remote_state_terraform_dir }}"
     state:        present 
-    #plan_file:    "{{ vpc_n_eks_terraform_dir }}/devops-it-all-remote-state.tfplan"
-    #state_file:   "{{ vpc_n_eks_terraform_dir }}/terraform.tfstate"
     force_init: true
   register: terraform_run
 
