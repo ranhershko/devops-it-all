@@ -2,7 +2,6 @@
 - name: Install helm consul chart on aws eks
   terraform:
     binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
-    #binary_path: "{{ user_home }}/bin/terraform"
     project_path: "{{ consul_helm_terraform_dir }}"
     state: present
     lock: yes
