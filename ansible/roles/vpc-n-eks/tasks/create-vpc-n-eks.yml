@@ -1,7 +1,7 @@
 ---
 - name: Create aws vpc with eks - it'll take about 10 min ...
   terraform:
-    binary_path: "{{ user_home }}/bin/terraform"
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
     project_path: "{{ vpc_n_eks_terraform_dir }}"
     state: present 
     lock: yes
@@ -11,8 +11,6 @@
       key: "vpc-n-eks-terraform.tfstate"
       dynamodb_table:  "devopsitall-vpc-n-eks-terraform-remote-lock"
       encrypt: "true"
-    #plan_file:    "{{ vpc_n_eks_terraform_dir }}/devops-it-all.tfplan"
-    #state_file:   "{{ vpc_n_eks_terraform_dir }}/terraform.tfstate"
     force_init: true
   register: terraform_run
 
@@ -21,16 +19,6 @@
     msg: 
       - "{{ terraform_run.command }}"
       - "{{ terraform_run.stdout }}"
-
-#- name: Update vault values.yaml with kmsid
-  #replace:
-    #dest="{{ playbook_dir }}/roles/vault-cluster/files/vault-values-on-kubernetes.yml"
-    #regexp='(.*)(kms_key_id\s=\s)(.*)'
-    #replace='\1\2{{ kmsid }}'
-
-#- name: sleep for 300 seconds and continue with play when consul cluster deployment status is complete
-  #wait_for:
-    #timeout: 300
 
 - name: Create user .kube dir
   file:
@@ -46,3 +34,13 @@
     group: "{{ user_home.split('/')[-1] }}"
     mode: "0600"
     force: yes
+
+- name: update .ssh known_hosts with devopsitall haproxy server public rsa key
+  lineinfile:
+    regexp: "^haproxy.ranhershko.dns-cloud.net"
+    line: "haproxy.ranhershko.dns-cloud.net {{ lookup('file', '{{ user_home }}/.ssh/devopsitall.pem.pub') }}"
+    path: "{{ user_home }}/.ssh/known_hosts"
+    state: present
+
+#- name: Set AWS account (id, oidc_provider) variables
+#  shell: "{{ playbook_dir }}/../shell/set_aws_account_variables.sh"
