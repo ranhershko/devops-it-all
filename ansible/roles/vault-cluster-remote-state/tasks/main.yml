@@ -1,0 +1,3 @@
+---
+# tasks file for vault-helm-remote-state
+- include: create-vault-helm-remote-state.yml

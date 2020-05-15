@@ -1,3 +1,5 @@
 ---
 # defaults file for vault-cluster
 ansible_python_interpreter: /usr/bin/python3
+vault_helm_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/vault"
+project_name: devops-it-all
