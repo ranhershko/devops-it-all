@@ -1,30 +1,23 @@
 ---
-- name: management namespace create
-  shell: kubectl create namespace management
-  ignore_errors: true
 - name: Install helm consul chart on aws eks
-  block:
-    - helm:
-        chart:
-          name: "{{ helm_name }}"
-          version: "{{ helm_version }}"
-          source:
-            type: git
-            location: "{{ helm_location }}"
-        state: present
-        values: "{{ lookup('file', 'consul-default-values-override-kubernetes.yml') | from_yaml }}"
-        name: "consul-devopsitall"
-        namespace: management
-      register: consul_helm_install
-  rescue:
-    - debug:
-        msg: "Consul cluster already exists" 
+  terraform:
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
+    #binary_path: "{{ user_home }}/bin/terraform"
+    project_path: "{{ consul_helm_terraform_dir }}"
+    state: present
+    lock: yes
+    backend_config:
+      region: "us-east-1"
+      bucket: "devopsitall-terraform-remote-state"
+      key: "management-helm/consul-terraform.tfstate"
+      dynamodb_table:  "devopsitall-helm-consul-terraform-remote-lock"
+      encrypt: "true"
+    force_init: true
+  register: terraform_run
 
-- name: Pause for 3 min wait for Consul helm chart build to complete ...
-  pause:
-    minutes: 3
-  when: consul_helm_install.changed == true and consul_helm_install.failed == false
-    
-#- name: vault namespace create
-  #shell: kubectl create namespace vault
-  #ignore_errors: true
+- name: consul helm Terraform output
+  debug:
+    msg:
+      - "{{ terraform_run.command }}"
+      - "{{ terraform_run.stdout }}"
+

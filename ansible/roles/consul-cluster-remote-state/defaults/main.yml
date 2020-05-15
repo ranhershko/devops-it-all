@@ -1,0 +1,5 @@
+---
+# defaults file for consul-helm-remote-state
+ansible_python_interpreter: /usr/bin/python3
+consul_helm_remote_state_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/consul/remote_state"
+project_name: devops-it-all

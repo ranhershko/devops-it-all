@@ -1,0 +1,3 @@
+---
+# tasks file for consul-helm-remote-state
+- include: create-consul-helm-remote-state.yml
