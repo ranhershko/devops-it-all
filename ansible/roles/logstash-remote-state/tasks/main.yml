@@ -1,0 +1,3 @@
+---
+# tasks file for logstash-helm-remote-state
+- include: create-logstash-helm-remote-state.yml

@@ -1,5 +1,5 @@
 ---
 # defaults file for logstash---
 ansible_python_interpreter: /usr/bin/python3
-helm_name: "logstash"
-helm_location: "https://github.com/elastic/helm-charts.git"
+logstash_helm_terraform_dir: "{{ playbook_dir }}/../terraform/aws/helm/logstash"
+project_name: devops-it-all
