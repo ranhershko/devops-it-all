@@ -34,7 +34,7 @@
    #####  3)  cd devops-it-all/terraform/aws/haproxy-autoscale/remote_state/
    #####  4)  terraform destroy --auto-approve
    #####  5)  cd devops-it-all/terraform/aws/helm
-   #####  6)  for helm_dir in `ls -la|grep ^d|tail -9|awk '{print $9}'` ; do cd $helm_dir; terraform destroy --auto-approve; cd remote_state ; terraform destroy --auto-approve; cd ../..; done
+   #####  6)  for helm_dir in \`ls -la|grep ^d|tail -9|awk '{print $9}'\` ; do cd $helm_dir; terraform destroy --auto-approve; cd remote_state ; terraform destroy --auto-approve; cd ../..; done
    #####  7)  cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all
    #####  8)  terraform destroy --auto-approve
    #####  9)  python3 devops-it-all/python/empty-terraform-remote-state-s3-bucket-n-delete.py
