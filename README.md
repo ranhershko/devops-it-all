@@ -29,14 +29,16 @@
    ##### ../shell/run-devops-it-all.sh
         
    ### When done: (destroy)
-   ##### 1) cd devops-it-all/terraform/aws/haproxy-autoscale/
-   ##### 2) terraform destroy --auto-approve
-   ##### 3) cd ~/devops-it-all/terraform/aws/haproxy-autoscale/remote_state/
-   ##### 4) terraform destroy --auto-approve
-   ##### 5) cd ~/devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/
-   ##### 6) terraform destroy --auto-approve
-   ##### 7) AWS web console => Amazon S3 => devopsitall-terraform-remote-state => Change Version switch to Show and delete all files
-   ##### 8) cd ~/devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
-   ##### 9) terraform destroy --auto-approve
-   ##### 11) rm ~/.kube/config
-   ##### 10) There maybe be a volumes in the ec2 blade that need to delete manually
+   #####  1)  cd devops-it-all/terraform/aws/haproxy-autoscale/
+   #####  2)  terraform destroy --auto-approve
+   #####  3)  cd devops-it-all/terraform/aws/haproxy-autoscale/remote_state/
+   #####  4)  terraform destroy --auto-approve
+   #####  5)  cd devops-it-all/terraform/aws/helm
+   #####  6)  for helm_dir in `ls -la|grep ^d|tail -9|awk '{print $9}'` ; do cd $helm_dir; terraform destroy --auto-approve; cd remote_state ; terraform destroy --auto-approve; cd ../..; done
+   #####  7)  cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all
+   #####  8)  terraform destroy --auto-approve
+   #####  9)  python3 devops-it-all/python/empty-terraform-remote-state-s3-bucket-n-delete.py
+   ##### 10) cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
+   ##### 11) terraform destroy --auto-approve
+   ##### 12) rm ~/.kube/config
+   ##### 13) There maybe be a volumes in the ec2 blade that need to delete manually
