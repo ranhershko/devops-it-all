@@ -2,6 +2,3 @@
 - name: Build haproxy packer image
   shell: packer build ../packer/consul-haproxy/template.packer
   register: haproxy_packer_build
-
-- debug:
-    msg: "{{ haproxy_packer_build.stdout }}"
