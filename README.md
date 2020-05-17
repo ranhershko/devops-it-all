@@ -38,7 +38,7 @@
    #####  7)  cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all
    #####  8)  terraform destroy --auto-approve
    #####  9)  python3 devops-it-all/python/empty-terraform-remote-state-s3-bucket-n-delete.py
-   ##### 10) cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
-   ##### 11) terraform destroy --auto-approve
-   ##### 12) rm ~/.kube/config
-   ##### 13) There maybe be a volumes in the ec2 blade that need to delete manually
+   ##### 10)  python3 delete-ec2-unused-n-unattached-kubernetes-volumes.py
+   ##### 11) cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
+   ##### 12) terraform destroy --auto-approve
+   ##### 13) rm ~/.kube/config
