@@ -6,8 +6,3 @@
     state: present 
     force_init: true
   register: terraform_run
-
-- name: Terraform output
-  debug:
-    msg: 
-      - "{{ terraform_run }}"
