@@ -29,5 +29,5 @@
    ##### ../shell/run-devops-it-all.sh
         
    ### When done: (destroy)
-   ##### 1)  cd devops-it-all
-   ##### 2)  ./shell/destroy_environment.sh
+   ##### 1) cd devops-it-all
+   ##### 2) ./shell/destroy_environment.sh
