@@ -37,8 +37,7 @@
    #####  6)  for helm_dir in \`ls -la|grep ^d|tail -9|awk '{print $9}'\` ; do cd $helm_dir; terraform destroy --auto-approve; cd remote_state ; terraform destroy --auto-approve; cd ../..; done
    #####  7)  cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all
    #####  8)  terraform destroy --auto-approve
-   #####  9)  python3 devops-it-all/python/empty-terraform-remote-state-s3-bucket-n-delete.py
-   ##### 10)  python3 devops-it-all/python/delete-ec2-unused-n-unattached-kubernetes-volumes.py
-   ##### 11) cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
-   ##### 12) terraform destroy --auto-approve
-   ##### 13) rm ~/.kube/config
+   #####  9)  cd devops-it-all/python ; for delete_leftover_resources in \`ls\` ; do python3 ${delete_leftover_resources} ; done
+   ##### 10)  cd devops-it-all/terraform/aws/vpc-n-eks-devops-it-all/remote_state/
+   ##### 11)  terraform destroy --auto-approve
+   ##### 12)  rm ~/.kube/config
