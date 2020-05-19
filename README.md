@@ -22,10 +22,10 @@
    ### Running steps:
    ##### 1) git clone devops-it-all repo
    ##### 2) cd devops-it-all/ansible
-   ##### 3) Running the environment build: 
-   #### Automatically: 
+   ##### 3) Environment build: 
+   ##### Automatically: 
    ##### ../shell/run-devops-it-all.sh "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password"
-   #### Manually: (answer github & dockerhub login information)
+   ##### Manually: (answer github & dockerhub login information)
    ##### ../shell/run-devops-it-all.sh
         
    ### When done: (destroy)
