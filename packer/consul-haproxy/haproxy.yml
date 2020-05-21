@@ -60,15 +60,6 @@
         checksum: 'sha256:{{ consul_template_checksum_value.stdout }}'
       register: consul_template_zip_file
 
-    - debug:
-        msg: "{{ item }}"
-      loop:
-        - "{{ consul_zip_file }}"
-        - "{{ consul_template_zip_file }}"
-
-    #- fail:
-        #msg: failed
-
     - name: UNZIPPING the consul bin_targz_files
       unarchive:
         src: "{{ item['dest'] }}"
@@ -123,17 +114,5 @@
         enabled: yes
         masked: no
         state: started
-
-    #- name: Copy haproxy configuration to conf dir
-      #copy:
-        #src: /tmp/haproxy.cfg
-        #dest: /etc/haproxy/haproxy.cfg
-
-    #- name: Copy haproxy configuration to conf dir
-      #copy:
-        #src: /tmp/backends.map
-        #dest: /etc/haproxy/backends.map
-
-- hosts: localhost
   roles:
   - codecap.kubectl
