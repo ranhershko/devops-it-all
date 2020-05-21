@@ -2,7 +2,6 @@
 
 usage="$(basename "$0") [-h] "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password" "SSL wildcard private key path" "SSL wildcard crt path" "Haproxy DNS wildcard"
 
-variables_recived=false
 if [[ (-f "$1") && (! -z "$2") && (! -z "$3") && (! -z "$4") && (-f "$5") && (-f "$6") && (! -z "$7") ]]; then
   github_sshkey="$1"
   github_ssh_user_email="$2"
@@ -12,6 +11,8 @@ if [[ (-f "$1") && (! -z "$2") && (! -z "$3") && (! -z "$4") && (-f "$5") && (-f
   ssl_crt="$6"
   dns_record="$7"
   variables_recived=true
+else
+  variables_recived=false
 fi
 
 case $1 in 
@@ -28,12 +29,6 @@ case $1 in
        echo "5) Haproxy DNS wildcard record pointing to AWS Elastic IP name 'haproxy_scale_eip'"
      fi
      ;;
-
-if [[ (-f "$1") && (! -z "$2") && (! -z "$3") && (! -z "$4") && (-f "$5") && (-f "$6") && (! -z "$7") ]]; then
-  variables_recived=true
-else
-  variables_recived=false
-fi
 
 login=false
 while [ ${login} != "true" ]; do
