@@ -1,7 +1,7 @@
 Grafana-env role
 ================
 
-An ansible role to install grafana helm chart with kubernetes dashboard
+Grafana helm chart installation ansible role with kubernetes dashboard
 
     WORK IN PROGRESS...
 <img src="../../../images/grafanaDashboard.PNG" width="1200" >
