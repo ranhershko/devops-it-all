@@ -1,7 +1,4 @@
 ---
-- name: management namespace create
-  shell: kubectl create namespace management
-  ignore_errors: true
 - name: Create ssl dir for created crt and key files playbook ssl_created dir
   file:
     path: "{{ playbook_dir }}/../ssl_created"
