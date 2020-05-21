@@ -13,8 +13,8 @@ for vol in ec2.volumes.all():
         need_2_delete = True
     if need_2_delete:
       print(f"Deleting {current_vol_name} volume")
-      current_vol=ec2.Volume(vol.id)
-      current_vol.delete()
+      #current_vol=ec2.Volume(vol.id)
+      ec2.Volume(vol.id).delete()
       need_2_delete = False
       current_vol_name = ""
       
