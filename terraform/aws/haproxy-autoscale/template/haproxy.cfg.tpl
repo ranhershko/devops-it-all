@@ -66,10 +66,10 @@
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
         http-request deny if !manage_ip
-        server-template consului 3  _consul-devopsitall-ui-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template consului 3 _consul-devopsitall-ui-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
         reqrep ^([^\ :]*)\ /(.*) \1\ /\2
         acl response-is-redirect res.hdr(Location) -m found
-        rspirep ^Location:\ http://consului(1|2|3)/(.*) Location:\ http://consul.${domain_name}/\2 if response-is-redirect
+        rspirep ^Location:\ http://consului(1|2|3)/(.*) Location:\ https://consul.${domain_name}/\2 if response-is-redirect
              
       backend backend_vault
         balance roundrobin
@@ -79,7 +79,10 @@
         acl worker_nat_ipc src ${nat_c_public_ip}
         acl manage_ip src ${management_server_ip} 
         http-request deny if !manage_ip !worker_nat_ipa !worker_nat_ipb !worker_nat_ipc
-        server-template vaultui 3  _vault-devopsitall-ui-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check ssl verify none
+        server-template vaultui 3 _vault-devopsitall-ui-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check ssl verify none
+        reqrep ^([^\ :]*)\ /(.*) \1\ /\2
+        acl response-is-redirect res.hdr(Location) -m found
+        rspirep ^Location:\ http://vaultui(1|2|3)/(.*) Location:\ https://vault.${domain_name}/\2 if response-is-redirect
           
       backend backend_jenkins
         balance roundrobin
@@ -110,21 +113,21 @@
         option httplog
         default-server maxconn 256 maxqueue 128 weight 100
         http-request deny if !manage_ip
-        server-template grafanaui 1  _grafana-devopsitall-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check cookie 1 
+        server-template grafanaui 1 _grafana-devopsitall-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check cookie 1 
       
       backend backend_kibana
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
         http-request deny if !manage_ip
-        server-template kibanaui 1  _kibana-devopsitall-kibana-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template kibanaui 1 _kibana-devopsitall-kibana-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
 
       backend backend_elasticsearch
         balance roundrobin
         mode ${haproxy_frontend_mode}
         acl manage_ip src ${management_server_ip}
         http-request deny if !manage_ip
-        server-template elasticsearchui 1  _devopsitall-elasticsearch-master-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
+        server-template elasticsearchui 3 _devopsitall-elasticsearch-master-management._tcp.service.consul resolvers consul resolve-prefer ipv4 check
 
       backend no-match
         http-request deny deny_status 400
