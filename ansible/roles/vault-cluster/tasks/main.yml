@@ -2,4 +2,3 @@
 # tasks file for vault-cluster
 - include: create-secret.yml
 - include: create-vault-cluster.yml
-- include: create-jenkins-vault-secrets.yml
