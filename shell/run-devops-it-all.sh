@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage="$(basename "$0") [-h] "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password" "SSL wildcard private key path" "SSL wildcard crt path" "Haproxy DNS wildcard"
+usage="$(basename "$0") [-h] 'Github ssh private key path' 'Github account email' 'Dockerhub user' 'Dockerhub password' 'SSL wildcard private key path' 'SSL wildcard crt path' 'Haproxy DNS wildcard'"
 
 if [[ (-f "$1") && (! -z "$2") && (! -z "$3") && (! -z "$4") && (-f "$5") && (-f "$6") && (! -z "$7") ]]; then
   github_sshkey="$1"
@@ -22,13 +22,14 @@ case $1 in
   *) echo "Start building 'devops-it-all' environment..."
      if [[ (${variables_recived} != "true") ]]; then
        echo "This configuration need the next inputs"
-       echo "1) Github ssh private key(Full path)"
-       echo "2) Github ssh user account email"
-       echo "3) Dockerhub user and password"
-       echo "4) SSL wildcard certificate and privatekey paths"
-       echo "5) Haproxy DNS wildcard record pointing to AWS Elastic IP name 'haproxy_scale_eip'"
+       echo "1. Github ssh private key Full path"
+       echo "2. Github ssh user account email"
+       echo "3. Dockerhub user and password"
+       echo "4. SSL wildcard certificate and privatekey paths"
+       echo "5. Haproxy DNS wildcard record pointing to AWS Elastic IP name 'haproxy_scale_eip'"
      fi
      ;;
+esac
 
 login=false
 while [ ${login} != "true" ]; do
