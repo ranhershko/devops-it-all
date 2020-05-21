@@ -11,27 +11,36 @@
       key: "management-helm/vault-terraform.tfstate"
       dynamodb_table:  "devopsitall-helm-vault-terraform-remote-lock"
       encrypt: "true"
-    force_init: true
+    #force_init: true
   register: terraform_run
   ignore_errors: true
 
-- name: vault helm Terraform output
-  debug:
-    msg:
-      - "{{ terraform_run.command }}"
-      - "{{ terraform_run.stdout }}"
-  ignore_errors: true
-
 - name: Vault initialize & unseal
-  shell: 'kubectl -n management exec vault-devopsitall-0 vault -- vault operator init'
-  register: vault_init_out
+  shell: 'kubectl -n management exec vault-devopsitall-0 -c vault -- vault operator init'
+  register: vault_init
   ignore_errors: true
-  #no_log: true
 
-- debug:
-    msg: "{{ vault_init_out }}"
+- name: Correct the Vault installation status to success when it depend on the Vault initialized
+  terraform:
+    binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
+    project_path: "{{ vault_helm_terraform_dir }}"
+    state: present
+    lock: yes
+    backend_config:
+      region: "us-east-1"
+      bucket: "devopsitall-terraform-remote-state"
+      key: "management-helm/vault-terraform.tfstate"
+      dynamodb_table:  "devopsitall-helm-vault-terraform-remote-lock"
+      encrypt: "true"
+    #force_init: true
+  register: terraform_run
+  ignore_errors: true
 
-- set_fact: root_token="{{ vault_init_out.stdout_lines[6] | regex_replace('.*Initial Root Token:.(.*)$', '\\1') }}"
+- set_fact: root_token="{{ vault_init.stdout_lines[6] | regex_replace('.*Initial Root Token:.(.*)$', '\\1') }}"
+  when: 'vault_init.stdout_lines is defined and "Success! Vault is initialized" in vault_init.stdout_lines'
+  register: vault_initialized
 
-- debug:
-    msg: "{{ root_token }}"
+- name: vault create jenkins secret
+  include: tasks/create-jenkins-vault-secrets.yml 
+  when: vault_init.changed
+
