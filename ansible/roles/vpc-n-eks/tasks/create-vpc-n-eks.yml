@@ -14,12 +14,6 @@
     force_init: true
   register: terraform_run
 
-- name: Terraform output
-  debug:
-    msg: 
-      - "{{ terraform_run.command }}"
-      - "{{ terraform_run.stdout }}"
-
 - name: Create user .kube dir
   file:
     path: "{{ user_home }}/.kube"
@@ -44,3 +38,14 @@
 
 #- name: Set AWS account (id, oidc_provider) variables
 #  shell: "{{ playbook_dir }}/../shell/set_aws_account_variables.sh"
+
+- name: Waiting for EKS status to change to active
+  shell: aws eks describe-cluster --name kubernetes-devops-it-all|jq '.cluster.status'
+  register: eks_status
+  until: eks_status.stdout.find("ACTIVE") != -1
+  retries: 5
+  delay: 30
+
+- name: management namespace create
+  shell: kubectl create namespace management
+  ignore_errors: true
