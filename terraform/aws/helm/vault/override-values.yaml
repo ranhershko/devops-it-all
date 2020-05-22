@@ -1,6 +1,12 @@
-ui:
-  enabled: true
 server:
+  image:
+    repository: "vault"
+    tag: "1.3.3"
+    pullPolicy: IfNotPresent
+  updateStrategyType: "OnDelete"
+  service:
+    annotations:
+      "consul.hashicorp.com/service-port": "http"
   extraSecretEnvironmentVars:
     - envName: AWS_ACCESS_KEY_ID
       secretName: eks-creds
@@ -15,20 +21,23 @@ server:
   ha:
     enabled: true
     replicas: 3
-    config:
+    config: |
+      ui = true
       listener "tcp" {
-        address     = "127.0.0.1:8200"
-        tls_disable = "true"
+        tls_disable = 1
+        address = "127.0.0.1:8200"
+        cluster_address = "127.0.0.1:8201"
       }
       listener "tcp" {
-        address     = "POD_IP:8200"
+        address = "POD_IP:8200"
+        cluster_address = "POD_IP:8201"
         tls_cert_file = "/vault/userconfig/vault-tls/vault.crt"
         tls_key_file  = "/vault/userconfig/vault-tls/vault.key"
         tls_disable_client_certs = true
       }
       seal "awskms" {
         region = "us-east-1"
-        kms_key_id = "2ea2357e-0cbc-4620-8fba-f08279d5d9c1"
+        kms_key_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
       }
       telemetry {
         prometheus_retention_time = "24h"
@@ -36,6 +45,26 @@ server:
       }
       storage "consul" {
         path = "vault"
-        address = "HOST_IP:8500"
+        address = "consul-devopsitall-server:8500"
       }
-
+ui:
+  enabled: true
+injector:
+  image:
+    repository: "hashicorp/vault-k8s"
+    tag: "0.3.0"
+    pullPolicy: IfNotPresent
+  agentImage:
+    repository: "vault"
+    tag: "1.3.3"
+  # Mount Path of the Vault Kubernetes Auth Method.
+  authPath: "auth/kubernetes"
+  # Configures the log verbosity of the injector. Supported log levels: Trace, Debug, Error, Warn, Info
+  logLevel: "info"
+  # Configures the log format of the injector. Supported log formats: "standard", "json".
+  logFormat: "standard"
+  # Configures all Vault Agent sidecars to revoke their token when shutting down
+  revokeOnShutdown: false
+  certs:
+    certName: vault.crt
+    keyName: vault.key
