@@ -1,7 +1,7 @@
 elasticsearch-cluster role
 ==========================
 
-Hashicorp elasticsearch helm chart installation ansible role using ansible terraform module
+Elasticsearch helm chart installation ansible role using ansible terraform module
 
     WORK IN PROGRESS...
 
