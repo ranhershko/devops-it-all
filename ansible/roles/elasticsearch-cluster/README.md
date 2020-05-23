@@ -1,5 +1,5 @@
 elasticsearch-cluster role
-=========
+==========================
 
 Hashicorp elasticsearch helm chart installation ansible role using ansible terraform module
 
@@ -9,8 +9,9 @@ Requirements
 ------------
 
 The elasticsearch helm install from local devops-it-all/helm/elasticsearch dir
-Using: 1) ansible terraform module
-       2) terraform helm provider
+Using: 
+1) ansible terraform module
+2) terraform helm provider
 
 Example Playbook
 ----------------

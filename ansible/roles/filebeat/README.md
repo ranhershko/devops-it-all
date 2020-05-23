@@ -1,5 +1,5 @@
 Filebeat role
-================
+=============
 
 Elasticsearch filebeat helm chart installation ansible role using ansible terraform module 
 
@@ -8,9 +8,10 @@ Elasticsearch filebeat helm chart installation ansible role using ansible terraf
 Requirements
 ------------
 
-The filebeat helm install from local devops-it-all/helm/consul dir 
-Using: 1) ansible terraform module
-       2) terraform helm provider
+The filebeat helm install from local devops-it-all/helm/filebeat dir 
+Using: 
+1) ansible terraform module
+2) terraform helm provider
 
 
 Example Playbook use

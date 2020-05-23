@@ -1,5 +1,5 @@
 consul-cluster role
-================
+===================
 
 Hashicorp Consul helm chart installation ansible role using ansible terraform module 
 
@@ -11,8 +11,9 @@ Requirements
 ------------
 
 The Consul helm install from local devops-it-all/helm/consul dir 
-Using: 1) ansible terraform module
-       2) terraform helm provider
+Using: 
+1) ansible terraform module
+2) terraform helm provider
 
 
 Example Playbook use

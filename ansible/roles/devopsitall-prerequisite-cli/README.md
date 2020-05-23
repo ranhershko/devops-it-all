@@ -1,5 +1,5 @@
-Role Name
-=========
+devopsitall-prerequisite-cli role
+=================================
 
 Prepare management server:
 1) Install needed cli\'s: terraform, packer, vault, helm, eksctl, aws_iam_authenticator, jq, aws
