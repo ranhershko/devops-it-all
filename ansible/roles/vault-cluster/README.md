@@ -2,6 +2,8 @@ vault-cluster role
 ==================
 
 Hashicorp Vault helm chart installation ansible role using ansible terraform module
+1) Create vault cluster on kubernetes
+2) Create vault jenkins dockerhub & github login secrets
 
     WORK IN PROGRESS...
 
