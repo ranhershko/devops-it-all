@@ -13,3 +13,4 @@
       encrypt: "true"
     force_init: true
   register: terraform_run
+  ignore_errors: true
