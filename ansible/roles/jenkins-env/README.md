@@ -5,9 +5,6 @@ jenkins helm chart installation ansible role using ansible terraform module
 
     WORK IN PROGRESS...
 
-<img src="../../../images/grafanaDashboard.PNG" width="1200" >
-
-
 Requirements
 ------------
 
