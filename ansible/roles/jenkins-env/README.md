@@ -8,7 +8,7 @@ jenkins helm chart installation ansible role using ansible terraform module
 Requirements
 ------------
 
-The Grafana helm install from local devops-it-all/helm/grafana dir
+The Grafana helm install from local devops-it-all/helm/jenkins dir
 Using:
 1) ansible terraform module
 2) terraform helm provider
@@ -17,4 +17,4 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: grafana-env
+         - role: jenkins-env
