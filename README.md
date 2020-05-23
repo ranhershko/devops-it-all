@@ -24,8 +24,8 @@
    ##### 2) cd devops-it-all/ansible
    ##### 3) Environment build: 
    ##### Automatically: 
-   ##### ../shell/run-devops-it-all.sh "Github ssh private key path" "Github account email" "Dockerhub user" "Dockerhub password"
-   ##### Manually: (answer github & dockerhub login information)
+   ##### ../shell/run-devops-it-all.sh "Github ssh private key file path" "Github account email" "Dockerhub user" "Dockerhub password" "wildcard ssl private key file path" "wildcard ssl crt file path" "DNS record name for wilcard DNS"
+   ##### Manually: (answer github & dockerhub login information, wildcard SSL private key and crt files path, DNS record name for wilcard DNS)
    ##### ../shell/run-devops-it-all.sh
         
    ### When done: (destroy)
