@@ -13,8 +13,8 @@ Using:
 1) ansible terraform module
 2) terraform helm provider
 
-Example Playbook
-----------------
+Example Playbook use
+--------------------
 
     - hosts: servers
       roles:
