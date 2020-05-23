@@ -11,7 +11,7 @@
       key: "management-helm/vault-terraform.tfstate"
       dynamodb_table:  "devopsitall-helm-vault-terraform-remote-lock"
       encrypt: "true"
-    #force_init: true
+    force_init: true
   register: terraform_run
   ignore_errors: true
 
@@ -32,7 +32,7 @@
       key: "management-helm/vault-terraform.tfstate"
       dynamodb_table:  "devopsitall-helm-vault-terraform-remote-lock"
       encrypt: "true"
-    #force_init: true
+    force_init: true
   register: terraform_run
   ignore_errors: true
 
