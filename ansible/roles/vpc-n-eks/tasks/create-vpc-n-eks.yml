@@ -43,7 +43,7 @@
   shell: aws eks describe-cluster --name kubernetes-devops-it-all|jq '.cluster.status'
   register: eks_status
   until: eks_status.stdout.find("ACTIVE") != -1
-  retries: 5
+  retries: 10
   delay: 30
 
 - name: management namespace create
