@@ -10,5 +10,5 @@ Example Playbook use
 
     - hosts: localhost
       roles:
-         - devopsitall-prerequisite-cli
+        - role: devopsitall-prerequisite-cli
 

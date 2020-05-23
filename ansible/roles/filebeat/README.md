@@ -18,5 +18,5 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: filebeat
+        - role: filebeat
 

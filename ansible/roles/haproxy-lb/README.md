@@ -16,5 +16,5 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: haproxy-lb
+        - role: haproxy-lb
 

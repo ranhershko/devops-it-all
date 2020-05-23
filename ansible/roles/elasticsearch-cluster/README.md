@@ -18,5 +18,5 @@ Example Playbook use
 
     - hosts: servers
       roles:
-         - elasticsearch-cluster
+        - role: elasticsearch-cluster
 

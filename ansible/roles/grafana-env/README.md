@@ -20,4 +20,4 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: grafana-env
+        - role: grafana-env

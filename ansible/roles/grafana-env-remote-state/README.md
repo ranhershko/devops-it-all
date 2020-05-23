@@ -7,5 +7,5 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: grafana-env-remote-state
+        - role: grafana-env-remote-state
 

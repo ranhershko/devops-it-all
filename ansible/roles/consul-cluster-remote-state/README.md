@@ -7,5 +7,5 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: consul-cluster-remote-state
+        - role: consul-cluster-remote-state
 

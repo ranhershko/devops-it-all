@@ -7,5 +7,5 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: elasticsearch-cluster-remote-state
+        - role: elasticsearch-cluster-remote-state
 

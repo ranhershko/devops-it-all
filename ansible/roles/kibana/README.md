@@ -1,5 +1,5 @@
 kibana role
-==========================
+===========
 
 Elasticsearch kibana helm chart installation ansible role using ansible terraform module
 
@@ -18,5 +18,5 @@ Example Playbook use
 
     - hosts: servers
       roles:
-         - kibana
+        - role: kibana
 

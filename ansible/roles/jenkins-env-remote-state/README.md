@@ -7,5 +7,5 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: jenkins-env-remote-state
+        - role: jenkins-env-remote-state
 

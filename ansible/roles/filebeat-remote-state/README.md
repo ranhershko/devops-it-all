@@ -7,5 +7,5 @@ Example Playbook use
 --------------------
     - hosts: servers
       roles:
-         - role: filebeat-remote-state
+        - role: filebeat-remote-state
 
