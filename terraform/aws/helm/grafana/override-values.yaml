@@ -11,7 +11,7 @@ dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
     providers:
-    - name: 'KubernetesClusterDashboard'
+    - name: 'default'
       orgId: 1
       folder: ''
       type: file
@@ -24,4 +24,9 @@ dashboards:
   default:
     KubernetesClusterDashboard:
       file: 'dashboards/KubernetesClusterDashboard.json'
-
+    kube-dash:
+      file: 'dashboards/kube-dash.json'
+    node-exporter:
+      file: 'dashboards/node-exporter.json'
+    consul-exporter:
+      file: 'consul-exporter.json'
