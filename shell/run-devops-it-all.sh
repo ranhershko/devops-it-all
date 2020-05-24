@@ -122,13 +122,6 @@ while [ ${ip_resolved} != "true" ]; do
   fi
 done
    
-ansible-playbook play-helm-test.yml --tags prepare_management_server,first_time_run
-ansible-playbook play-helm-test.yml --skip-tags prepare_management_server,first_time_run --extra-vars "local_user_home=${HOME} github_ssh_user_email=${github_ssh_user_email} github_sshkey=${github_sshkey} dockerhub_username=${dockerhub_username} dockerhub_password=${dockerhub_password}"
-
-# Install VPC, EKS and all management helm charts
-#prepare_status=$(ansible-playbook play-helm-test.yml --tags prepare_management_server,first_time_run|tail -1|awk '{print $6}')
-#if [ "${prepare_status}" == 'failed=0' ]; then
-#fi
-#ansible-playbook play-eks-cosnul-n-vault.yml --tags prepare_management_server,first_time_run
-#ansible-playbook play-eks-cosnul-n-vault.yml --skip-tags prepare_management_server,first_time_run --extra-vars "local_user_home=${HOME} github_ssh_user_email=${github_ssh_user_email} github_sshkey=${github_sshkey} dockerhub_username=${dockerhub_username} dockerhub_password=${dockerhub_password}" -vvvv
-
+ansible-playbook play-build-devopsitall.yml --tags prepare_management_server,first_time_run
+echo "Playbook run status: $?"
+ansible-playbook play-build-devopsitall.yml --skip-tags prepare_management_server,first_time_run --extra-vars "local_user_home=${HOME} github_ssh_user_email=${github_ssh_user_email} github_sshkey=${github_sshkey} dockerhub_username=${dockerhub_username} dockerhub_password=${dockerhub_password}"

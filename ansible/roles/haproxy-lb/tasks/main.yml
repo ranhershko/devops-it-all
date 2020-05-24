@@ -1,6 +1,4 @@
 ---
 # tasks file for haproxy-lb
-#- include: haproxy-conf-files-build.yml
-- include: haproxy-image-build.yml
-#- include: eks-haproxy-create-user.yml
+#- include: haproxy-image-build.yml
 - include: create-haproxy-lb.yml
