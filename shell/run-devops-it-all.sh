@@ -1,48 +1,91 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-usage="$(basename "$0") [-h] 'Github ssh private key path' 'Github account email' 'Dockerhub user' 'Dockerhub password' 'SSL wildcard private key path' 'SSL wildcard crt path' 'Haproxy DNS wildcard'"
+set -o errexit -o pipefail
 
-if [[ (-f "$1") && (! -z "$2") && (! -z "$3") && (! -z "$4") && (-f "$5") && (-f "$6") && (! -z "$7") ]]; then
-  github_sshkey="$1"
-  github_ssh_user_email="$2"
-  dockerhub_username="$3"
-  dockerhub_password="$4" 
-  ssl_privatekey="$5"
-  ssl_crt="$6"
-  dns_record="$7"
-  variables_recived=true
-else
-  variables_recived=false
-fi
+usage() {
+    cat <<HELP
+    Usage:
+      # Without options:
+      $(basename $0)
+      # With options:
+      $(basename $0) [ --github-sshkey-path | --github-user-email | --dockerhub-user | --dockerhub-pass | --ssl-privatekey-path | --ssl-crt-path | --dns-record | -h | --help ]
+    Options:
+      --github-sshkey-path      Github ssh privatekey file path.
+      --github-user-email       Github user account email.
+      --dockerhub-user          Dockerhub user account.
+      --dockerhub-pass          Dockerhub user account password.
+      --ssl-privatekey-path     Wilcard SSL private key file path.
+      --ssl-crt-path            Wilcard SSL crt file path.
+      --dns-record              DNS name for kubernetes wildcard DNS record pointing to AWS elastic IP named haproxy_scale_eip.
+      -h, --help                Show usage.
+    Example:
+      $(basename $0) --github-sshkey-path ~/.ssh/id_rsa --github-user-email me@ongithub.com --dockerhub-user meondockerhub --dockerhub-pass meondockerhub-password --ssl-privatekey-path /tmp/ssl.key --ssl-crt-path /tmp/ssl.crt --dns-record running-on-kubernetes.com
+HELP
+    exit 1
+}
 
-case $1 in 
- -h) echo $usage 
-     exit 0
-     ;;
-  *) echo "Start building 'devops-it-all' environment..."
-     if [[ (${variables_recived} != "true") ]]; then
-       echo "This configuration need the next inputs"
-       echo "1. Github ssh private key Full path"
-       echo "2. Github ssh user account email"
-       echo "3. Dockerhub user and password"
-       echo "4. SSL wildcard certificate and privatekey paths"
-       echo "5. Haproxy DNS wildcard record pointing to AWS Elastic IP name 'haproxy_scale_eip'"
-     fi
-     ;;
-esac
+# Handle opts
+while [[ $# > 0 ]]
+do
+  key="$1"
+  case ${key} in
+      --github-sshkey-path) 
+        github_sshkey="${2}"
+        shift
+      ;;
+      --github-user-email)
+        github_ssh_user_email="${2}"
+        shift
+      ;;
+      --dockerhub-user)
+        dockerhub_username="${2}"
+        shift
+      ;;
+      --dockerhub-pass)
+        dockerhub_password="${2}"
+        shift
+      ;;
+      --ssl-privatekey-path)
+        ssl_privatekey="${2}"
+        shift
+      ;;
+      --ssl-crt-path) 
+        ssl_crt="${2}"
+        shift
+      ;;
+      --dns-record)
+        dns_record="${2}"
+        shift
+      ;;
+      -h|--help)
+        usage
+      ;;
+      *)
+        echo "Error: Unknown arg: [${key}]"
+        usage
+      ;;
+  esac
+  shift
+done
+
+echo "Start building 'devops-it-all' environment..."
 
 login=false
 while [ ${login} != "true" ]; do
-  if [[ (${variables_recived} != "true") ]]; then
-    read -p "Please enter your Github user account email: " github_ssh_user_email
+  if [ -z "${github_sshkey}" ]; then
     read -p "Please enter your Github private key file path: " github_sshkey
   fi
+  if [ -z "${github_ssh_user_email}" ]; then
+    read -p "Please enter your Github user account email: " github_ssh_user_email
+  fi
+
   ssh -i ${github_sshkey} -o StrictHostKeyChecking=no -T git@github.com  #>/dev/null 2>&1
   if [ $? -eq 1 ]; then
     login=true
   else
-    echo "Wrong input, please enter again"
-    variables_recived=false
+    echo "Incorrect Github authentication credentials, please enter again"
+    github_ssh_user_email=""
+    github_sshkey=""
   fi
 done
   
@@ -72,16 +115,19 @@ fi
 
 login=false
 while [ ${login} != "true" ]; do
-  if [[ (${variables_recived} != "true") ]]; then
-    read -s -p "Please enter Dockerhub password: " dockerhub_password
+  if [ -z "${dockerhub_username}" ]; then
     read -p "Please enter Dockerhub user: " dockerhub_username
+  fi
+  if [ -z "${dockerhub_password}" ]; then
+    read -s -p "Please enter Dockerhub password: " dockerhub_password
   fi
   
   #echo ${dockerhub_password} |docker login --username ${dockerhub_username} --password ${dockerhub_password} -stdin | true
   docker login --username ${dockerhub_username} --password ${dockerhub_password} || true
   if [ ! $? ]; then
-    echo "The Dockerhub user or password are incorrect, try again"
-    variables_recived=false
+    echo "Incorrect Dockerhub authentication credentials, please enter again"
+    dockerhub_username=""
+    dockerhub_password=""
   else
     login=true
   fi
@@ -89,8 +135,10 @@ done
 
 ssl_verify=false
 while [ ${ssl_verify} != "true" ]; do
-  if [[ (${variables_recived} != "true") ]]; then
+  if [ -z "${ssl_privatekey}" ]; then
     read -p "Please enter your SSL wildcard private key file path: " ssl_privatekey
+  fi
+  if [ -z "${ssl_crt}" ]; then
     read -p "Please enter your SSL wildcard crt file path: " ssl_crt
   fi
 
@@ -98,7 +146,8 @@ while [ ${ssl_verify} != "true" ]; do
   crt_md5_hash=`openssl x509 -noout -modulus -in "${ssl_crt}"| openssl md5| sed 's/(stdin)=\ //g'`
   if [ ${crt_md5_hash} != ${privtekey_md5_hash} ]; then
     echo "SSL crt and private key are mismatch"
-    variables_recived=false
+    ssl_privatekey=""
+    ssl_crt=""
   else
     ssl_verify=true
     cp "${ssl_privatekey}" ../terraform/aws/haproxy-autoscale/template/private_key.tpl
@@ -108,8 +157,8 @@ done
 
 ip_resolved=false
 while [ ${ip_resolved} != "true" ]; do
-  if [[ (${variables_recived} != "true") ]]; then
-    read -p "Please enter haproxy dns record" dns_record
+  if [ -z "${dns_record}" ]; then
+    read -p "Please enter kubernetes dns record name: " dns_record
   fi
 
   resolved_ip=`nslookup *.${dns_record}|sed -n '/'${dns_record}'/{n;p}'|awk '{print $2}'`
