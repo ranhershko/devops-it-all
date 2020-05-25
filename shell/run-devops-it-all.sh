@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -o errexit -o pipefail
+set -o pipefail
 
 usage() {
     cat <<HELP
