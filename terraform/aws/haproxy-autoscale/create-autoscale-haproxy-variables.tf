@@ -43,7 +43,9 @@ variable "management_apps" {
 }
 
 variable "domain_name" {
-  default = "ranhershko.dns-cloud.net"
+  description = "kubernetes wildcard domain name"
+  type        = string
+  #default = "ranhershko.dns-cloud.net"
 }
 
 variable "haproxy_frontend_port" {
