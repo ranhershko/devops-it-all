@@ -8,7 +8,7 @@ Elasticsearch helm chart installation ansible role using ansible terraform modul
 Requirements
 ------------
 
-The elasticsearch helm install from local devops-it-all/helm/elasticsearch dir
+The elasticsearch helm installation is done from local devops-it-all/helm/elasticsearch dir
 Using: 
 1) ansible terraform module
 2) terraform helm provider
