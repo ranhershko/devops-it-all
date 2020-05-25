@@ -8,7 +8,7 @@ prometheus helm chart installation ansible role using ansible terraform module
 Requirements
 ------------
 
-The prometheus helm install from local devops-it-all/helm/prometheus dir
+The prometheus helm installation is done from local devops-it-all/helm/prometheus dir
 Using: 
 1) ansible terraform module
 2) terraform helm provider
