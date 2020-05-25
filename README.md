@@ -1,6 +1,6 @@
 # devops-it-all
    
-   ### As it say - try to devops it all:
+   ### As it says - try to devops it all:
    ##### Create automation environment using shell. python, ansible, terraform, helm, packer
    ##### Build on Amazon AWS VPC, EKS..
    ##### Build and run Jenkins devops-it-all apps common automation pipeline 
