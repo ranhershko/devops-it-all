@@ -8,7 +8,7 @@ Elasticsearch logstash helm chart installation ansible role using ansible terraf
 Requirements
 ------------
 
-The kibana helm install from local devops-it-all/helm/logstash dir
+The kibana helm installation is done from local devops-it-all/helm/logstash dir
 Using: 
 1) ansible terraform module
 2) terraform helm provider
