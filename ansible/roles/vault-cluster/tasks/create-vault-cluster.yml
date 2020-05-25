@@ -20,7 +20,7 @@
   register: vault_init
   ignore_errors: true
 
-- name: Correct the Vault installation status to success when it depend on the Vault initialized
+- name: Correct the Vault installation status to success when it depends on the Vault initialized
   terraform:
     binary_path: "/home/{{ lookup('env','USER') }}/bin/terraform"
     project_path: "{{ vault_helm_terraform_dir }}"
