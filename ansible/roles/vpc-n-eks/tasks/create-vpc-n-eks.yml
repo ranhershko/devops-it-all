@@ -31,8 +31,8 @@
 
 - name: update .ssh known_hosts with devopsitall haproxy server public rsa key
   lineinfile:
-    regexp: "^haproxy.ranhershko.dns-cloud.net"
-    line: "haproxy.ranhershko.dns-cloud.net {{ lookup('file', '{{ user_home }}/.ssh/devopsitall.pem.pub') }}"
+    regexp: "^haproxy.{{ domain_name }}"
+    line: "haproxy.{{ domain_name }} {{ lookup('file', '{{ user_home }}/.ssh/devopsitall.pem.pub') }}"
     path: "{{ user_home }}/.ssh/known_hosts"
     state: present
 
