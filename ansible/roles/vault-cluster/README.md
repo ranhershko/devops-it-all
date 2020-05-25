@@ -13,7 +13,7 @@ Hashicorp Vault helm chart installation ansible role using ansible terraform mod
 Requirements
 ------------
 
-The Vault helm install from local devops-it-all/helm/vault dir
+The Vault helm installation is done from local devops-it-all/helm/vault dir
 Using:
 1) ansible terraform module
 2) terraform helm provider
