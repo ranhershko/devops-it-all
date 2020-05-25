@@ -15,7 +15,7 @@
    ##### 1) Create an AWS Elastic IP named: haproxy_scale_eip
    ##### 2) Create a DNS wildcard record for this Elastic IP
    ##### 3) Create SSL wildcard certificate for this Dns wildcard record
-   ##### 4) Github user email and ssh private key that used by this account
+   ##### 4) Github user email and ssh private key that is used by this account
    ##### 5) Dockerhub account user and password 
 
 
