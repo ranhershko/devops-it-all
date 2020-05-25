@@ -8,7 +8,7 @@ Elasticsearch kibana helm chart installation ansible role using ansible terrafor
 Requirements
 ------------
 
-The kibana helm install from local devops-it-all/helm/kibana dir
+The kibana helm installation is done from local devops-it-all/helm/kibana dir
 Using: 
 1) ansible terraform module
 2) terraform helm provider
