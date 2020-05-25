@@ -171,10 +171,18 @@ while [ ${ip_resolved} != "true" ]; do
   fi
 done
    
-ansible-playbook play-build-devopsitall.yml --tags prepare_management_server,first_time_run
+
+ansible-playbook play-domainame-update.yml --tags prepare_management_server,first_time_run --extra-vars "domain_name=${dns_record}"
 first_time_run=$(if [ $? -eq 0 ]; then echo "succeeded"; else echo "failed"; fi)
 if [ ${first_time_run} == "succeeded" ]; then
-  ansible-playbook play-build-devopsitall.yml --skip-tags prepare_management_server,first_time_run --extra-vars "local_user_home=${HOME} github_ssh_user_email=${github_ssh_user_email} github_sshkey=${github_sshkey} dockerhub_username=${dockerhub_username} dockerhub_password=${dockerhub_password}"
+  ansible-playbook play-build-devopsitall.yml --tags prepare_management_server,first_time_run
+  first_time_run=$(if [ $? -eq 0 ]; then echo "succeeded"; else echo "failed"; fi)
+    if [ ${first_time_run} == "succeeded" ]; then
+      ansible-playbook play-build-devopsitall.yml --skip-tags prepare_management_server,first_time_run --extra-vars "local_user_home=${HOME} github_ssh_user_email=${github_ssh_user_email} github_sshkey=${github_sshkey} dockerhub_username=${dockerhub_username} dockerhub_password=${dockerhub_password} domain_name=${dns_record}"
+    else
+      echo "First time run failed - please fix and re-run"
+      exit 400
+    fi
 else
   echo "First time run failed - please fix and re-run"
 fi
