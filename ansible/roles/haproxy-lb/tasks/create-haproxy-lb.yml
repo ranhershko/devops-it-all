@@ -1,6 +1,13 @@
 ---
-- name: Set haproxy terraform eks worker role arn variable
-  shell: "{{ playbook_dir }}/../shell/set_worker_role_arn_variable.sh"
+- name: Get eks workers role arn
+  shell: "kubectl -n kube-system get configmap aws-auth -o yaml|sed -n '/mapRoles/,/username: system:node/p' | awk 'NR>4 && NR<6'|awk '{print $2}'"
+  register: worker_role
+
+- name: update eks_worker_role_arn variable with current worker role arn
+  lineinfile:
+    regexp: "^eks_worker_role_arn"
+    line: "eks_worker_role_arn = {{ (worker_role.stdout_lines)[0] }}"
+    path: "{{ playbook_dir }}/../terraform/aws/haproxy-autoscale/terraform.tfvars"
 
 - name: Create haproxy_lb
   terraform:
