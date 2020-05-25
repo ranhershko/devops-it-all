@@ -1,5 +1,5 @@
 ---
-- name: Copy vault bin files to home bin dir
+- name: Copy vault bin file to home bin dir
   copy:
     src: "{{ item[0] }}{{ item[1] }}"
     dest: "{{ user_home_bin }}/{{ item[1] }}"
@@ -10,7 +10,7 @@
     - "{{ pkgs.vault.download_dir }}"
     - "{{ pkgs.vault.bin_files }}"
 
-- name: Copy helm bin files to home bin dir
+- name: Copy helm bin file to home bin dir
   copy:
     src: "{{ item[0] }}{{ item[1] }}"
     dest: "/usr/bin/{{ item[1] }}"
