@@ -28,7 +28,7 @@
     state: directory
     mode: '0755'
 
-- name: Adding the path in the bashrc files
+- name: Adding the path in the bashrc file
   lineinfile: 
     dest="{{ user_home }}/.bashrc" 
     regexp='^export HELM_HOST' 
@@ -45,7 +45,7 @@
     #insertafter=EOF
   #when: checkIfPATHIsHere.changed == false
 
-- name: Ensure user_home_bin in PATH variable
+- name: Ensure user_home_bin is in the PATH variable
   lineinfile:
     path: "{{ user_home }}/.bashrc"
     regexp: '^export PATH='
