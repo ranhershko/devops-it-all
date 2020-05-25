@@ -6,7 +6,7 @@
    ##### Build and run Jenkins devops-it-all apps common automation pipeline 
    ######      using https://github.com/ranhershko/devops-it-all-jenkinsfile repo
    ##### Using Hashicorp consul service discovery and vault manage secrets..
-   ##### Build ELK stack for manage logs
+   ##### Build ELK stack for managing logs
    ##### Build Prometheus monitoring system and Grafana for querying and visualize metrics
         WORK IN PROGRESS...
    <img src="images/env-status.png" width="1200" >
