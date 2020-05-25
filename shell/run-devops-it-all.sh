@@ -19,7 +19,7 @@ usage() {
       --dns-record              DNS name for kubernetes wildcard DNS record pointing to AWS elastic IP named haproxy_scale_eip.
       -h, --help                Show usage.
     Example:
-      $(basename $0) --github-sshkey-path ~/.ssh/id_rsa --github-user-email me@ongithub.com --dockerhub-user meondockerhub --dockerhub-pass meondockerhub-password --ssl-privatekey-path /tmp/ssl.key --ssl-crt-path /tmp/ssl.crt --dns-record running-on-kubernetes.com
+      $(basename $0) --github-sshkey-path ~/.ssh/id_rsa --github-user-email meongithub@gmail.com --dockerhub-user meondockerhub --dockerhub-pass meondockerhub-password --ssl-privatekey-path /tmp/ssl.key --ssl-crt-path /tmp/ssl.crt --dns-record running-on-kubernetes.com
 HELP
     exit 1
 }
