@@ -11,7 +11,7 @@ Grafana helm chart installation ansible role with kubernetes dashboard using ans
 Requirements
 ------------
 
-The Grafana helm install from local devops-it-all/helm/grafana dir
+The Grafana helm installation is done from local devops-it-all/helm/grafana dir
 Using:
 1) ansible terraform module
 2) terraform helm provider
