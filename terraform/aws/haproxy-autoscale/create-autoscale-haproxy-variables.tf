@@ -80,3 +80,7 @@ variable "eks_worker_role_arn" {
   description = "Current eks worker role arn"
   type        = string
 }
+variable "haproxy_role_arn" {
+  description = "Current haproxy role arn"
+  type        = string
+}
