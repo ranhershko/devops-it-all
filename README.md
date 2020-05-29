@@ -31,13 +31,13 @@
    ##### ../shell/run-devops-it-all.sh
         
    #### Management apps UI & endpoints (Limited access only to management server)
-   ###### https://prometheus.${domain}
-   ###### https://grafana.${domain}
-   ###### https://elasticsearch.${domain}
-   ###### https://kibana.${domain}
-   ###### https://jenkins.${domain}
-   ###### https://consul.${domain}
-   ###### https://vault.${domain}
+   ###### https://prometheus."Domain_name"
+   ###### https://grafana."Domain_name"
+   ###### https://elasticsearch."Domain_name"
+   ###### https://kibana."Domain_name"
+   ###### https://jenkins."Domain_name"
+   ###### https://consul."Domain_name"
+   ###### https://vault."Domain_name"
 
    ### When done: (destroy)
    ##### 1) cd devops-it-all
