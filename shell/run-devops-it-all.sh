@@ -150,8 +150,8 @@ while [ ${ssl_verify} != "true" ]; do
     ssl_crt=""
   else
     ssl_verify=true
-    cp "${ssl_privatekey}" ../terraform/aws/haproxy-autoscale/template/private_key.tpl
-    cp "${ssl_crt}" ../terraform/aws/haproxy-autoscale/template/certificate_crt.tpl
+    sudo cp -p "${ssl_privatekey}" ../terraform/aws/haproxy-autoscale/template/private_key.tpl
+    sudo cp -p "${ssl_crt}" ../terraform/aws/haproxy-autoscale/template/certificate_crt.tpl
   fi
 done
 
