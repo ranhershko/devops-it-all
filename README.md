@@ -34,7 +34,7 @@
    ###### https://prometheus."Domain Name"
    ###### https://grafana."Domain Name"
    ##### Grafana admin password:
-   ###### kubectl get secret --namespace management  grafana-devopsitall -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+   ###### printf $(kubectl get secret --namespace management grafana-devopsitall -o jsonpath="{.data.admin-password}") | base64 --decode ; echo
    ###### https://elasticsearch."Domain Name"
    ###### https://kibana."Domain Name"
    ###### https://jenkins."Domain Name"
