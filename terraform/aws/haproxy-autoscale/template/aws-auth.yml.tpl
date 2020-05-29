@@ -1,12 +1,12 @@
 apiVersion: v1
 data:
-  mapRoles: |+
+  mapRoles: |
     - rolearn: ${eks_worker_role_arn}
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
-    - rolearn: arn:aws:iam::689166299232:role/haproxy_ec2_role
+    - rolearn: ${haproxy_role_arn}
       username: eks-readonly-user 
 kind: ConfigMap
 metadata:
