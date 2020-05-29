@@ -30,15 +30,14 @@
    #### Manually: (answer github & dockerhub login information, wildcard SSL private key and crt files path, DNS name for kubernetes wildcard DNS pointing to AWS elastic IP named haproxy_scale_eip
    ##### ../shell/run-devops-it-all.sh
         
-   ### Management apps UI & endpoints
-   ### Limited access only to management server
-   ##### https://prometheus.${domain}
-   ##### https://grafana.${domain}
-   ##### https://elasticsearch.${domain}
-   ##### https://kibana.${domain}
-   ##### https://jenkins.${domain}
-   ##### https://consul.${domain}
-   ##### https://vault.${domain}
+   #### Management apps UI & endpoints (Limited access only to management server)
+   ###### https://prometheus.${domain}
+   ###### https://grafana.${domain}
+   ###### https://elasticsearch.${domain}
+   ###### https://kibana.${domain}
+   ###### https://jenkins.${domain}
+   ###### https://consul.${domain}
+   ###### https://vault.${domain}
 
    ### When done: (destroy)
    ##### 1) cd devops-it-all
