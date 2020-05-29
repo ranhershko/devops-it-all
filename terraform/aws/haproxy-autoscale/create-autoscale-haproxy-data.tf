@@ -39,7 +39,7 @@ data "template_file" "haproxy_cfg_config_write_files" {
     haproxy_group              = var.haproxy_group
     management_server_ip       = chomp(data.http.myip.body)
     domain_name                = var.domain_name
-    nat_a_public_ip            = chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[0]) 
+    nat_a_public_ip            = chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[0])
     nat_b_public_ip            = chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[1])
     nat_c_public_ip            = chomp(data.terraform_remote_state.vpc-n-eks.outputs.aws_vpc_nat_public_ips[2])
   }
@@ -160,6 +160,7 @@ data "template_file" "aws_auth_yaml_config" {
 
   vars = {
     eks_worker_role_arn = var.eks_worker_role_arn
+    haproxy_role_arn    = var.haproxy_role_arn
   }
 }
 
