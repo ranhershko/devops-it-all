@@ -114,5 +114,6 @@
         enabled: yes
         masked: no
         state: started
-  roles:
-  - codecap.kubectl
+
+    - import_role:
+        name: codecap.kubectl
