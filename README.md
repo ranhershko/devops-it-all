@@ -27,10 +27,19 @@
    ##### run-devops-it-all.sh [ --github-sshkey-path | --github-user-email | --dockerhub-user | --dockerhub-pass | --ssl-privatekey-path | --ssl-crt-path | --dns-record | -h | --help ]
    #### example: 
    ##### ../shell/run-devops-it-all.sh --github-sshkey-path ~/.ssh/id_rsa --github-user-email meongithub@gmail.com --dockerhub-user meondockerhub --dockerhub-pass meondockerhub-password --ssl-privatekey-path /tmp/ssl.key --ssl-crt-path /tmp/ssl.crt --dns-record running-on-kubernetes.com
-   #### Manually: 
-   ##### Answer github & dockerhub login information, wildcard SSL private key and crt files path, DNS name for kubernetes wildcard DNS pointing to AWS elastic IP named haproxy_scale_eip
+   #### Manually: (answer github & dockerhub login information, wildcard SSL private key and crt files path, DNS name for kubernetes wildcard DNS pointing to AWS elastic IP named haproxy_scale_eip
    ##### ../shell/run-devops-it-all.sh
         
+   ### Management apps UI & endpoints
+   ### Limited access only to management server
+   ##### https://prometheus.${domain}
+   ##### https://grafana.${domain}
+   ##### https://elasticsearch.${domain}
+   ##### https://kibana.${domain}
+   ##### https://jenkins.${domain}
+   ##### https://consul.${domain}
+   ##### https://vault.${domain}
+
    ### When done: (destroy)
    ##### 1) cd devops-it-all
    ##### 2) ./shell/destroy_environment.sh
