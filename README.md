@@ -33,9 +33,13 @@
    #### Management apps UI & endpoints (Limited access only to management server)
    ###### https://prometheus."Domain Name"
    ###### https://grafana."Domain Name"
+   ###### Grafana admin password:
+   ###### kubectl get secret --namespace management  grafana-devopsitall -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
    ###### https://elasticsearch."Domain Name"
    ###### https://kibana."Domain Name"
    ###### https://jenkins."Domain Name"
+   ###### Jenkins admin password: 
+   ###### printf $(kubectl get secret --namespace management jenkins-devopsitall -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
    ###### https://consul."Domain Name"
    ###### https://vault."Domain Name"
 
