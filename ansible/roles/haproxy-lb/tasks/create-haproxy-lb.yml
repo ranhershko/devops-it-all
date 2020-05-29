@@ -1,12 +1,23 @@
 ---
 - name: Get eks workers role arn
-  shell: "kubectl -n kube-system get configmap aws-auth -o yaml|sed -n '/mapRoles/,/username: system:node/p' | awk 'NR>4 && NR<6'|awk '{print $2}'"
-  register: worker_role
+  shell: "kubectl -n kube-system get configmap aws-auth -o yaml|grep 'rolearn.*kubernetes'|awk '{print $2}'"
+  register: worker_role_arn
 
+- name: Get AWS account id
+  shell: "aws sts get-caller-identity|jq '.Account'| sed 's/\"//g'"
+  register: aws_account_id
+  
 - name: update eks_worker_role_arn variable with current worker role arn
   lineinfile:
     regexp: "^eks_worker_role_arn"
-    line: "eks_worker_role_arn = {{ (worker_role.stdout_lines)[0] }}"
+    line: "eks_worker_role_arn = {{ (worker_role_arn.stdout_lines)[0] }}"
+    path: "{{ playbook_dir }}/../terraform/aws/haproxy-autoscale/terraform.tfvars"
+  
+- name: update haproxy_role_arn variable with current haproxy role arn
+  lineinfile:
+    regexp: "^haproxy_role_arn"
+    line: "haproxy_role_arn = \"arn:aws:iam::{{ (aws_account_id.stdout_lines)[0] }}:role/haproxy_ec2_role\""
+    #line: "haproxy_role_arn = \"arn:aws:iam::{{ ((worker_role_arn.stdout_lines)[0].split(':'))[4] }}:role/haproxy_ec2_role\""
     path: "{{ playbook_dir }}/../terraform/aws/haproxy-autoscale/terraform.tfvars"
 
 - name: Create haproxy_lb
