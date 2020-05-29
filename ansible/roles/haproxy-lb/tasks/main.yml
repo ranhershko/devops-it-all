@@ -1,4 +1,4 @@
 ---
 # tasks file for haproxy-lb
-#- include: haproxy-image-build.yml
+- include: haproxy-image-build.yml
 - include: create-haproxy-lb.yml
