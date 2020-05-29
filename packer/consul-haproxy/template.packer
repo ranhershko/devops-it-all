@@ -71,7 +71,7 @@
       "type": "ansible-local",
       "playbook_file": "../packer/consul-haproxy/haproxy.yml",
       "inventory_file": "inventories/inventory",
-      "playbook_dir": "roles"
+      "playbook_dir": "."
     }
   ]
 }
