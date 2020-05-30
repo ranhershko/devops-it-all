@@ -25,7 +25,7 @@
 
 - name: Create a new KMS vault_unseal key
   aws_kms:
-    alias: vault_keys
+    alias: vault_unseal_keys
     #policy: "{{ playbook_dir }}/roles/kms_vault_unseal_key/files/kms_iam_user_policy.json }}"
     #policy: "kms_iam_user_policy"
     #grants:
