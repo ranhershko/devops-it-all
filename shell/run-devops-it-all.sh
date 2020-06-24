@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -xv
 
 set -o pipefail
 
@@ -92,18 +92,11 @@ done
 # Install docker package
 #if [! [ $(which docker)  && [ $(docker --version) ]]; then
 docker --version >/dev/null 2>&1
-if [ ! $? ]; then
+if [ $? -ne 0 ]; then
   sudo yum update -y
   
   if [ ! -f /etc/yum.repos.d/docker-ce.repo ]; then
-    sudo tee /etc/yum.repos.d/docker-ce.repo <<-'EOF'
-    [docker-ce-stable]
-    name=Docker CE Stable - $basearch
-    baseurl='https://download.docker.com/linux/centos/7/$basearch/stable'
-    enabled=1
-    gpgcheck=1
-    gpgkey=https://download.docker.com/linux/centos/gpg
-EOF
+    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   fi
   
   sudo yum install docker-ce docker-ce-cli -y
@@ -123,7 +116,7 @@ while [ ${login} != "true" ]; do
   fi
   
   #echo ${dockerhub_password} |docker login --username ${dockerhub_username} --password ${dockerhub_password} -stdin | true
-  docker login --username ${dockerhub_username} --password ${dockerhub_password} || true
+  sudo docker login --username ${dockerhub_username} --password ${dockerhub_password} || true
   if [ ! $? ]; then
     echo "Incorrect Dockerhub authentication credentials, please enter again"
     dockerhub_username=""
@@ -155,34 +148,48 @@ while [ ${ssl_verify} != "true" ]; do
   fi
 done
 
-ip_resolved=false
-while [ ${ip_resolved} != "true" ]; do
-  if [ -z "${dns_record}" ]; then
-    read -p "Please enter kubernetes dns record name: " dns_record
-  fi
+which dnf >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  sudo yum install dnf -y
+fi
 
-  resolved_ip=`nslookup *.${dns_record}|sed -n '/'${dns_record}'/{n;p}'|awk '{print $2}'`
-  elastic_ip=`aws ec2 describe-addresses --filters "Name=tag-value,Values=haproxy_scale_eip" --query 'Addresses[].PublicIp'|sed -n '/\".*\"/{p}'`
-  if [ $elastic_ip != \"$resolved_ip\" ] ; then 
-    echo "The domain ${dns_record} doesn\'t resolve to aws elastic ip name 'haproxy_scale_eip'. Fix and try again"
-    exit 400
-  else
-    ip_resolved=true
-  fi
-done
-   
+which python3 >/dev/null 2>&1 
+if [ $? -ne 0 ]; then 
+  sudo dnf install python3 python3-pip python3-devel libselinux-python3 -y
+fi
 
-ansible-playbook play-domainame-update.yml --tags prepare_management_server,first_time_run --extra-vars "domain_name=${dns_record}"
+which ansible >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  sudo python3 -m pip install ansible awscli wheel setuptools wheel pyhelm pyOpenSSL acme-tiny boto boto3 botocore
+  #sudo pip3 install -U -r ../python/devopsitall-prerequisite-requirements.txt
+fi
+
+ansible-playbook play-domainame-update.yml --tags prepare_management_server,first_time_run --extra-vars "domain_name=${dns_record} ansible_python_interpreter=/usr/bin/python3"
 first_time_run=$(if [ $? -eq 0 ]; then echo "succeeded"; else echo "failed"; fi)
 if [ ${first_time_run} == "succeeded" ]; then
-  ansible-playbook play-build-devopsitall.yml --tags prepare_management_server,first_time_run
-  first_time_run=$(if [ $? -eq 0 ]; then echo "succeeded"; else echo "failed"; fi)
-    if [ ${first_time_run} == "succeeded" ]; then
-      ansible-playbook play-build-devopsitall.yml --skip-tags prepare_management_server,first_time_run --extra-vars "local_user_home=${HOME} github_ssh_user_email=${github_ssh_user_email} github_sshkey=${github_sshkey} dockerhub_username=${dockerhub_username} dockerhub_password=${dockerhub_password} domain_name=${dns_record}"
-    else
-      echo "First time run failed - please fix and re-run"
-      exit 400
+  #ansible-playbook play-build-devopsitall.yml --tags prepare_management_server,first_time_run
+  #first_time_run=$(if [ $? -eq 0 ]; then echo "succeeded"; else echo "failed"; fi)
+  #if [ ${first_time_run} == "succeeded" ]; then
+  ip_resolved=false
+  while [ ${ip_resolved} != "true" ]; do
+    if [ -z "${dns_record}" ]; then
+      read -p "Please enter kubernetes dns record name: " dns_record
     fi
-else
-  echo "First time run failed - please fix and re-run"
+
+    resolved_ip=`nslookup *.${dns_record}|sed -n '/'${dns_record}'/{n;p}'|awk '{print $2}'`
+    elastic_ip=`aws ec2 describe-addresses --filters "Name=tag-value,Values=haproxy_scale_eip" --query 'Addresses[].PublicIp'|sed -n '/\".*\"/{p}'|xargs`
+    if [ $elastic_ip != $resolved_ip ] ; then
+      echo "The domain ${dns_record} doesn\'t resolve to aws elastic ip name 'haproxy_scale_eip'. Fix and try again"
+      exit 400
+    else
+      ip_resolved=true
+    fi
+  done
+  ansible-playbook play-build-devopsitall.yml --skip-tags prepare_management_server,first_time_run --extra-vars "local_user_home=${HOME} github_ssh_user_email=${github_ssh_user_email} github_sshkey=${github_sshkey} dockerhub_username=${dockerhub_username} dockerhub_password=${dockerhub_password} domain_name=${dns_record}"
+  exit 0
+  #fi
 fi
+echo "First time run failed - please fix and re-run"
+exit 400
+
+
