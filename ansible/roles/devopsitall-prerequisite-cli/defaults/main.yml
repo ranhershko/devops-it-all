@@ -12,10 +12,10 @@ pkgs:
   jq:
     url: "https://github.com/stedolan/jq/releases/download/jq-{{ jq_version }}/jq-linux64"
     sha256: "https://github.com/stedolan/jq/blob/master/sig/v1.6/sha256sum.txt"
-    download_dir: "/tmp/download/jq"
+    download_dir: "/tmp/download/"
     compressed: false
     bin_files:
-      - jq
+      - jq-linux64
   aws_iam_authenticator:
     url: "https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator"
     sha256: "https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator.sha256"
