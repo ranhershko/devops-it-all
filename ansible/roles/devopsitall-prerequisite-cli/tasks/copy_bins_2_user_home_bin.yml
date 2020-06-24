@@ -53,8 +53,16 @@
     - "{{ pkgs.terraform.download_dir }}"
     - "{{ pkgs.terraform.bin_files }}"
 
-#- name: run tiller in background
-  #shell: nohup tiller start  >/dev/null 2>&1 &
+i- name: Copy jq bin file to home bin dir
+  copy:
+    src: "{{ item[0] }}{{ item[1] }}"
+    dest: "{{ user_home_bin }}/jq"
+    owner: "{{ user_home.split('/')[-1] }}"
+    group: "{{ user_home.split('/')[-1] }}"
+    mode: '0755'
+  with_nested:
+    - "{{ pkgs.jq.download_dir }}"
+    - "{{ pkgs.jq.bin_files }}"
 
 - name: Delete download tmp dir
   file:
