@@ -53,7 +53,7 @@
     - "{{ pkgs.terraform.download_dir }}"
     - "{{ pkgs.terraform.bin_files }}"
 
-i- name: Copy jq bin file to home bin dir
+- name: Copy jq bin file to home bin dir
   copy:
     src: "{{ item[0] }}{{ item[1] }}"
     dest: "{{ user_home_bin }}/jq"
