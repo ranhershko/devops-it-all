@@ -1,7 +1,8 @@
 setuptools
+wheel
 pyhelm
 pyOpenSSL
 acme-tiny
-boto #(2.38.0)
-boto3 #(1.1.4)
+boto
+boto3
 botocore 
