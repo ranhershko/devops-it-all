@@ -6,24 +6,64 @@ master:
   healthProbeReadinessInitialDelay: 150
   slaveKubernetesNamespace: management
   installPlugins:
-    - kubernetes:1.25.3
+    - kubernetes:1.26.1
     - kubernetes-cd:2.3.0
     - workflow-aggregator:2.6
-    - workflow-job:2.38
-    - credentials-binding:1.21
-    - git:4.2.2
+    - workflow-job:2.39
+    - credentials-binding:1.23
+    - git:4.3.0
     - generic-webhook-trigger:1.67
-    - github:1.29.5
+    - github:1.30.0
     - github-oauth:0.33
     - github-pullrequest:0.2.8
     - configuration-as-code-groovy:1.1
-    - configuration-as-code:1.39
+    - configuration-as-code:1.41
     - greenballs:1.15
-    - blueocean:1.22.0
+    - blueocean:1.23.2
     - groovy:2.2
     - locale:1.4
-    - hashicorp-vault-plugin:3.2.0
+    - hashicorp-vault-plugin:3.5.0
     - hashicorp-vault-pipeline:1.3
+  secretsFilesSecret: jenkins-vault-app-role
+  initScripts:
+    jenkins-vault-app-role.groovy: |-
+      #!groovy
+      //////////////////////////////////////////////////////////////////////////
+      // This script loads vault approle credential to Jenkins credential store.
+      //////////////////////////////////////////////////////////////////////////
+      import jenkins.model.*
+      import com.cloudbees.plugins.credentials.*
+      import com.cloudbees.plugins.credentials.common.*
+      import com.cloudbees.plugins.credentials.domains.*
+      import org.jenkinsci.plugins.plaincredentials.*
+      import org.jenkinsci.plugins.plaincredentials.impl.*
+      import com.datapipe.jenkins.vault.credentials.*
+      import hudson.util.Secret
+      //////////////////////////////
+      // Get master credential store
+      //////////////////////////////
+      domain = Domain.global()
+      ///////////////////
+      // Helper functions
+      ///////////////////
+      //def getStore() {
+      //  return Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+      //}
+      //def getContent(filePath) {
+      //  return new File(filePath).text
+      //}
+      //////////////
+      // Add approle
+      //////////////
+      secretAppRoles = [
+        [id: 'jenkins-vault-approle', description: 'Jenkins Vault AppRole', appRoleID: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', appRoleSecret: '/var/jenkins_home/secrets/jenkinsVaultRoleSecret', path: '/kv/jenkins/appsecret']
+      ]
+      for(secretAppRole in secretAppRoles) {
+        Credentials approle = (Credentials) new VaultAppRoleCredential(CredentialsScope.GLOBAL, secretAppRole.id, secretAppRole.description, secretAppRole.appRoleID, Secret.fromString(new File(secretAppRole.appRoleSecret).text), secretAppRole.path)
+        Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore().addCredentials(domain, approle)
+        //getStore().addCredentials(domain, approle)
+      }
+
   overwritePlugins: true
   JCasC:
     enabled: true
