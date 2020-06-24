@@ -18,6 +18,8 @@
     path: "{{ playbook_dir }}/roles/{{ item }}"
     regexp: '^user_home:'
     line: "user_home: /home/{{ user_name.stdout }}"
+    state: present
+    create: yes
   loop:
     - "vpc-n-eks/vars/main.yml" 
     - "haproxy-lb/vars/main.yml"
@@ -52,5 +54,5 @@
     line: "export PATH={{ user_home_bin }}:$PATH"
     state: present
 
-- name: Source the bashrc file
-  shell: source "{{ user_home }}/.bashrc"
+      #- name: Source the bashrc file
+      #shell: source "{{ user_home }}/.bashrc"
