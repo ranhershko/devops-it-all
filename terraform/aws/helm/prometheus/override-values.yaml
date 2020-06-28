@@ -1,6 +1,6 @@
 alertmanager:
-  baseURL: "https://prometheus.ranhershko.dns-cloud.net"
+  baseURL: "https://prometheus.dns.com"
 server:
-  baseURL: "https://prometheus.ranhershko.dns-cloud.net"
+  baseURL: "https://prometheus.dns.com"
   podAnnotations:
     "consul.hashicorp.com/service-port": "http"
