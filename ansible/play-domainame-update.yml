@@ -1,11 +1,31 @@
 ---
 - hosts: localhost
+  tags:
+  - first_time_run
   tasks: 
-    - name: update current haproxy domain_name
+    - name: update current domain_name in terraform.tfvars
       lineinfile:
         regexp: "^domain_name"
         line: "domain_name = \"{{ domain_name }}\""
         path: "{{ playbook_dir }}/../terraform/aws/haproxy-autoscale/terraform.tfvars"
         state: present
         create: yes
-      tags: first_time_run
+    - name: update current vaultUrl domain_name in jenkins helm override-values.yaml
+      lineinfile:
+        regexp: "^          vaultUrl"
+        line: '          vaultUrl: "https://vault.{{ domain_name }}"'
+        path: "{{ playbook_dir }}/../terraform/aws/helm/jenkins/override-values.yaml"
+        state: present
+    - name: update current prometheus alertmanager baseURL domain_name in prometheus helm override-values.yaml
+      lineinfile:
+        regexp: "^  baseURL"
+        line: '  baseURL: "https://prometheus.{{ domain_name }}"'
+        path: "{{ playbook_dir }}/../terraform/aws/helm/prometheus/override-values.yaml"
+        state: present
+    - name: update current prometheus server baseURL domain_name in prometheus helm override-values.yaml
+      lineinfile:
+        regexp: "  baseURL:"
+        insertafter: "server:"
+        line: '  baseURL: "https://prometheus.{{ domain_name }}"'
+        path: "{{ playbook_dir }}/../terraform/aws/helm/prometheus/override-values.yaml"
+        state: present
