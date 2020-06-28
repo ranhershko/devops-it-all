@@ -56,7 +56,7 @@ master:
       // Add approle
       //////////////
       secretAppRoles = [
-        [id: 'jenkins-vault-approle', description: 'Jenkins Vault AppRole', appRoleID: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', appRoleSecret: '/var/jenkins_home/secrets/jenkinsVaultRoleSecret', path: '/kv/jenkins/appsecret']
+        [id: 'jenkins-vault-approle', description: 'Jenkins Vault AppRole', appRoleID: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', appRoleSecret: '/var/jenkins_home/secrets/jenkinsVaultRoleSecret', path: 'approle']
       ]
       for(secretAppRole in secretAppRoles) {
         Credentials approle = (Credentials) new VaultAppRoleCredential(CredentialsScope.GLOBAL, secretAppRole.id, secretAppRole.description, secretAppRole.appRoleID, Secret.fromString(new File(secretAppRole.appRoleSecret).text), secretAppRole.path)
@@ -67,30 +67,6 @@ master:
   overwritePlugins: true
   JCasC:
     enabled: true
-    credentials:
-      system:
-        domainCredentials:
-        - credentials:
-          - basicSSHUserPrivateKey:
-              id: "GithubSshKey"
-              privateKeySource:
-                directEntry:
-                  privateKey: "{GithubSshKey}"
-              scope: GLOBAL
-              username: "ran.hershko@gmail.com"
-          - usernamePassword:
-              id: "DockerHubPass"
-              password: "{DockerHubPass}"
-              scope: GLOBAL
-              username: "ranhershko"
-          - kubeconfig:
-              description: "mykubeconfig"
-              id: "mykubeconfig"
-              kubeconfigSource:
-                directEntry:
-                  content: |-
-                    ****
-              scope: GLOBAL
     jenkins:
       agentProtocols:
       - "JNLP4-connect"
@@ -193,19 +169,19 @@ master:
         hookUrl: "http://${HOSTNAME}:8080/github-webhook/"
       gitSCM:
         createAccountBasedOnEmail: false
-        globalConfigName: "ranhershko"
         showEntireCommitSummaryInChanges: false
         useExistingAccountWithSameEmail: false
+      hashicorpVault:
+        configuration:
+          engineVersion: 2
+          timeout: 60
+          vaultCredentialId: "jenkins-vault-approle"
+          vaultUrl: "https://vault.dns.com"
       location:
         adminAddress: "address not configured yet <nobody@nowhere>"
-        url: "https://jenkins.ranhershko.dns-cloud.net/"
       mailer:
         charset: "UTF-8"
         useSsl: false
-      pipeline-model-docker:
-        registry:
-          credentialsId: "DockerHubPass"
-          url: "https://hub.docker.com/r/ranhershko/"
       pollSCM:
         pollingThreadCount: 10
       whitelist:
