@@ -10,22 +10,24 @@
         path: "{{ playbook_dir }}/../terraform/aws/haproxy-autoscale/terraform.tfvars"
         state: present
         create: yes
-    - name: update current vaultUrl domain_name in jenkins helm override-values.yaml
-      lineinfile:
-        regexp: "^          vaultUrl"
-        line: '          vaultUrl: "https://vault.{{ domain_name }}"'
-        path: "{{ playbook_dir }}/../terraform/aws/helm/jenkins/override-values.yaml"
-        state: present
     - name: update current prometheus alertmanager baseURL domain_name in prometheus helm override-values.yaml
       lineinfile:
         regexp: "^  baseURL"
+        insertafter: "alertmanager:"
         line: '  baseURL: "https://prometheus.{{ domain_name }}"'
         path: "{{ playbook_dir }}/../terraform/aws/helm/prometheus/override-values.yaml"
         state: present
     - name: update current prometheus server baseURL domain_name in prometheus helm override-values.yaml
       lineinfile:
-        regexp: "  baseURL:"
+        regexp: "^  baseURL:"
         insertafter: "server:"
         line: '  baseURL: "https://prometheus.{{ domain_name }}"'
         path: "{{ playbook_dir }}/../terraform/aws/helm/prometheus/override-values.yaml"
         state: present
+    - name: Update Jenkins vault VaultUrl
+      replace:
+        path: "{{ playbook_dir }}/../terraform/aws/helm/jenkins/override-values.yaml"
+        regexp: >-
+          ^(\s*.*VaultUrl: )(.*)(])
+        replace: >-
+          \1'https://vault.{{ domain_name }}'\3
