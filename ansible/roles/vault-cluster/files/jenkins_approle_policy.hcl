@@ -1,41 +1,42 @@
-path "auth/**" {
-  capabilities = [ "create", "read", "list" ]
-}
-
-path "secret/*" {
-  capabilities = [ "create", "read", "list" ]
-}
-
 path "sys/mounts/*" {
   capabilities = [ "create", "read", "list" ]
 }
 
-path "sys/auth" {
-  capabilities = [ "create", "read", "list" ]
-}
-  
-path "sys/auth/approle" {
-  capabilities = [ "create", "read", "list" ]
-}
-
-path "sys/auth/approle/*" {
-  capabilities = [ "create", "read", "list" ]
+path "auth/*" {
+  capabilities = [ "create", "read", "list", "update" ]
 }
 
 # Login with AppRole
 path "auth/approle/*" {
-  capabilities = [ "create", "read", "list" ]
+  capabilities = [ "create", "read", "list", "update" ]
 }
 
-path "sys/policies/acl/*" {
-  capabilities = [ "create", "read", "list" ]
+path "sys/auth" {
+  capabilities = [ "create", "read", "list", "update" ]
+}
+
+path "sys/auth/approle" {
+  capabilities = [ "create", "read", "list", "update" ]
+}
+
+path "sys/auth/approle/*" {
+  capabilities = [ "create", "read", "list", "update" ]
+}
+
+path "secret/jenkins/*" {
+  capabilities = [ "create", "read", "list", "update" ]
 }
 
 # Read jenkins secret data
-path "kv/data/jenkins-kubeconfig/*" {
-  capabilities = [ "read", "read", "list" ]
+path "secret/jenkins-kubeconfig/*" {
+  capabilities = [ "create", "read", "list", "update" ]
 }
 
-path "kv/data/jenkins/*" {
-  capabilities = [ "read", "read", "list" ]
+path "secret/data/jenkins/*" {
+  capabilities = [ "create", "read", "list", "update" ]
+}
+
+# Read jenkins secret data
+path "secret/data/jenkins-kubeconfig/*" {
+  capabilities = [ "create", "read", "list", "update" ]
 }
